@@ -9,16 +9,19 @@ import br.com.eliminadengue.central.model.Prevencao;
 import java.sql.Connection;
 import java.util.List;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  *
  * @author Guilherme Alves
  */
+@Named @Perssiste
 public class PrevencaoDao implements Dao<Prevencao>{
     
     @Inject
     private Connection connection;
     
+    public PrevencaoDao() {}
     @Override
     public void salvar(Prevencao obj) {
         System.out.println("Salvar: " + obj.toString());
