@@ -5,33 +5,33 @@
  */
 package br.com.eliminadengue.central.model;
 
-import java.io.Serializable;
-import java.util.Date;
-import javax.xml.bind.annotation.XmlElement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author T2S
  */
+
 @XmlRootElement
-public class Prevencao implements Serializable{
+public class Prevencao {
     
-    @XmlElement
     private String nomePrevencao;
     
-    @XmlElement
     private long idPrevencao;
+   
+    public Prevencao(){}
     
-    private Date dataPrevencaoAgendada = new Date(System.currentTimeMillis());
+//    private Date dataPrevencaoAgendada = new Date(System.currentTimeMillis());
     
-    public Prevencao() {}
-    @XmlElement
-    public String getDataPrevencaoAgendada() {
-        return dataPrevencaoAgendada.toString();
-    }
+//    public Prevencao() {}
+//    @XmlElement
+//    public String getDataPrevencaoAgendada() {
+//        return dataPrevencaoAgendada.toString();
+//    }
     
-    @XmlElement
+    
     private int idFoco;
     
     public String getNomePrevencao() {
@@ -41,5 +41,22 @@ public class Prevencao implements Serializable{
     public void setNomePrevencao(String nomePrevencao) {
         this.nomePrevencao = nomePrevencao;
     }
+
+    public long getIdPrevencao() {
+        return idPrevencao;
+    }
+
+    public int getIdFoco() {
+        return idFoco;
+    }
+
+    public void setIdPrevencao(long idPrevencao) {
+        this.idPrevencao = idPrevencao;
+    }
+
+    public void setIdFoco(int idFoco) {
+        this.idFoco = idFoco;
+    }
+
 
 }

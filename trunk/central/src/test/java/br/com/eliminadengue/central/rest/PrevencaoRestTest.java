@@ -5,6 +5,7 @@ import java.net.URI;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.UriBuilder;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
@@ -21,7 +22,7 @@ import static org.junit.Assert.*;
  *
  * @author Guilherme
  */
-public class PrevencaoRestTest {
+public class PrevencaoRestTest{
 
     private static HttpServer server;
     private static WebTarget target;
@@ -36,7 +37,7 @@ public class PrevencaoRestTest {
 
         server.start();
         Client client = ClientBuilder.newClient();
-        target = client.target(BASE_URI);
+        target = client.target(BASE_URI); 
     }
 
     @AfterClass
@@ -50,16 +51,30 @@ public class PrevencaoRestTest {
 
     @After
     public void tearDown() {
-        server.shutdown();
+        //server.shutdown();
     }
 
     @Test
     public void getIt() {
-        Prevencao prevencao =  (Prevencao) target.path("/prevencao")
+        Prevencao prevencao =  target.path("/prevencao")
                 .queryParam("nome", "ralos")
                 .request()
-                .get(Object.class);
+                .get(Prevencao.class);
+        
+        
+        
+//        final Response response = target.path("prevencao")
+//                .queryParam("nome", "ralos").request()
+//                .accept(MediaType.APPLICATION_JSON).get();
 
-        assertTrue(prevencao != null);
+        
+
+        assertEquals("ralos", prevencao.getNomePrevencao());
+    }
+    
+    @Test
+    public void salvarPrevencao() {
+        Prevencao prevencao = new Prevencao();
+        prevencao.setIdFoco(1);
     }
 }
