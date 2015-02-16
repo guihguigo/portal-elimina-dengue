@@ -5,6 +5,7 @@
  */
 package br.com.eliminadengue.central.model;
 
+import java.util.Date;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -14,47 +15,77 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class Prevencao {
-    
-    private String nomePrevencao;
-    
-    private long idPrevencao;
-   
-    public Prevencao(){}
-    
-//    private Date dataPrevencaoAgendada = new Date(System.currentTimeMillis());
-    
-//    public Prevencao() {}
-//    @XmlElement
-//    public String getDataPrevencaoAgendada() {
-//        return dataPrevencaoAgendada.toString();
-//    }
-    
-    
-    private int idFoco;
-    
-    public String getNomePrevencao() {
-        return nomePrevencao;
+    private int codigoCelular;
+    private Foco foco;
+    private Date dataCriacao;
+    private Date dataPrazo;
+    private Date dataEfetuada;
+    private Endereco endereco;
+
+    public Prevencao(int codigoCelular, Foco foco, Date dataCriacao, Date dataPrazo, Endereco endereco) {
+        this.codigoCelular = codigoCelular;
+        this.foco = foco;
+        this.dataCriacao = dataCriacao;
+        this.dataPrazo = dataPrazo;
+        this.endereco = endereco;
     }
 
-    public void setNomePrevencao(String nomePrevencao) {
-        this.nomePrevencao = nomePrevencao;
+    public Prevencao() {}
+
+    public Endereco getEndereco() {
+        return endereco;
     }
 
-    public long getIdPrevencao() {
-        return idPrevencao;
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+    
+    public int getCodigoCelular() {
+        return codigoCelular;
     }
 
-    public int getIdFoco() {
-        return idFoco;
+    public void setCodigoCelular(int codigoCelular) {
+        this.codigoCelular = codigoCelular;
     }
 
-    public void setIdPrevencao(long idPrevencao) {
-        this.idPrevencao = idPrevencao;
+    public Foco getFoco() {
+        return foco;
     }
 
-    public void setIdFoco(int idFoco) {
-        this.idFoco = idFoco;
+    public void setFoco(Foco foco) {
+        this.foco = foco;
     }
 
+    public Date getDataCriacao() {
+        return dataCriacao;
+    }
 
+    public void setDataCriacao(Date dataCriacao) {
+        this.dataCriacao = dataCriacao;
+    }
+
+    public Date getDataPrazo() {
+        return dataPrazo;
+    }
+
+    public void setDataPrazo(Date dataPrazo) {
+        this.dataPrazo = dataPrazo;
+    }
+
+    public Date getDataEfetuada() {
+        return dataEfetuada;
+    }
+
+    public void setDataEfetuada(Date dataEfetuada) {
+        this.dataEfetuada = dataEfetuada;
+    }
+
+    @Override
+    public String toString() {
+        return "Prevencao{" + "codigoCelular=" + codigoCelular + ", foco=" + foco + ", dataCriacao=" + dataCriacao + ", dataPrazo=" + dataPrazo + ", dataEfetuada=" + dataEfetuada + '}';
+    }
+
+    
 }
+    
+ 

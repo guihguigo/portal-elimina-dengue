@@ -6,9 +6,11 @@
 package br.com.eliminadengue.central.perssistence;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
+import javax.annotation.Resource;
 import javax.enterprise.inject.Produces;
+import javax.inject.Named;
+import javax.sql.DataSource;
 
 
 /**
@@ -16,13 +18,18 @@ import javax.enterprise.inject.Produces;
  * @author Guilherme Alves
  */
 
+@Named
 public class ConnectionFactory {
-
+    @Resource(name = "jdbc/central")
+    private DataSource dataSource;
+    
     @Produces
     public Connection getConnection() {
         System.out.println("Conexão criada.");
         try {
-            return DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/xe", "central", "central");
+            Connection connection = dataSource.getConnection();
+            System.out.println("Conexão criada.");
+            return connection;
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }

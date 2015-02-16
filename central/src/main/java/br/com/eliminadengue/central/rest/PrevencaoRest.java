@@ -7,7 +7,11 @@ package br.com.eliminadengue.central.rest;
 
 import br.com.eliminadengue.central.model.Prevencao;
 import br.com.eliminadengue.central.perssistence.Dao;
+import br.com.eliminadengue.central.perssistence.PrevencaoDao;
+import br.com.eliminadengue.central.perssistence.Perssiste;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -22,21 +26,21 @@ import javax.ws.rs.QueryParam;
 
 @Path("prevencao")
 public class PrevencaoRest {
-   @Inject
-   private Dao<Prevencao> prevencaoDao;
-   
+
+    @Inject @Perssiste
+    private PrevencaoDao prevencaoDao;
+    
     @GET
     @Produces("application/xml")
-    public Prevencao getIt(@QueryParam("nome") String nome) {        
-        Prevencao prevencao = new Prevencao();
-        prevencao.setNomePrevencao(nome);
-        System.out.println("Chegou aqui!************");
-        return prevencao;
+    public String encontrar(@QueryParam("codigoCelular") int codigoCelular, 
+            @QueryParam("codigoFoco") int codigoFoco) {
+        prevencaoDao.encontrar(codigoCelular, codigoFoco);
+        return "Achou!";
     }
     
     @POST
     @Consumes("application/xml")
-    public void salvar(Prevencao prevencao) {
-        prevencaoDao.salvar(prevencao);
+    public void salvar(@QueryParam("nome") String nome) {
+//        prevencaoDao.salvar();
     }
 }
