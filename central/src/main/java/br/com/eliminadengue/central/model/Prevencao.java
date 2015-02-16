@@ -5,13 +5,11 @@
  */
 package br.com.eliminadengue.central.model;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author T2S
+ * @author Guilherme Alves
  */
 
 @XmlRootElement
