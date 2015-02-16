@@ -18,7 +18,7 @@ import javax.ws.rs.core.MediaType;
 /**
  * REST Web Service
  *
- * @author T2S
+ * @author Guilherme Alves
  */
 @Path("generic")
 public class GenericResource {

@@ -6,7 +6,7 @@
 package br.com.eliminadengue.central.rest;
 
 import br.com.eliminadengue.central.model.Prevencao;
-import br.eliminadengue.central.perssistence.Dao;
+import br.com.eliminadengue.central.perssistence.Dao;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -17,7 +17,7 @@ import javax.ws.rs.QueryParam;
 
 /**
  *
- * @author Guilherme
+ * @author Guilherme Alves
  */
 
 @Path("prevencao")
