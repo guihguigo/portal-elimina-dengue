@@ -8,6 +8,7 @@ package br.com.eliminadengue.central.perssistence;
 import java.sql.Connection;
 import java.sql.SQLException;
 import javax.annotation.Resource;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Produces;
 import javax.inject.Named;
 import javax.sql.DataSource;
@@ -23,6 +24,7 @@ public class ConnectionFactory {
     @Resource(name = "jdbc/central")
     private DataSource dataSource;
     
+    @RequestScoped
     @Produces
     public Connection getConnection() {
         try {
