@@ -6,10 +6,8 @@
 package br.com.eliminadengue.central.rest;
 
 import br.com.eliminadengue.central.model.Prevencao;
-import br.com.eliminadengue.central.perssistence.Dao;
 import br.com.eliminadengue.central.perssistence.PrevencaoDao;
 import br.com.eliminadengue.central.perssistence.Perssiste;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.Consumes;
@@ -18,29 +16,32 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Response;
 
 /**
  *
  * @author Guilherme Alves
  */
 
-@Path("prevencao")
+
+@Path("/prevencao")
 public class PrevencaoRest {
 
     @Inject @Perssiste
     private PrevencaoDao prevencaoDao;
     
     @GET
-    @Produces("application/xml")
-    public String encontrar(@QueryParam("codigoCelular") int codigoCelular, 
+    @Consumes({"application/xml", "application/json"})
+    @Produces({"application/xml", "application/json"})
+    public Response encontrar(@QueryParam("codigoCelular") int codigoCelular, 
             @QueryParam("codigoFoco") int codigoFoco) {
         prevencaoDao.encontrar(codigoCelular, codigoFoco);
-        return "Achou!";
+        return Response.ok(new Prevencao()).build();
     }
     
     @POST
     @Consumes("application/xml")
-    public void salvar(@QueryParam("nome") String nome) {
-//        prevencaoDao.salvar();
+    public void salvar(Prevencao prevencao) {
+        prevencaoDao.salvar(prevencao);
     }
 }

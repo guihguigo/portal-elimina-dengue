@@ -25,7 +25,6 @@ public class ConnectionFactory {
     
     @Produces
     public Connection getConnection() {
-        System.out.println("Conexão criada.");
         try {
             Connection connection = dataSource.getConnection();
             System.out.println("Conexão criada.");

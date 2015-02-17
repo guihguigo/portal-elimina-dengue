@@ -1,5 +1,6 @@
 package br.com.eliminadengue.central.model;
 
+import java.io.Serializable;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -7,7 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Guilherme Alves
  */
 @XmlRootElement
-public class Foco {
+public class Foco implements Serializable{
     private int codigo;
     private String nome;
     private String comoLispar;

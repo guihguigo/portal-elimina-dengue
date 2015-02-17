@@ -5,6 +5,7 @@
  */
 package br.com.eliminadengue.central.model;
 
+import java.io.Serializable;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -12,7 +13,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Guilherme Alves
  */
 @XmlRootElement
-public class Endereco {
+public class Endereco implements Serializable{
     private String bairro;
     private String cidade;
     private String estado;
