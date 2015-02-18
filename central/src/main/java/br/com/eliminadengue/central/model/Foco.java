@@ -1,12 +1,14 @@
 package br.com.eliminadengue.central.model;
 
 import java.io.Serializable;
+import javax.ws.rs.ext.Provider;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Guilherme Alves
  */
+
 @XmlRootElement
 public class Foco implements Serializable {
 

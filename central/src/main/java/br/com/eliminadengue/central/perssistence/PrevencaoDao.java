@@ -36,11 +36,11 @@ public class PrevencaoDao implements Dao<Prevencao>{
             
             statement.setInt(1, obj.getCodigoCelular());
             statement.setInt(2, obj.getFoco().getCodigo());
-            statement.setDate(3, (Date) obj.getDataCriacao());
-            statement.setDate(3, (Date) obj.getDataPrazo());
-            statement.setString(4, obj.getEndereco().getBairro());
-            statement.setString(4, obj.getEndereco().getCidade());
-            statement.setString(4, obj.getEndereco().getEstado());
+            statement.setDate(3, new Date(obj.getDataCriacao().getTime()));
+            statement.setDate(4, new Date(obj.getDataPrazo().getTime()));
+            statement.setString(5, obj.getEndereco().getBairro());
+            statement.setString(6, obj.getEndereco().getCidade());
+            statement.setString(7, obj.getEndereco().getEstado());
             
             statement.executeUpdate();
         } catch (SQLException ex) {
