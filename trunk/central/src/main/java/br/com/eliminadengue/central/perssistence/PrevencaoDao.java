@@ -7,7 +7,12 @@ package br.com.eliminadengue.central.perssistence;
 
 import br.com.eliminadengue.central.model.Prevencao;
 import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -24,6 +29,23 @@ public class PrevencaoDao implements Dao<Prevencao>{
     public PrevencaoDao() {}
     @Override
     public void salvar(Prevencao obj) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("insert into PREVENCAO(cod_celular, "
+                    + "cod_foco, dat_criacao, dat_prazo, end_bairro, end_cidade, "
+                    + "end_estado) values(?, ?, ?, ?, ?, ?, ?)");
+            
+            statement.setInt(1, obj.getCodigoCelular());
+            statement.setInt(2, obj.getFoco().getCodigo());
+            statement.setDate(3, (Date) obj.getDataCriacao());
+            statement.setDate(3, (Date) obj.getDataPrazo());
+            statement.setString(4, obj.getEndereco().getBairro());
+            statement.setString(4, obj.getEndereco().getCidade());
+            statement.setString(4, obj.getEndereco().getEstado());
+            
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(PrevencaoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
         System.out.println("Salvar: " + obj.toString());
     }
 
