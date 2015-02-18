@@ -4,12 +4,16 @@ import br.com.eliminadengue.central.model.Endereco;
 import br.com.eliminadengue.central.model.Foco;
 import br.com.eliminadengue.central.model.Prevencao;
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 import javax.ws.rs.client.Client;
 
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 import org.glassfish.grizzly.http.server.HttpServer;
@@ -48,10 +52,6 @@ public class PrevencaoRestTest {
         Client client = ClientBuilder.newClient();
         target = client.target(BASE_URI);
         target.register(JacksonFeature.class);
-        
-        
-        
-        
     }
 
     @AfterClass
@@ -70,24 +70,37 @@ public class PrevencaoRestTest {
     }
 
     @Test
-    public void salvarPrevencao() {
+    public void salvarTest() {
         Endereco endereco = new Endereco("Jardim Quietude", "Praia Grande", "São Paulo");
         Foco foco = new Foco(1, "Ralos", "Água, esponja e sabão. Depositar areia na  vasilha sob o vaso a cada limpeza.");
 
         Prevencao prevencao = new Prevencao(12345, foco, null, null, endereco);
 
-        Prevencao prevencaoReponse = target.path("/prevencao").request().accept(MediaType.APPLICATION_JSON)
+        Prevencao prevencaoReponse = target.path("/prevencao")
+                .request()
+                .accept(MediaType.APPLICATION_JSON)
                 .post(Entity.entity(prevencao, MediaType.APPLICATION_JSON), Prevencao.class);
 
         assertThat(prevencaoReponse, notNullValue());
     }
     
     @Test
-    public void encontrarPrevencao() {
-          Prevencao prevencao = target.path("prevencao")
-                
-                .request(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)
+    public void encontrarTest() {
+      
+        Prevencao prevencao = target.path("prevencao/123/123")
+                .request().accept(MediaType.APPLICATION_JSON)
                 .get(Prevencao.class);
+        
         assertThat(prevencao, notNullValue());
     }
+    
+    @Test
+    public void todasPrevencoes() {
+        List<Prevencao> prevencoes = target.path("/prevencao")
+                .request().accept(MediaType.APPLICATION_JSON)
+                .get(ArrayList.class);
+        
+        assertThat(prevencoes, notNullValue());
+    }
+    
 }
