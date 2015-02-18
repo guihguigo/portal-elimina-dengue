@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.eliminadengue.central.rest;
 
 import br.com.eliminadengue.central.model.Prevencao;
@@ -10,18 +5,14 @@ import br.com.eliminadengue.central.perssistence.PrevencaoDao;
 import br.com.eliminadengue.central.perssistence.Perssiste;
 import java.util.ArrayList;
 import java.util.List;
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.inject.Named;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.GenericEntity;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
@@ -68,4 +59,13 @@ public class PrevencaoRest {
         
         return Response.ok(new Prevencao()).build();
     }
+    
+    @PUT
+    @Consumes("application/json")
+    public Response atualizar(Prevencao prevencao) {
+        prevencaoDao.atualizar(prevencao);
+        
+        return Response.ok(new Prevencao()).build();
+    }
+    
 }
