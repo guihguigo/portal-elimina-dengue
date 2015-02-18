@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -66,6 +67,14 @@ public class PrevencaoRest {
         prevencaoDao.atualizar(prevencao);
         
         return Response.ok(new Prevencao()).build();
+    }
+    
+    @DELETE
+    @Path("{codigoCelular}/{codigoFoco}")
+    public Response excluir(@PathParam("codigoCelular") Integer codigoCelular, 
+            @PathParam("codigoFoco") Integer codigoFoco) {
+        
+        return Response.ok().build();
     }
     
 }

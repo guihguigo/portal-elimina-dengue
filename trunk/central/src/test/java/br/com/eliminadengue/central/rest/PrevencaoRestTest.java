@@ -29,7 +29,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-
 /**
  *
  * @author Guilherme Alves
@@ -66,7 +65,7 @@ public class PrevencaoRestTest {
 
     @After
     public void tearDown() {
-        
+
     }
 
     @Test
@@ -83,24 +82,47 @@ public class PrevencaoRestTest {
 
         assertThat(prevencaoReponse, notNullValue());
     }
-    
+
     @Test
     public void encontrarTest() {
-      
+
         Prevencao prevencao = target.path("prevencao/123/123")
                 .request().accept(MediaType.APPLICATION_JSON)
                 .get(Prevencao.class);
-        
+
         assertThat(prevencao, notNullValue());
     }
-    
+
     @Test
     public void todasTest() {
         List<Prevencao> prevencoes = target.path("/prevencao")
                 .request().accept(MediaType.APPLICATION_JSON)
                 .get(ArrayList.class);
-        
+
         assertThat(prevencoes, notNullValue());
     }
+
+    @Test
+    public void atualizarTest() {
+        Endereco endereco = new Endereco("Jardim Quietude", "Praia Grande", "São Paulo");
+        Foco foco = new Foco(1, "Ralos", "Água, esponja e sabão. Depositar areia na  vasilha sob o vaso a cada limpeza.");
+
+        Prevencao prevencao = new Prevencao(12345, foco, null, null, endereco);
+
+        Prevencao prevencaoResponse = target.path("/prevencao")
+                .request().
+                put(Entity.entity(prevencao, MediaType.WILDCARD_TYPE), Prevencao.class);
+        
+        assertThat(prevencaoResponse, notNullValue());
+    }
     
+    @Test
+    public void excluirTest() {
+        Response response = target.path("/prevencao/123/123")
+                .request()
+                .delete();
+        
+        assertEquals(200, response.getStatus());
+    }
+
 }
