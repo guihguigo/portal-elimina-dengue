@@ -5,6 +5,7 @@
  */
 package br.com.eliminadengue.central.model;
 
+
 import java.io.Serializable;
 import java.util.Date;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -18,6 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Prevencao implements Serializable, Comparable<Prevencao>{
     private int codigoCelular;
     private Foco foco;
+    
     private Date dataCriacao;
     private Date dataPrazo;
     private Date dataEfetuada;

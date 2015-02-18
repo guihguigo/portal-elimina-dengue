@@ -27,16 +27,17 @@ public class PrevencaoDaoTest {
     }
 
     @BeforeClass
-    public void setUpClass() {
-        prevencaoDao = new PrevencaoDao();
+    public static void setUpClass() {
+        
     }
 
     @AfterClass
-    public void tearDownClass() {
+    public static void tearDownClass() {
     }
 
     @Before
     public void setUp() {
+        prevencaoDao = new PrevencaoDao();
     }
 
     @After

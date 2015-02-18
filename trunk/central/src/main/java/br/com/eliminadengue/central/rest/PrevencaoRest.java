@@ -63,6 +63,7 @@ public class PrevencaoRest {
     
     @PUT
     @Consumes("application/json")
+    @Produces("application/json")
     public Response atualizar(Prevencao prevencao) {
         prevencaoDao.atualizar(prevencao);
         
