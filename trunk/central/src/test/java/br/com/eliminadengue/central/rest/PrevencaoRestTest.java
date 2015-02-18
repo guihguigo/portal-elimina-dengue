@@ -5,6 +5,8 @@ import br.com.eliminadengue.central.model.Foco;
 import br.com.eliminadengue.central.model.Prevencao;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javax.ws.rs.client.Client;
 
@@ -69,8 +71,13 @@ public class PrevencaoRestTest {
     public void salvarTest() {
         Endereco endereco = new Endereco("Jardim Quietude", "Praia Grande", "São Paulo");
         Foco foco = new Foco(1, "Ralos", "Água, esponja e sabão. Depositar areia na  vasilha sob o vaso a cada limpeza.");
-
-        Prevencao prevencao = new Prevencao(12345, foco, null, null, endereco);
+        
+        Calendar hoje = Calendar.getInstance();
+        
+        Calendar prazo = Calendar.getInstance();
+        prazo.add(Calendar.DAY_OF_MONTH, 5);
+        
+        Prevencao prevencao = new Prevencao(12345, foco, hoje.getTime(), prazo.getTime(), endereco);
 
         Prevencao prevencaoReponse = target.path("/prevencao")
                 .request()
