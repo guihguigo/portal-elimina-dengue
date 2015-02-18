@@ -95,7 +95,7 @@ public class PrevencaoRestTest {
     }
     
     @Test
-    public void todasPrevencoes() {
+    public void todasTest() {
         List<Prevencao> prevencoes = target.path("/prevencao")
                 .request().accept(MediaType.APPLICATION_JSON)
                 .get(ArrayList.class);
