@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 
 @XmlRootElement
-public class Prevencao implements Serializable{
+public class Prevencao implements Serializable, Comparable<Prevencao>{
     private int codigoCelular;
     private Foco foco;
     private Date dataCriacao;
@@ -84,6 +84,12 @@ public class Prevencao implements Serializable{
     @Override
     public String toString() {
         return "Prevencao{" + "codigoCelular=" + codigoCelular + ", foco=" + foco + ", dataCriacao=" + dataCriacao + ", dataPrazo=" + dataPrazo + ", dataEfetuada=" + dataEfetuada + '}';
+    }
+    
+    @Override
+    public int compareTo(Prevencao o) {
+        //ordena por menos prazo
+        return this.dataPrazo.compareTo(o.dataPrazo);
     }
 
     

@@ -8,19 +8,21 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Guilherme Alves
  */
 @XmlRootElement
-public class Foco implements Serializable{
+public class Foco implements Serializable {
+
     private int codigo;
     private String nome;
-    private String comoLispar;
+    private String comoLimpar;
 
-    public Foco(int codigo, String nome, String comoLispar) {
+    public Foco(int codigo, String nome, String comoLimpar) {
         this.codigo = codigo;
         this.nome = nome;
-        this.comoLispar = comoLispar;
+        this.comoLimpar = comoLimpar;
     }
-    
-    public Foco() {}
-    
+
+    public Foco() {
+    }
+
     public int getCodigo() {
         return codigo;
     }
@@ -37,13 +39,17 @@ public class Foco implements Serializable{
         this.nome = nome;
     }
 
-    public String getComoLispar() {
-        return comoLispar;
+    public String getComoLimpar() {
+        return comoLimpar;
     }
 
-    public void setComoLispar(String comoLispar) {
-        this.comoLispar = comoLispar;
+    public void setComoLimpar(String comoLimpar) {
+        this.comoLimpar = comoLimpar;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Foco{" + "codigo=" + codigo + ", nome=" + nome + ", comoLispar=" + comoLimpar + '}';
+    }
+
 }
