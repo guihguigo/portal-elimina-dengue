@@ -1,8 +1,8 @@
 package br.com.eliminadengue.central.rest;
 
 import br.com.eliminadengue.central.model.Prevencao;
-import br.com.eliminadengue.central.perssistence.PrevencaoDao;
-import br.com.eliminadengue.central.perssistence.Perssiste;
+import br.com.eliminadengue.central.persistence.PrevencaoDao;
+import br.com.eliminadengue.central.persistence.Perssiste;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -20,62 +20,56 @@ import javax.ws.rs.core.Response;
  *
  * @author Guilherme Alves
  */
-
-
 @Path("/prevencao")
 public class PrevencaoRest {
 
-    @Inject @Perssiste
+    @Inject
+    @Perssiste
     private PrevencaoDao prevencaoDao;
-    
+
     @GET
     @Path("{codigoCelular}/{codigoFoco}")
     @Consumes("application/json")
     @Produces("application/json")
-    public Response encontrar(@PathParam("codigoCelular") Integer codigoCelular, 
+    public Prevencao encontrar(@PathParam("codigoCelular") Integer codigoCelular,
             @PathParam("codigoFoco") Integer codigoFoco) {
-        prevencaoDao.encontrar(codigoCelular, codigoFoco);
-       
-        return Response.ok(new Prevencao()).build();
+        Prevencao prevencao = prevencaoDao.encontrar(codigoCelular, codigoFoco);
+
+        return prevencao;
     }
-    
+
     @GET
     @Produces("application/json")
     public List<Prevencao> todos() {
-        prevencaoDao.todos();
-        ArrayList<Prevencao> prevencoes = new ArrayList<>();
-        prevencoes.add(new Prevencao());
-        prevencoes.add(new Prevencao());
-        prevencoes.add(new Prevencao());
-        prevencoes.add(new Prevencao());
-        
+        List<Prevencao> prevencoes = prevencaoDao.todos();
+
         return prevencoes;
     }
-    
+
     @POST
     @Consumes("application/json")
     @Produces("application/json")
-    public Response salvar(Prevencao prevencao) {
+    public Prevencao salvar(Prevencao prevencao) {
         prevencaoDao.salvar(prevencao);
-        
-        return Response.ok(new Prevencao()).build();
+
+        return prevencao;
     }
-    
+
     @PUT
     @Consumes("application/json")
     @Produces("application/json")
-    public Response atualizar(Prevencao prevencao) {
-        prevencaoDao.atualizar(prevencao);
-        
-        return Response.ok(new Prevencao()).build();
+    public Prevencao atualizar(Prevencao prevencao) {
+        prevencaoDao.salvar(prevencao);
+
+        return prevencao;
     }
-    
+
     @DELETE
     @Path("{codigoCelular}/{codigoFoco}")
-    public Response excluir(@PathParam("codigoCelular") Integer codigoCelular, 
+    public Response excluir(@PathParam("codigoCelular") Integer codigoCelular,
             @PathParam("codigoFoco") Integer codigoFoco) {
-        
+
         return Response.ok().build();
     }
-    
+
 }
