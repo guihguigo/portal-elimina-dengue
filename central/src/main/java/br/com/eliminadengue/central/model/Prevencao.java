@@ -90,7 +90,7 @@ public class Prevencao implements Serializable, Comparable<Prevencao>{
     
     @Override
     public int compareTo(Prevencao o) {
-        //ordena por menos prazo
+        //ordena por menor prazo
         return this.dataPrazo.compareTo(o.dataPrazo);
     }
 
