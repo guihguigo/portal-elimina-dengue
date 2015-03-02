@@ -36,56 +36,6 @@ public class EnderecoController {
         }
 
     }
-	
-	
-	/*
-		Thread Timer para atualização de dados no server
-	ScheduledExecutorService scheduler =
-                Executors.newSingleThreadScheduledExecutor();
-
-        scheduler.scheduleAtFixedRate
-                (new Runnable() {
-					public void run(){
-					}
-				}, 0, 30L, TimeUnit.SECONDS);
-				
-				
-				
-				
-				--CONVERTER PARA JSON
-				  public String objectToJson(Object obj) {
-        Gson jsonObj = new Gson();
-        return jsonObj.toJson(obj);
-    }
-
-
-	-- Enviar JSON para Servidor
-    public String HttpPostJson(String strJson, String path) {
-        InputStream inputStream = null;
-        try {
-            if (new ConnectionHelper().verificaConexao(this.SERVER_ADDRESS)) {
-                HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httpPost = new HttpPost(this.SERVER_ADDRESS + path);
-                StringEntity se = new StringEntity(strJson);
-                httpPost.setEntity(se);
-                httpPost.setHeader("Accept", "application/json");
-                httpPost.setHeader("Content-type", "application/json");
-                HttpResponse httpResponse = httpclient.execute(httpPost);
-                inputStream = httpResponse.getEntity().getContent();
-
-                return new ConnectionHelper().convertInputStreamToString(inputStream);
-            } else {
-                return null;
-            }
-        } catch (HttpResponseException hre) {
-            return null;
-        } catch (IOException e) {
-            return null;
-        }
-
-
-    }
-	*/
 
 
 }

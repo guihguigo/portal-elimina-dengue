@@ -1,51 +1,17 @@
-<RelativeLayout
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:padding="5dp"
-    android:background="@android:color/white">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/imagePrevencao"
-        android:layout_width="110dp"
-        android:layout_height="80dp"
-        android:background="#ffffff"
-        android:scaleType="centerCrop"
-        />
+    <GridView
+        android:id="@+id/gridview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:verticalSpacing="0dp"
+        android:horizontalSpacing="0dp"
+        android:stretchMode="columnWidth"
+        android:listSelector="@android:color/transparent"
+        android:numColumns="2"/>
 
-    <TextView
-        android:id="@+id/textTitulo"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/imagePrevencao"
-        android:layout_alignTop="@+id/imagePrevencao"
-        android:text="Título"
-        android:textSize="25sp"
-        android:textColor="#333333"
-        android:paddingLeft="5dp"
-        />
-
-    <TextView
-        android:id="@+id/textDescricao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textTitulo"
-        android:layout_toRightOf="@+id/imagePrevencao"
-        android:text="Descrição"
-        android:textSize="15sp"
-        android:textColor="#333333"
-        android:paddingLeft="5dp"
-        android:layout_marginTop="7dp"
-        />
-
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ckbAgendar"
-        android:clickable="true"
-        android:layout_alignBottom="@+id/textTitulo"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-
-</RelativeLayout>
+</FrameLayout>

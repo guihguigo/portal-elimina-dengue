@@ -1,26 +1,32 @@
 package br.com.eliminadengue.view.adapter;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.easyandroidanimations.library.HighlightAnimation;
 
 import java.util.List;
 
 import br.com.eliminadengue.R;
 import br.com.eliminadengue.bean.Foco;
+import br.com.eliminadengue.view.ComoLimpar;
+
 
 public class AgendamentoAdapter extends BaseAdapter {
     private Context context;
     private List<Foco> FocoList;
+    private final LayoutInflater mInflater;
+
 
     public AgendamentoAdapter(Context context, List<Foco> arr_foco) {
+        mInflater = LayoutInflater.from(context);
         this.context = context;
         this.FocoList = arr_foco;
     }
@@ -42,83 +48,37 @@ public class AgendamentoAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        // Recupera o estado da posição atual
-        Foco foco = this.FocoList.get(position);
+    public View getView(final int position, final View convertView, final ViewGroup parent) {
+        final Foco foco = this.FocoList.get(position);
+        View v = convertView;
+        ImageView iconFoco;
+        final TextView nomeFoco;
 
-        // Cria uma instância do layout XML para os objetos correspondentes
-        // na View
-        final LayoutInflater inflater = (LayoutInflater)
-                context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        final View view = inflater.inflate(R.layout.fragment_agendamento, null);
+        if (v == null) {
+            v = mInflater.inflate(R.layout.tile_image_item, parent, false);
+            v.setTag(R.id.picture, v.findViewById(R.id.picture));
+            v.setTag(R.id.text, v.findViewById(R.id.text));
+        }
 
-        // Titulo
-        final TextView textTitulo = (TextView) view.findViewById(R.id.textTitulo);
-        textTitulo.setText(foco.getNome());
+        iconFoco = (ImageView) v.getTag(R.id.picture);
+        nomeFoco = (TextView) v.getTag(R.id.text);
+        iconFoco.setImageResource(foco.getIcone());
+        nomeFoco.setText(foco.getNome());
 
-        // Descricao
-        final TextView textDescricao = (TextView) view.findViewById(R.id.textDescricao);
-        textDescricao.setText(String.valueOf(foco.getComoLimpar()));
-
-        //Imagem
-        final ImageView img = (ImageView) view.findViewById(R.id.imagePrevencao);
-        img.setImageResource(foco.getIcone());
-
-        //Checkbox
-        final CheckBox ckbAgendar = (CheckBox) view.findViewById(R.id.ckbAgendar);
-        ckbAgendar.setEnabled(false);
-
-
-        //Evento click - Exibir Caixa de Dialogo
-        view.setOnClickListener(new View.OnClickListener() {
+        iconFoco.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
-                geraDialogBuilder(textTitulo.getText().toString(), ckbAgendar);
+                new HighlightAnimation(v).setColor(Color.parseColor("#0099FF")).animate();
 
-                //Toast.makeText(context, textTitulo.getText().toString(),
-                //       Toast.LENGTH_LONG).show();
+                Intent prevencaoFoco = new Intent(context, ComoLimpar.class);
+                prevencaoFoco.putExtra("id_foco", String.valueOf(foco.getCodigo()));
+                context.startActivity(prevencaoFoco);
             }
         });
 
-        return view;
+
+        return v;
     }
 
 
-    public void geraDialogBuilder(String tituloPrevencao, final CheckBox agendar) {
-        final boolean[] setarPrevencao = new boolean[1];
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        String pergunta = null;
-
-        if (!agendar.isChecked())
-            pergunta = "Deseja agendar esta prevenção?";
-        else
-            pergunta = "Deseja desmarcar esta prevenção?";
-
-        builder.setTitle(tituloPrevencao);
-        builder.setMessage(pergunta);
-
-
-        builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-                agendar.setChecked(!agendar.isChecked());
-            }
-
-
-        });
-
-
-        builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-
-        });
-
-
-        AlertDialog alert = builder.create();
-        alert.show();
-    }
 }

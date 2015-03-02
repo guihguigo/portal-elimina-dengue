@@ -42,7 +42,7 @@ public class FocoEntity extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_FOCO);
 
         this.DMLFocos = populaFocos();
-        for (String sql : this.DMLFocos){
+        for (String sql : this.DMLFocos) {
             db.execSQL(sql);
         }
 
@@ -82,14 +82,13 @@ public class FocoEntity extends SQLiteOpenHelper {
         if (c.getCount() > 0) {
             c.moveToFirst();
 
-
             f.setCodigo(c.getInt(c.getColumnIndex(ID)));
             f.setNome((c.getString(c.getColumnIndex(NOME))));
             f.setComoLimpar((c.getString(c.getColumnIndex(COMOLIMPAR))));
             f.setPrazo((c.getInt((c.getColumnIndex(PRAZO)))));
             f.setIcone(c.getInt(c.getColumnIndex(ICONE)));
-
         }
+
 
         return f;
     }

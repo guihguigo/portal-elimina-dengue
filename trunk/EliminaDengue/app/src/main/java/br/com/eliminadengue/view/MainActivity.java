@@ -16,7 +16,8 @@ public class MainActivity extends FragmentActivity implements
     private ViewPager viewPager;
     private TabsPagerAdapter mAdapter;
     private ActionBar actionBar;
-    private String[] tabs = {"Agendamento", "Prevenção"};
+    private int[] tabs = {R.drawable.home_prevencoes, R.drawable.pesquisar_focos};
+
 
 
     @Override
@@ -32,8 +33,8 @@ public class MainActivity extends FragmentActivity implements
         actionBar.setHomeButtonEnabled(false);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-        for (String tab_name : tabs) {
-            actionBar.addTab(actionBar.newTab().setText(tab_name)
+        for (int tab_icon : tabs) {
+            actionBar.addTab(actionBar.newTab().setIcon(tab_icon)
                     .setTabListener(this));
         }
 
