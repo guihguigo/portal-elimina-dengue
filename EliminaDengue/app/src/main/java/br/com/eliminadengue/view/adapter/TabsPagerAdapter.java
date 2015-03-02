@@ -18,10 +18,9 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
 
 		switch (index) {
 		case 0:
-            return new AgendamentoFragment();
-		case 1:
             return new PrevencaoFragment();
-
+		case 1:
+            return new AgendamentoFragment();
 		}
 
 		return null;

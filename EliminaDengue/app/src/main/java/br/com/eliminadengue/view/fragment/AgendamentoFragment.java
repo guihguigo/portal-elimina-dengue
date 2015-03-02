@@ -1,32 +1,34 @@
 package br.com.eliminadengue.view.fragment;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.eliminadengue.R;
 import br.com.eliminadengue.bean.Foco;
 import br.com.eliminadengue.entity.FocoEntity;
 import br.com.eliminadengue.view.adapter.AgendamentoAdapter;
 
-public class AgendamentoFragment extends android.support.v4.app.ListFragment {
+public class AgendamentoFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-//        View rootView = inflater.inflate(R.layout.fragment_agendamento, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_agendamento, container, false);
+
+        GridView gridView = (GridView) rootView.findViewById(R.id.gridview);
+        gridView.setAdapter(new AgendamentoAdapter(getActivity(),popularList()));
 
 
-        setListAdapter(new AgendamentoAdapter(getActivity(),popularList()));
-
-        return super.onCreateView(inflater,container,savedInstanceState);
+        return rootView;
     }
-
-
 
 
     private List<Foco> popularList(){
