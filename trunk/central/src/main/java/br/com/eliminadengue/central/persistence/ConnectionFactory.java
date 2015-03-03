@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import javax.annotation.Resource;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Produces;
-import javax.inject.Named;
 import javax.sql.DataSource;
 
 
@@ -19,7 +18,6 @@ import javax.sql.DataSource;
  * @author Guilherme Alves
  */
 
-@Named
 public class ConnectionFactory {
     @Resource(name = "jdbc/central")
     private DataSource dataSource;
@@ -34,7 +32,7 @@ public class ConnectionFactory {
             return connection;
     }
     
-    public Connection getConnection() {
+    private Connection getConnection() {
         try {
             Connection connection = dataSource.getConnection();
             System.out.println("Conexão criada.");
