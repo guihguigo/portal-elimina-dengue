@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#ffeff1ea" >
-    
-    <TextView android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Prevenções Agendadas"
-        android:textSize="30dp"
-        android:layout_centerInParent="true"/>
-    
+    android:layout_height="match_parent">
 
-</RelativeLayout>
+    <GridView
+        android:id="@+id/gridview_prevencao"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:verticalSpacing="0dp"
+        android:horizontalSpacing="0dp"
+        android:stretchMode="columnWidth"
+        android:listSelector="@android:color/transparent"
+        android:numColumns="2"/>
+
+</FrameLayout>

@@ -33,6 +33,7 @@ public class MainActivity extends FragmentActivity implements
         actionBar.setHomeButtonEnabled(false);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
+
         for (int tab_icon : tabs) {
             actionBar.addTab(actionBar.newTab().setIcon(tab_icon)
                     .setTabListener(this));
