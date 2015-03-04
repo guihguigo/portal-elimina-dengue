@@ -23,7 +23,7 @@ public class AgendamentoFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_agendamento, container, false);
 
-        GridView gridView = (GridView) rootView.findViewById(R.id.gridview);
+        GridView gridView = (GridView) rootView.findViewById(R.id.gridview_agendamento);
         gridView.setAdapter(new AgendamentoAdapter(getActivity(),popularList()));
 
 

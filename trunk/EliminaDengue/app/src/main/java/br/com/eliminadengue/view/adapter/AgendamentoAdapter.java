@@ -2,7 +2,6 @@ package br.com.eliminadengue.view.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.easyandroidanimations.library.HighlightAnimation;
+import com.easyandroidanimations.library.BlinkAnimation;
 
 import java.util.List;
 
@@ -68,8 +67,8 @@ public class AgendamentoAdapter extends BaseAdapter {
         iconFoco.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new HighlightAnimation(v).setColor(Color.parseColor("#0099FF")).animate();
-
+                //  new HighlightAnimation(v).setColor(Color.parseColor("#0099FF")).animate();
+                new BlinkAnimation(v).setNumOfBlinks(1).animate();
                 Intent prevencaoFoco = new Intent(context, ComoLimpar.class);
                 prevencaoFoco.putExtra("id_foco", String.valueOf(foco.getCodigo()));
                 context.startActivity(prevencaoFoco);

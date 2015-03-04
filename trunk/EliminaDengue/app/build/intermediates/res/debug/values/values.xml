@@ -165,6 +165,11 @@
     <string name="app_name">EliminaDengue</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_como_limpar">Como limpar?</string>
+    <!-- From: file:/C:/Users/Alexandre/Desktop/EliminaDengue/app/src/main/res/values/action_bar_style.xml -->
+    <eat-comment/>
+    <style name="ActionBarTabStyle" parent="android:Theme.Holo.Light">
+    <item name="android:actionBarTabBarStyle">@style/actionBarTabBarStyle</item>
+</style>
     <!-- From: file:/C:/Users/Alexandre/Desktop/EliminaDengue/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -1208,4 +1213,8 @@
     <style name="Widget.AppCompat.Spinner.DropDown.ActionBar" parent="Base.Widget.AppCompat.Spinner.DropDown.ActionBar"/>
     <style name="Widget.AppCompat.Toolbar" parent="Base.Widget.AppCompat.Toolbar"/>
     <style name="Widget.AppCompat.Toolbar.Button.Navigation" parent="Base.Widget.AppCompat.Toolbar.Button.Navigation"/>
+    <!-- From: file:/C:/Users/Alexandre/Desktop/EliminaDengue/app/src/main/res/values/action_bar_style.xml -->
+    <eat-comment/>
+    <style name="actionBarTabBarStyle" parent="@android:style/Widget.Holo.Light.ActionBar.TabView">
+    </style>
 </resources>
