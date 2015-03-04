@@ -14,7 +14,8 @@ public class Prevencao {
     private Date dataCriacao;
     private Date dataPrazo;
     private Date dataEfetuada;
-    private Endereco endereco;
+    private double latitude;
+    private double longitude;
     private int sync;
 
     public int getSync() {
@@ -41,20 +42,24 @@ public class Prevencao {
         this.foco = foco;
     }
 
-    public Date getDataCriacao() {
-        return dataCriacao;
-    }
+
 
     public void setDataCriacao(Date dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 
-    public Date getDataPrazo() {
-        return dataPrazo;
-    }
+
 
     public void setDataPrazo(Date dataPrazo) {
         this.dataPrazo = dataPrazo;
+    }
+
+    public Date getDataCriacao() {
+        return dataCriacao;
+    }
+
+    public Date getDataPrazo() {
+        return dataPrazo;
     }
 
     public Date getDataEfetuada() {
@@ -65,13 +70,19 @@ public class Prevencao {
         this.dataEfetuada = dataEfetuada;
     }
 
-    public Endereco getEndereco() {
-        return endereco;
+    public double getLatitude() {
+        return latitude;
     }
 
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
     }
 
+    public double getLongitude() {
+        return longitude;
+    }
 
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
 }
