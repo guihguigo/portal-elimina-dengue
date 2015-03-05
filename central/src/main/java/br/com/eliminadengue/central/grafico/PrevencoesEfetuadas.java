@@ -1,14 +1,16 @@
-package br.com.eliminadengue.central.model;
+package br.com.eliminadengue.central.grafico;
 
+import br.com.eliminadengue.central.model.Prevencao;
 import java.util.Date;
 import java.util.List;
+import javax.inject.Inject;
 
 /**
  * Indicador que verifica quais prevencões estão no prazo
  * @author Guilherme Alves
  */
 public class PrevencoesEfetuadas implements Indicador {
-
+    
     /**
      * Faz a verificação de quais prevenções estão no prazo
      *
@@ -19,11 +21,10 @@ public class PrevencoesEfetuadas implements Indicador {
     @Override
     public double calcula(int i, List<Prevencao> serie) {
         Prevencao prevencao = serie.get(i);
-        if (prevencao.getDataEfetuada() == null && prevencao.getDataPrazo().before(new Date())) {
+        if (prevencao.getDataEfetuada() == null && prevencao.getDataPrazo().before(new Date())) 
             return 1;
-        } else {
-            return 0;
-        }
+        
+        return 0;
     }
 
     @Override

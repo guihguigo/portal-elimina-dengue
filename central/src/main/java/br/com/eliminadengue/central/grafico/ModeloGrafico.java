@@ -1,4 +1,4 @@
-package br.com.eliminadengue.central.model;
+package br.com.eliminadengue.central.grafico;
 
 /**
  *
