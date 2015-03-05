@@ -1,4 +1,4 @@
-package br.com.eliminadengue.central.model;
+package br.com.eliminadengue.central.grafico;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,6 +13,7 @@ public class GraficoBarra implements ModeloGrafico{
 
     public GraficoBarra() {}
     
+    @Override
     public void set(String chave, Double valor) {
         barra.put(chave, valor);
     }

@@ -1,5 +1,6 @@
-package br.com.eliminadengue.central.model;
+package br.com.eliminadengue.central.grafico;
 
+import br.com.eliminadengue.central.model.Prevencao;
 import java.util.List;
 
 /**

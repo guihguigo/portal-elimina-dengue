@@ -62,14 +62,10 @@ public class PrevencaoRestTest {
     }
 
     @Before
-    public void setUp() {
-
-    }
+    public void setUp() {}
 
     @After
-    public void tearDown() {
-
-    }
+    public void tearDown() {}
 
     @Test
     public void salvarTest() {
@@ -82,9 +78,8 @@ public class PrevencaoRestTest {
         prazo.add(Calendar.DAY_OF_MONTH, 5);
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        Prevencao prevencao = null;
 
-        prevencao = new Prevencao(123, foco, hoje.getTime(), prazo.getTime(), endereco);
+        Prevencao prevencao = new Prevencao(123, foco, hoje.getTime(), prazo.getTime(), endereco);
 
         prevencao = target.path("/prevencao")
                 .request()
@@ -113,9 +108,8 @@ public class PrevencaoRestTest {
                 .request().accept(MediaType.APPLICATION_JSON)
                 .get(genericType);
 
-       assertTrue(prevencoes.size() == 4);
+        assertTrue(prevencoes.size() == 4);
     }
-
 
     @Test
     public void atualizarTest() {
@@ -124,14 +118,14 @@ public class PrevencaoRestTest {
 
         try {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            
+
             Date dataCriacao = dateFormat.parse("27/02/2015");
             Date dataPrazo = dateFormat.parse("22/02/2015");
             Date dataEfetuada = dateFormat.parse("22/02/2015");
-            
+
             Prevencao prevencao = new Prevencao(123456, foco, dataCriacao, dataPrazo, endereco);
             prevencao.setDataEfetuada(dataEfetuada);
-            
+
             prevencao = target.path("/prevencao")
                     .request(MediaType.APPLICATION_JSON).
                     put(Entity.entity(prevencao, MediaType.APPLICATION_JSON), Prevencao.class);
@@ -150,5 +144,15 @@ public class PrevencaoRestTest {
                 .delete();
 
         assertEquals(200, response.getStatus());
+    }
+
+    @Test
+    public void matrizTest() {
+        Response response = target.path("/prevencao/matriz")
+                .request().accept(MediaType.APPLICATION_JSON)
+                .get();
+
+        assertEquals(200, response.getStatus());
+
     }
 }

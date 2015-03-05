@@ -1,5 +1,7 @@
-package br.com.eliminadengue.central.model;
+package br.com.eliminadengue.central.grafico;
 
+import br.com.eliminadengue.central.model.MatrizPrenvencao;
+import br.com.eliminadengue.central.model.Prevencao;
 import java.util.List;
 import javax.inject.Inject;
 
@@ -12,17 +14,20 @@ import javax.inject.Inject;
  */
 public class GeradorModeloGrafico {
 
-    private final SerieTemporal serie;
+    private final MatrizPrenvencao serie;
     private final int comeco;
     private final int fim;
 
-    @Inject private ModeloGrafico modeloGrafico;
-    @Inject private Indicador indicador;
+    private ModeloGrafico modeloGrafico;
+    private Indicador indicador;
 
-    public GeradorModeloGrafico(SerieTemporal serie, int comeco, int fim) {
+    public GeradorModeloGrafico(MatrizPrenvencao serie, int comeco, int fim) {
         this.serie = serie;
         this.comeco = comeco;
         this.fim = fim;
+        
+        modeloGrafico = new GraficoBarra();
+        indicador = new MediaSimples(indicador);
     }
     
     /**
