@@ -24,8 +24,8 @@ import javax.inject.Named;
 @Perssiste
 public class PrevencaoDao implements Dao<Prevencao> {
 
-    @Inject
-    private Connection connection;
+    @Inject private Connection connection;
+    @Inject private FocoDao focoDao;
 
     public PrevencaoDao() {
     }
@@ -196,7 +196,7 @@ public class PrevencaoDao implements Dao<Prevencao> {
         PreparedStatement statement = null;
         ResultSet result = null;
         
-        for (Foco focoAux : todosFocos()) {
+        for (Foco focoAux : focoDao.todosFocos()) {
             try {
                 statement = connection.prepareStatement(sql);
                 statement.setInt(1, focoAux.getCodigo());
@@ -243,31 +243,5 @@ public class PrevencaoDao implements Dao<Prevencao> {
 
     }
 
-    private List<Foco> todosFocos() {
-        List<Foco> focos = new ArrayList();
-
-        String sql = "select * from FOCO";
-
-        try {
-            PreparedStatement statement = connection.prepareStatement(sql);
-            ResultSet result = statement.executeQuery();
-
-            while (result.next()) {
-                Integer codigoFoco = result.getInt("cod_foco");
-                String nome = result.getString("nom_foco");
-                String comoLimpar = result.getString("com_limpar");
-
-                Foco foco = new Foco(codigoFoco, nome, comoLimpar);
-                focos.add(foco);
-            }
-
-            return focos;
-
-        } catch (SQLException ex) {
-            Logger.getLogger(PrevencaoDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return null;
-    }
 
 }
