@@ -3,6 +3,7 @@ package br.com.eliminadengue.central.persistence;
 import br.com.eliminadengue.central.model.MatrizPrenvencao;
 import br.com.eliminadengue.central.model.Endereco;
 import br.com.eliminadengue.central.model.Foco;
+import br.com.eliminadengue.central.model.PercentualPrevencoesPorMes;
 import br.com.eliminadengue.central.model.Prevencao;
 import java.sql.Connection;
 import java.sql.Date;
@@ -10,7 +11,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Inject;
@@ -185,89 +188,32 @@ public class PrevencaoDao implements Dao<Prevencao> {
         return null;
     }
 
-    public MatrizPrenvencao matrizFocos() {
-        MatrizPrenvencao serie = new MatrizPrenvencao();
-        List<Prevencao> prevencoes = null;
+    public List<PercentualPrevencoesPorMes> parcentualPorMes() {
+       List<PercentualPrevencoesPorMes> prevencoes = new ArrayList<>();
+        PercentualPrevencoesPorMes percentPrevencaoPorMes = null;
         
-        String sql = "select * from PREVENCAO p "
-                + "inner join FOCO f on (f.cod_foco = p.cod_foco)"
-                + "where p.cod_foco = ?";
-        
-        PreparedStatement statement = null;
-        ResultSet result = null;
-        
-        for (Foco focoAux : todosFocos()) {
-            try {
-                statement = connection.prepareStatement(sql);
-                statement.setInt(1, focoAux.getCodigo());
-                result = statement.executeQuery();
-                
-                prevencoes = new ArrayList<>();
-                
-                while (result.next()) {
-                    
-                    String bairro = result.getString("end_bairro");
-                    String cidade = result.getString("end_cidade");
-                    String estado = result.getString("end_estado");
-
-                    Endereco endereco = new Endereco(bairro, cidade, estado);
-
-                    Integer codigoFoco = result.getInt("cod_foco");
-                    String nome = result.getString("nom_foco");
-                    String comoLimpar = result.getString("com_limpar");
-
-                    Foco foco = new Foco(codigoFoco, nome, comoLimpar);
-
-                    Integer codigoCelular = result.getInt("cod_celular");
-                    Date dataCriacao = result.getDate("dat_criacao");
-                    Date dataPrazo = result.getDate("dat_prazo");
-                    Date dataEfetuada = result.getDate("dat_efetuada");
-
-                    Prevencao prevencao = new Prevencao(codigoCelular, foco, dataCriacao, dataPrazo, endereco);
-                    prevencao.setDataEfetuada(dataEfetuada);
-
-                    prevencoes.add(prevencao);
-                }
-                
-                if (!prevencoes.isEmpty())
-                    serie.add(prevencoes);
-
-            } catch (SQLException ex) {
-                Logger.getLogger(PrevencaoDao.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        
-        System.out.println("Matriz prevenções por foco: " + serie.tamanho());
-        
-        return serie;
-
-    }
-
-    private List<Foco> todosFocos() {
-        List<Foco> focos = new ArrayList();
-
-        String sql = "select * from FOCO";
-
+        String sql = "select * from EFETUADA_ATRASADA_MES_PERCENT";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet result = statement.executeQuery();
-
+            
             while (result.next()) {
-                Integer codigoFoco = result.getInt("cod_foco");
-                String nome = result.getString("nom_foco");
-                String comoLimpar = result.getString("com_limpar");
-
-                Foco foco = new Foco(codigoFoco, nome, comoLimpar);
-                focos.add(foco);
+                int mes = result.getInt("MES");
+                double percentAtrasada = result.getDouble("PERCENT_ATRASADA");
+                double percentEfetuada = result.getDouble("PERCENT_EFETUADA");
+                
+                percentPrevencaoPorMes = new PercentualPrevencoesPorMes();
+                percentPrevencaoPorMes.setMes(mes);
+                percentPrevencaoPorMes.setPercentAtrasada(percentAtrasada);
+                percentPrevencaoPorMes.setPercentEfetuada(percentEfetuada);
+                
+                prevencoes.add(percentPrevencaoPorMes);
             }
-
-            return focos;
-
         } catch (SQLException ex) {
             Logger.getLogger(PrevencaoDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        return null;
+        
+        return prevencoes;
     }
 
 }

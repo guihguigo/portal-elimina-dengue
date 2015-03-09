@@ -1,7 +1,7 @@
 package br.com.eliminadengue.central.rest;
 
 import br.com.eliminadengue.central.model.Prevencao;
-import br.com.eliminadengue.central.model.MatrizPrenvencao;
+import br.com.eliminadengue.central.model.PercentualPrevencoesPorMes;
 import br.com.eliminadengue.central.persistence.PrevencaoDao;
 import br.com.eliminadengue.central.persistence.Perssiste;
 import java.util.List;
@@ -73,12 +73,9 @@ public class PrevencaoRest {
     }
     
     @GET
-    @Path("/matriz")
-    public Response matriz() {
-       MatrizPrenvencao matriz = prevencaoDao.matrizFocos();
-       
-        System.out.println(matriz.getNome(0));
-        
-        return Response.ok().build();
+    @Path("/percentualPrevencoesPorMes")
+    @Produces("application/json")
+    public List<PercentualPrevencoesPorMes> percentPorMes() {
+        return prevencaoDao.parcentualPorMes();
     }
 }
