@@ -19,7 +19,7 @@ import javax.sql.DataSource;
  */
 
 public class ConnectionFactory {
-    @Resource(name = "jdbc/central")
+    @Resource(name = "jdbc/central-mysql")
     private DataSource dataSource;
     private Connection connection;
     

@@ -2,6 +2,7 @@ package br.com.eliminadengue.central.rest;
 
 import br.com.eliminadengue.central.model.Endereco;
 import br.com.eliminadengue.central.model.Foco;
+import br.com.eliminadengue.central.model.PercentualPrevencoesPorMes;
 import br.com.eliminadengue.central.model.Prevencao;
 import java.net.URI;
 import java.text.ParseException;
@@ -145,14 +146,15 @@ public class PrevencaoRestTest {
 
         assertEquals(200, response.getStatus());
     }
-
+    
     @Test
-    public void matrizTest() {
-        Response response = target.path("/prevencao/matriz")
+    public void percentualPorMesTest() {
+         GenericType<List<PercentualPrevencoesPorMes>> genericType = new GenericType<List<PercentualPrevencoesPorMes>>() {
+        };
+        List<PercentualPrevencoesPorMes> prevencoes = target.path("/prevencao/percentualPrevencoesPorMes")
                 .request().accept(MediaType.APPLICATION_JSON)
-                .get();
+                .get(genericType);
 
-        assertEquals(200, response.getStatus());
-
+        assertTrue(prevencoes.size() == 4);
     }
 }
