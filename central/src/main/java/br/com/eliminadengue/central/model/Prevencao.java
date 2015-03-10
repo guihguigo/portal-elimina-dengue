@@ -24,7 +24,7 @@ public class Prevencao implements Serializable, Comparable<Prevencao>{
     private Date dataPrazo;
     private Date dataEfetuada;
     private Endereco endereco;
-
+    
     public Prevencao(int codigoCelular, Foco foco, Date dataCriacao, Date dataPrazo, Endereco endereco) {
         this.codigoCelular = codigoCelular;
         this.foco = foco;

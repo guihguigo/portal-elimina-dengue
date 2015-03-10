@@ -204,8 +204,8 @@ public class PrevencaoDao implements Dao<Prevencao> {
                 
                 percentPrevencaoPorMes = new PercentualPrevencoesPorMes();
                 percentPrevencaoPorMes.setMes(mes);
-                percentPrevencaoPorMes.setPercentAtrasada(percentAtrasada);
-                percentPrevencaoPorMes.setPercentEfetuada(percentEfetuada);
+                percentPrevencaoPorMes.setPercentualAtrasada(percentAtrasada);
+                percentPrevencaoPorMes.setPercentualEfetuada(percentEfetuada);
                 
                 prevencoes.add(percentPrevencaoPorMes);
             }
