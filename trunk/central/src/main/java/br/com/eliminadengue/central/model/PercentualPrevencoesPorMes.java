@@ -13,28 +13,28 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @XmlRootElement(name = "prevencoes")
 public class PercentualPrevencoesPorMes {
-    private double percentAtrasada;
-    private double percentEfetuada;
+    private double percentualAtrasada;
+    private double percentualEfetuada;
     private int mes;
 
-    public void setPercentAtrasada(double percentAtrasada) {
-        this.percentAtrasada = percentAtrasada;
+    public void setPercentualAtrasada(double percentAtualrasada) {
+        this.percentualAtrasada = percentAtualrasada;
     }
 
-    public void setPercentEfetuada(double percentEfetuada) {
-        this.percentEfetuada = percentEfetuada;
+    public void setPercentualEfetuada(double percentualEfetuada) {
+        this.percentualEfetuada = percentualEfetuada;
     }
 
     public void setMes(int mes) {
         this.mes = mes;
     }
 
-    public double getPercentAtrasada() {
-        return percentAtrasada;
+    public double getPercentualAtrasada() {
+        return percentualAtrasada;
     }
 
-    public double getPercentEfetuada() {
-        return percentEfetuada;
+    public double getPercentualEfetuada() {
+        return percentualEfetuada;
     }
 
     public int getMes() {
