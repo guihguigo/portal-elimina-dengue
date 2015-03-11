@@ -19,7 +19,6 @@ public class MainActivity extends FragmentActivity implements
     private int[] tabs = {R.drawable.home_prevencoes, R.drawable.pesquisar_focos};
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,8 +42,7 @@ public class MainActivity extends FragmentActivity implements
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             @Override
-            public void onPageSelected(int position) {
-
+            public void onPageSelected(final int position) {
                 actionBar.setSelectedNavigationItem(position);
             }
 
@@ -63,10 +61,12 @@ public class MainActivity extends FragmentActivity implements
     }
 
     @Override
-    public void onTabSelected(Tab tab, FragmentTransaction ft) {
+    public void onTabSelected(final Tab tab, FragmentTransaction ft) {
         // on tab selected
         // show respected fragment view
+        mAdapter.atualizaAdapter(tab.getPosition());
         viewPager.setCurrentItem(tab.getPosition());
+
     }
 
     @Override

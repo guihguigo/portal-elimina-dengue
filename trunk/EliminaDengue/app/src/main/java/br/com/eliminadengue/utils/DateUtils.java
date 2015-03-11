@@ -13,12 +13,15 @@ public class DateUtils {
 
     public String DateToString(Date date){
         SimpleDateFormat dateFormat = new SimpleDateFormat(
-                "dd/MM/yyyy HH:mm:ss", Locale.getDefault());
-        return dateFormat.format(date);
+                "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        if(date != null) {
+            return dateFormat.format(date);
+        }
+        return "";
     }
 
     public Date StringToDate(String date){
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date formatDate;
         try {
             formatDate = df.parse(date);
@@ -28,5 +31,20 @@ public class DateUtils {
         }
 
         return null;
+    }
+
+    public String DateViewFormatted(Date date){
+        String data = "";
+        String hora = "";
+        SimpleDateFormat formatoData = new SimpleDateFormat(
+                "dd/MM/yyyy", Locale.getDefault());
+
+        SimpleDateFormat formatoHora = new SimpleDateFormat(
+                "HH:mm", Locale.getDefault());
+        if(date != null) {
+            data =  formatoData.format(date);
+            hora = formatoHora.format(date);
+        }
+        return data + " às " + hora;
     }
 }
