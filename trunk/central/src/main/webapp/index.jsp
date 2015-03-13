@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Bar Chart</title>
+        <title>Central</title>
         <script src="scripts/Chart.min.js"></script>
         <script src="scripts/jquery-1.11.2.min.js"></script>
     </head>
@@ -26,7 +26,7 @@
                 $.getJSON("http://localhost:8083/central/webresources/prevencao/percentualPrevencoesPorMes"
                     , function (result) {
                         $.each(result, function (i, obj) {
-                            window.myBar.addData([obj.percentualEfetuada, obj.percentualAtrasada]);
+                            window.myBar.addData([obj.percentualEfetuada, obj.percentualAtrasada], obj.nomeMes);
                         });
                     });
             };
@@ -46,19 +46,16 @@
                         strokeColor: "rgba(151,187,205,0.8)",
                         highlightFill: "rgba(151,187,205,0.75)",
                         highlightStroke: "rgba(151,187,205,1)",
-//                        data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
                     }
                 ]
             }
+            
             window.onload = function () {
                 var ctx = document.getElementById("canvas").getContext("2d");
                 window.myBar = new Chart(ctx).Bar(barChartData, {
                     responsive: true
                 });
-                getPercentualPrevencoes();
-                
-               
-               
+                getPercentualPrevencoes(); 
             }
         </script>
     </body>

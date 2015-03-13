@@ -7,8 +7,11 @@ package br.com.eliminadengue.central.persistence;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.inject.Disposes;
 import javax.enterprise.inject.Produces;
 import javax.sql.DataSource;
 
@@ -39,6 +42,14 @@ public class ConnectionFactory {
             return connection;
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
+        }
+    }
+    
+    public void close(@Disposes Connection connection) {
+        try {
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ConnectionFactory.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

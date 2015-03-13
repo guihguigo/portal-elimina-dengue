@@ -1,7 +1,10 @@
 package br.com.eliminadengue.central.rest;
 
-import br.com.eliminadengue.central.model.Prevencao;
+import br.com.eliminadengue.central.grafico.PercentualPrevencoesPorMesFactory;
+import br.com.eliminadengue.central.model.PercentualPrevencoes;
 import br.com.eliminadengue.central.model.PercentualPrevencoesPorMes;
+
+import br.com.eliminadengue.central.model.Prevencao;
 import br.com.eliminadengue.central.persistence.PrevencaoDao;
 import br.com.eliminadengue.central.persistence.Perssiste;
 import java.util.List;
@@ -71,11 +74,14 @@ public class PrevencaoRest {
 
         return Response.ok().build();
     }
-    
+
     @GET
-    @Path("/percentualPrevencoesPorMes")
+    @Path("/percentualPrevencoes")
     @Produces("application/json")
-    public List<PercentualPrevencoesPorMes> percentPorMes() {
-        return prevencaoDao.parcentualPorMes();
+    public List<PercentualPrevencoes> percentPorMes() {
+        List<Prevencao> prevencoes = prevencaoDao.todos();
+        List<PercentualPrevencoes> percentualPrevencoes = 
+                new PercentualPrevencoesPorMesFactory().constroi(prevencoes);
+        return percentualPrevencoes;
     }
 }

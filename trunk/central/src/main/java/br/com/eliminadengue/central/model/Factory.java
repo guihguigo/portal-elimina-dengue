@@ -5,16 +5,12 @@
  */
 package br.com.eliminadengue.central.model;
 
+import java.util.List;
+
 /**
  *
  * @author T2S
  */
-public enum MES{
-  
-
-    
-    
-    
+public interface Factory {
+    public abstract List<PercentualPrevencoes> constroi(List<Prevencao> todasPrevencoes);
 }
-    
-

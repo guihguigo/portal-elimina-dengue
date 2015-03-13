@@ -1,6 +1,5 @@
 package br.com.eliminadengue.central.grafico;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 

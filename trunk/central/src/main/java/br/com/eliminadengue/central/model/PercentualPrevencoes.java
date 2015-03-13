@@ -5,17 +5,15 @@
  */
 package br.com.eliminadengue.central.model;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Guilherme Alves
  */
-@XmlRootElement
-@XmlAccessorType(XmlAccessType.FIELD)
-public class PercentualPrevencoesPorMes extends PercentualPrevencoes {
+@XmlRootElement(name = "prevencoes")
+public abstract class PercentualPrevencoes {
+
     private double percentualAtrasada;
     private double percentualEfetuada;
 
@@ -34,31 +32,4 @@ public class PercentualPrevencoesPorMes extends PercentualPrevencoes {
     public double getPercentualEfetuada() {
         return percentualEfetuada;
     }
-    private int mes;
-    private String nomeMes;
-
-    public String getNomeMes() {
-        String[] meses = {"JANEIRO", "FEVEREIRO", "MARÇO", "ABRIL", "MAIO", "JUNHO",
-            "JULHO", "AGOSTO", "SETEMBRO", "OUTUBRO", "NOVEMBRO", "DEZEMBRO"};
-        return meses[mes];
-    }
-
-    public void setNomeMes(String nomeMes) {
-        this.nomeMes = nomeMes;
-    }
-
-    public void setMes(int mes) {
-        this.mes = mes;
-    }
-
-    public int getMes() {
-        return mes;
-    }
-
-    @Override
-    public String toString() {
-        return "Percentual de prevenções por mês";
-    }
-    
-    
 }

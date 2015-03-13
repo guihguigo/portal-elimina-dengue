@@ -1,9 +1,8 @@
 package br.com.eliminadengue.central.grafico;
 
-import br.com.eliminadengue.central.model.MatrizPrenvencao;
+import br.com.eliminadengue.central.model.PercentualPrevencoes;
 import br.com.eliminadengue.central.model.Prevencao;
 import java.util.List;
-import javax.inject.Inject;
 
 /**
  * Api plota no gráfico a porcentagem com base em cada indicador
@@ -14,31 +13,20 @@ import javax.inject.Inject;
  */
 public class GeradorModeloGrafico {
 
-    private final MatrizPrenvencao serie;
-    private final int comeco;
-    private final int fim;
-
     private ModeloGrafico modeloGrafico;
     private Indicador indicador;
 
-    public GeradorModeloGrafico(MatrizPrenvencao serie, int comeco, int fim) {
-        this.serie = serie;
-        this.comeco = comeco;
-        this.fim = fim;
+    public GeradorModeloGrafico(List<PercentualPrevencoes> lsita, ModeloGrafico modeloGrafico) {
+   
         
         modeloGrafico = new GraficoBarra();
-        indicador = new MediaSimples(indicador);
     }
     
     /**
      * Calcula a porcentagem a ser plotada no gráfico com base no indicador
      */
     public void plotaIndicador() {
-        for (int i = comeco; i <= fim; i++) {
-            List<Prevencao> prevencoes = serie.get(i);
-            double valor = indicador.calcula(i, prevencoes);
-            modeloGrafico.set(serie.getNome(i), valor);
-        }
+     
     }
     
 }
