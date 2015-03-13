@@ -1,6 +1,5 @@
 package br.com.eliminadengue.central.persistence;
 
-import br.com.eliminadengue.central.model.MatrizPrenvencao;
 import br.com.eliminadengue.central.model.Endereco;
 import br.com.eliminadengue.central.model.Foco;
 import br.com.eliminadengue.central.model.PercentualPrevencoesPorMes;
@@ -11,9 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.inject.Inject;
@@ -192,20 +189,22 @@ public class PrevencaoDao implements Dao<Prevencao> {
        List<PercentualPrevencoesPorMes> prevencoes = new ArrayList<>();
         PercentualPrevencoesPorMes percentPrevencaoPorMes = null;
         
-        String sql = "select * from EFETUADA_ATRASADA_MES_PERCENT";
+        String sql = "select * from PREVENCAO_PERCENTUAL_MES";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet result = statement.executeQuery();
             
             while (result.next()) {
-                int mes = result.getInt("MES");
-                double percentAtrasada = result.getDouble("PERCENT_ATRASADA");
-                double percentEfetuada = result.getDouble("PERCENT_EFETUADA");
+                int mes = result.getInt("NUM_MES");
+                String nomeMes = result.getString("NOM_MES");
+                double percentualAtrasada = result.getDouble("PER_ATRASADA");
+                double percentualEfetuada = result.getDouble("PER_EFETUADA");
                 
                 percentPrevencaoPorMes = new PercentualPrevencoesPorMes();
                 percentPrevencaoPorMes.setMes(mes);
-                percentPrevencaoPorMes.setPercentualAtrasada(percentAtrasada);
-                percentPrevencaoPorMes.setPercentualEfetuada(percentEfetuada);
+                percentPrevencaoPorMes.setPercentualAtrasada(percentualAtrasada);
+                percentPrevencaoPorMes.setPercentualEfetuada(percentualEfetuada);
+                percentPrevencaoPorMes.setNomeMes(nomeMes);
                 
                 prevencoes.add(percentPrevencaoPorMes);
             }

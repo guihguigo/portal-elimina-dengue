@@ -5,7 +5,6 @@
  */
 package br.com.eliminadengue.central.model;
 
-
 import java.io.Serializable;
 import java.util.Date;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -14,17 +13,17 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author Guilherme Alves
  */
-
 @XmlRootElement
-public class Prevencao implements Serializable, Comparable<Prevencao>{
+public class Prevencao implements Serializable, Comparable<Prevencao> {
+
     private int codigoCelular;
     private Foco foco;
-    
+
     private Date dataCriacao;
     private Date dataPrazo;
     private Date dataEfetuada;
     private Endereco endereco;
-    
+
     public Prevencao(int codigoCelular, Foco foco, Date dataCriacao, Date dataPrazo, Endereco endereco) {
         this.codigoCelular = codigoCelular;
         this.foco = foco;
@@ -33,7 +32,8 @@ public class Prevencao implements Serializable, Comparable<Prevencao>{
         this.endereco = endereco;
     }
 
-    public Prevencao() {}
+    public Prevencao() {
+    }
 
     public Endereco getEndereco() {
         return endereco;
@@ -42,7 +42,7 @@ public class Prevencao implements Serializable, Comparable<Prevencao>{
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
-    
+
     public int getCodigoCelular() {
         return codigoCelular;
     }
@@ -87,14 +87,19 @@ public class Prevencao implements Serializable, Comparable<Prevencao>{
     public String toString() {
         return "Prevencao{" + "codigoCelular=" + codigoCelular + ", foco=" + foco + ", dataCriacao=" + dataCriacao + ", dataPrazo=" + dataPrazo + ", dataEfetuada=" + dataEfetuada + '}';
     }
-    
+
     @Override
     public int compareTo(Prevencao o) {
         //ordena por menor prazo
         return this.dataPrazo.compareTo(o.dataPrazo);
     }
 
-    
+    public boolean estaAtrasada() {
+        if (this.getDataEfetuada() == null && this.getDataPrazo().before(new Date())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
-    
- 
