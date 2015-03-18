@@ -33,7 +33,13 @@ public class PercentualPrevencoesPorMesFactory implements Factory {
         Collections.sort(todasPrevencoes, new Comparator<Prevencao>() {
             @Override
             public int compare(Prevencao o1, Prevencao o2) {
-                return o1.getDataPrazo().compareTo(o2.getDataPrazo());
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(o1.getDataPrazo());
+                Integer mes1 = calendar.get(Calendar.MONTH);
+                calendar.setTime(o2.getDataPrazo());
+                Integer mes2 = calendar.get(Calendar.MONTH);
+                
+                return mes1.compareTo(mes2);
             }
         });
 
