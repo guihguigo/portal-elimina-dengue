@@ -203,9 +203,7 @@ public class PrevencaoDao implements Dao<Prevencao> {
                 percentPrevencaoPorMes = new PercentualPrevencoesPorMes();
                 percentPrevencaoPorMes.setMes(mes);
                 percentPrevencaoPorMes.setPercentualAtrasada(percentualAtrasada);
-                percentPrevencaoPorMes.setPercentualEfetuada(percentualEfetuada);
-                percentPrevencaoPorMes.setNomeMes(nomeMes);
-                
+                percentPrevencaoPorMes.setPercentualEfetuada(percentualEfetuada);                
                 prevencoes.add(percentPrevencaoPorMes);
             }
         } catch (SQLException ex) {

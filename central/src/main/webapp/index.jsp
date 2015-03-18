@@ -23,7 +23,7 @@
             };
             
             var getPercentualPrevencoes = function () {
-                $.getJSON("http://localhost:8083/central/webresources/prevencao/percentualPrevencoesPorMes"
+                $.getJSON("http://localhost:8083/central/webresources/prevencao/percentualPrevencoes"
                     , function (result) {
                         $.each(result, function (i, obj) {
                             window.myBar.addData([obj.percentualEfetuada, obj.percentualAtrasada], obj.nomeMes);

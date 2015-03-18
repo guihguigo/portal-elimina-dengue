@@ -12,24 +12,23 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Guilherme Alves
  */
 @XmlRootElement(name = "prevencoes")
-public abstract class PercentualPrevencoes {
+public interface PercentualPrevencoes {
 
-    private double percentualAtrasada;
-    private double percentualEfetuada;
+    
+    
+    public void setPercentualAtrasada(double percentAtualrasada);
 
-    public void setPercentualAtrasada(double percentAtualrasada) {
-        this.percentualAtrasada = percentAtualrasada;
-    }
+    public void setPercentualEfetuada(double percentualEfetuada);
 
-    public void setPercentualEfetuada(double percentualEfetuada) {
-        this.percentualEfetuada = percentualEfetuada;
-    }
+    public double getPercentualAtrasada();
 
-    public double getPercentualAtrasada() {
-        return percentualAtrasada;
-    }
-
-    public double getPercentualEfetuada() {
-        return percentualEfetuada;
-    }
+    public double getPercentualEfetuada();
+    
+    public String getNomeMes();
+    
+    public void setNomeMes(String nomeFoco);
+    
+    public String getNomeFoco();
+    
+    public void setNomeFoco(String nomeFoco);
 }

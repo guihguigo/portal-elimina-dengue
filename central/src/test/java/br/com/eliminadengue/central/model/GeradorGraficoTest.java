@@ -77,7 +77,7 @@ public class GeradorGraficoTest {
         
         
         for (PercentualPrevencoes percentual : percentualPrevencoesPorMes) {
-            System.out.println("Mês: " + ((PercentualPrevencoesPorMes) percentual).getNomeMes() );
+            System.out.println("Mês: " + ((PercentualPrevencoesPorMes) percentual).getNomeMes());
             System.out.println(percentual.getPercentualEfetuada() );
             System.out.println(percentual.getPercentualAtrasada());
         }

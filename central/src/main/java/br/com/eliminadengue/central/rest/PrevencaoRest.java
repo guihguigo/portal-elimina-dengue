@@ -77,7 +77,7 @@ public class PrevencaoRest {
 
     @GET
     @Path("/percentualPrevencoes")
-    @Produces("application/json")
+    @Produces({"application/json"})
     public List<PercentualPrevencoes> percentPorMes() {
         List<Prevencao> prevencoes = prevencaoDao.todos();
         List<PercentualPrevencoes> percentualPrevencoes = 
