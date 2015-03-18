@@ -8,6 +8,8 @@ import br.com.eliminadengue.central.model.Factory;
 import br.com.eliminadengue.central.model.PercentualPrevencoes;
 import br.com.eliminadengue.central.model.PercentualPrevencoesPorMes;
 import br.com.eliminadengue.central.model.Prevencao;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -90,7 +92,7 @@ public class PercentualPrevencoesPorMesFactory implements Factory {
                 efetuadas++;
             }
         }
-
+        
         efetuadas = (efetuadas * 100) / prevencoes.size();
         atrasadas = (atrasadas * 100) / prevencoes.size();
 
