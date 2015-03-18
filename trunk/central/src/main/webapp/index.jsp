@@ -26,7 +26,7 @@
                 $.getJSON("http://localhost:8083/central/webresources/prevencao/percentualPrevencoes"
                     , function (result) {
                         $.each(result, function (i, obj) {
-                            window.myBar.addData([obj.percentualEfetuada, obj.percentualAtrasada], obj.nomeMes);
+                            window.myBar.addData([obj.percentualEfetuada.toFixed(2), obj.percentualAtrasada.toFixed(2)], obj.nomeMes);
                         });
                     });
             };
