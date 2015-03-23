@@ -7,56 +7,55 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Central</title>
-        <script src="scripts/Chart.min.js"></script>
-        <script src="scripts/jquery-1.11.2.min.js"></script>
-    </head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Simple Sidebar - Start Bootstrap Template</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/simple-sidebar.css" rel="stylesheet">
     <body>
-        <div style="width: 50%">
-            <canvas id="canvas" height="450" width="600"></canvas>
-        </div>
-         
-        <script>
-            var randomScalingFactor = function () {
-                return Math.round(Math.random() * 100)
-            };
+
+        <div id="wrapper">
+            <jsp:include page="menu.jsp"></jsp:include>
             
-            var getPercentualPrevencoes = function () {
-                $.getJSON("http://localhost:8083/central/webresources/prevencao/percentualPrevencoes"
-                    , function (result) {
-                        $.each(result, function (i, obj) {
-                            window.myBar.addData([obj.percentualEfetuada.toFixed(2), obj.percentualAtrasada.toFixed(2)], obj.nomeMes);
-                        });
-                    });
-            };
-            
-            var barChartData = {
-                labels: [],
-                datasets: [
-                    {
-                        fillColor: "rgba(220,220,220,0.5)",
-                        strokeColor: "rgba(220,220,220,0.8)",
-                        highlightFill: "rgba(220,220,220,0.75)",
-                        highlightStroke: "rgba(220,220,220,1)",
+            <!-- Page Content -->
+            <div id="page-content-wrapper">
+                <div class="container-fluid">
+                    <div style="width: 75%">
+                        <canvas id="canvas" height="300" width="450"></canvas>
                         
-                    },
-                    {
-                        fillColor: "rgba(151,187,205,0.5)",
-                        strokeColor: "rgba(151,187,205,0.8)",
-                        highlightFill: "rgba(151,187,205,0.75)",
-                        highlightStroke: "rgba(151,187,205,1)",
-                    }
-                ]
-            }
-            
-            window.onload = function () {
-                var ctx = document.getElementById("canvas").getContext("2d");
-                window.myBar = new Chart(ctx).Bar(barChartData, {
-                    responsive: true
-                });
-                getPercentualPrevencoes(); 
-            }
+                    </div>
+                </div>
+            </div>
+            <!-- /#page-content-wrapper -->
+
+        </div>
+        <!-- /#wrapper -->
+
+        <!-- jQuery -->
+        <script src="scripts/jquery-1.11.2.min.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="scripts/bootstrap.min.js"></script>
+        <!-- Chart core -->
+        <script src="scripts/Chart.min.js"></script>
+        <!-- Mustache core -->
+        <script src="scripts/mustache.min.js"></script>
+
+        <script src="scripts/graficos.js"></script>
+
+        <!-- Menu Toggle Script -->
+        <script>
+            $("#menu-toggle").click(function (e) {
+                e.preventDefault();
+                $("#wrapper").toggleClass("toggled");
+            });
         </script>
     </body>
 </html>
