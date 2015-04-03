@@ -3,6 +3,7 @@ package br.com.eliminadengue.utils;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -46,5 +47,34 @@ public class DateUtils {
             hora = formatoHora.format(date);
         }
         return data + " às " + hora;
+    }
+
+
+    public boolean validaDtPrazo(Date dt){
+        Calendar dtAtual = Calendar.getInstance();
+        Calendar dtPrazo = Calendar.getInstance();
+        dt.setHours(dtAtual.getTime().getHours() + 1);
+        dt.setMinutes(dtAtual.getTime().getMinutes());
+        dt.setSeconds(dtAtual.getTime().getSeconds());
+        dtPrazo.setTime(dt);
+
+        if(dtPrazo.getTime().before(dtAtual.getTime())){
+            return false;
+        }
+
+        return true;
+
+    }
+
+    public boolean validaHrPrazo(Date dt){
+        Calendar dtAtual = Calendar.getInstance();
+        Calendar dtPrazo = Calendar.getInstance();
+        dtPrazo.setTime(dt);
+        if(dtPrazo.getTime().before(dtAtual.getTime())){
+            return false;
+        }
+
+        return true;
+
     }
 }

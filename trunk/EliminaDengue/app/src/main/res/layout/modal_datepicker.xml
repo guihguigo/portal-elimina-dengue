@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="350sp"
+    android:layout_height="350sp"
+    android:layout_marginTop="24sp"
+    android:layout_marginLeft="24sp"
+    android:layout_marginRight="24sp"
+    android:layout_marginBottom="24sp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Data da Prevenção"
+        android:textSize="30sp"
+        android:layout_marginBottom="30sp"
+        android:id="@+id/textView" />
+        <DatePicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="24sp"
+            android:calendarViewShown="false"
+            android:id="@+id/dpDiaPrevencao" />
+
+    <Button
+        android:layout_width="70sp"
+        android:layout_height="70sp"
+        android:layout_marginRight="20sp"
+        android:layout_gravity="right"
+        android:id="@+id/btnConfirma"
+        android:background="@mipmap/ok_icon"
+        />
+
+
+
+
+
+
+</LinearLayout>

@@ -1,17 +1,20 @@
 package br.com.eliminadengue.view.adapter;
 
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.util.Log;
 
 import br.com.eliminadengue.view.fragment.AgendamentoFragment;
 import br.com.eliminadengue.view.fragment.PrevencaoFragment;
 
+
 public class TabsPagerAdapter extends FragmentPagerAdapter {
 
+    private Handler handler;
     private PrevencaoFragment prevencaoFragment;
     private AgendamentoFragment agendamentoFragment;
+
 
     public TabsPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -21,24 +24,17 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
     }
 
     public void atualizaAdapter(final int index) {
-        new Thread() {
-            @Override
-            public void run() {
-                try {
-                    switch (index) {
-                        case 0:
-                            prevencaoFragment.atualizaAdapter();
-                            break;
-                        case 1:
-                            agendamentoFragment.atualizaAdapter();
-                            break;
-                    }
-
-                } catch (Exception ex) {
-                    Log.d("Log","Não se abale. Se passou por aqui é só porque não foi instanciado o fragment");
-                }
+        {
+            switch (index) {
+                case 0:
+                    prevencaoFragment.atualizaAdapter();
+                    break;
+                case 1:
+                    agendamentoFragment.atualizaAdapter();
+                    break;
             }
-        }.start();
+        }
+
 
     }
 

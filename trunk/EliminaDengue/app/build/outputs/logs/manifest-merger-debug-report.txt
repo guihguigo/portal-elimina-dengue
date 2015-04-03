@@ -43,6 +43,10 @@ uses-permission#android.permission.ACCESS_FINE_LOCATION
 ADDED from AndroidManifest.xml:14:5
 	android:name
 		ADDED from AndroidManifest.xml:14:22
+uses-permission#android.permission.VIBRATE
+ADDED from AndroidManifest.xml:15:5
+	android:name
+		ADDED from AndroidManifest.xml:15:22
 application
 ADDED from AndroidManifest.xml:16:6
 MERGED from com.android.support:appcompat-v7:21.0.3:16:5
@@ -73,9 +77,19 @@ category#android.intent.category.LAUNCHER
 ADDED from AndroidManifest.xml:28:17
 	android:name
 		ADDED from AndroidManifest.xml:28:27
-activity#br.com.eliminadengue.view.ComoLimpar
-ADDED from AndroidManifest.xml:31:9
+receiver#br.com.eliminadengue.controller.notificador.AedesReceiver
+ADDED from AndroidManifest.xml:31:10
 	android:label
-		ADDED from AndroidManifest.xml:33:13
+		ADDED from AndroidManifest.xml:31:73
 	android:name
-		ADDED from AndroidManifest.xml:32:13
+		ADDED from AndroidManifest.xml:31:20
+intent-filter#ALARME_DISPARADO+android.intent.category.DEFAULT
+ADDED from AndroidManifest.xml:32:10
+action#ALARME_DISPARADO
+ADDED from AndroidManifest.xml:33:14
+	android:name
+		ADDED from AndroidManifest.xml:33:22
+category#android.intent.category.DEFAULT
+ADDED from AndroidManifest.xml:34:14
+	android:name
+		ADDED from AndroidManifest.xml:34:24
