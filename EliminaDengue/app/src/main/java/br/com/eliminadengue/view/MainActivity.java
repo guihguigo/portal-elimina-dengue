@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 
@@ -17,13 +18,12 @@ public class MainActivity extends FragmentActivity implements
     private TabsPagerAdapter mAdapter;
     private ActionBar actionBar;
     private int[] tabs = {R.drawable.home_prevencoes, R.drawable.pesquisar_focos};
-
+    private Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         viewPager = (ViewPager) findViewById(R.id.pager);
         actionBar = getActionBar();
         mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
@@ -53,6 +53,8 @@ public class MainActivity extends FragmentActivity implements
             @Override
             public void onPageScrollStateChanged(int arg0) {
             }
+
+
         });
     }
 
@@ -62,15 +64,22 @@ public class MainActivity extends FragmentActivity implements
 
     @Override
     public void onTabSelected(final Tab tab, FragmentTransaction ft) {
-        // on tab selected
-        // show respected fragment view
-        mAdapter.atualizaAdapter(tab.getPosition());
         viewPager.setCurrentItem(tab.getPosition());
+        updateDataSet(tab.getPosition());
+    }
+
+
+    /**
+     * @param indActivity Passe 0 como parâmetro caso seja activity Prevenção e 1 para Agendamento
+     */
+    private void updateDataSet(final int indActivity) {
+        mAdapter.atualizaAdapter(indActivity);
 
     }
 
     @Override
     public void onTabUnselected(Tab tab, FragmentTransaction ft) {
     }
+
 
 }

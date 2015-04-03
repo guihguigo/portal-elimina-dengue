@@ -1346,6 +1346,7 @@ containing a value of this type.
         public static final int default_activity_button=0x7f090024;
         public static final int dialog=0x7f09001b;
         public static final int disableHome=0x7f09000c;
+        public static final int dpDiaPrevencao=0x7f09004a;
         public static final int dropdown=0x7f09001c;
         public static final int edit_query=0x7f090033;
         public static final int end=0x7f090014;
@@ -1366,7 +1367,7 @@ containing a value of this type.
         public static final int none=0x7f09000e;
         public static final int normal=0x7f09000a;
         public static final int pager=0x7f090043;
-        public static final int picture=0x7f09004c;
+        public static final int picture=0x7f09004d;
         public static final int progress_circular=0x7f090005;
         public static final int progress_horizontal=0x7f090006;
         public static final int radio=0x7f09002b;
@@ -1387,11 +1388,11 @@ containing a value of this type.
         public static final int split_action_bar=0x7f090007;
         public static final int submit_area=0x7f09003c;
         public static final int tabMode=0x7f09000b;
-        public static final int text=0x7f09004d;
+        public static final int text=0x7f09004e;
         public static final int textView=0x7f090046;
         public static final int textView2=0x7f090041;
         public static final int title=0x7f090027;
-        public static final int tpHorarioPrevencao=0x7f09004a;
+        public static final int tpHorarioPrevencao=0x7f09004c;
         public static final int txtComoLimpar=0x7f090042;
         public static final int txtGeneric=0x7f090049;
         public static final int txtNmFoco=0x7f090040;
@@ -1433,9 +1434,10 @@ containing a value of this type.
         public static final int fragment_agendamento=0x7f040019;
         public static final int fragment_prevencao=0x7f04001a;
         public static final int modal_agendamento=0x7f04001b;
-        public static final int modal_timepicker=0x7f04001c;
-        public static final int support_simple_spinner_dropdown_item=0x7f04001d;
-        public static final int tile_image_item=0x7f04001e;
+        public static final int modal_datepicker=0x7f04001c;
+        public static final int modal_timepicker=0x7f04001d;
+        public static final int support_simple_spinner_dropdown_item=0x7f04001e;
+        public static final int tile_image_item=0x7f04001f;
     }
     public static final class mipmap {
         public static final int ic_launcher=0x7f030000;
@@ -1458,10 +1460,8 @@ containing a value of this type.
         public static final int abc_shareactionprovider_share_with=0x7f0b000d;
         public static final int abc_shareactionprovider_share_with_application=0x7f0b000e;
         public static final int abc_toolbar_collapse_description=0x7f0b000f;
-        public static final int action_settings=0x7f0b0010;
-        public static final int app_name=0x7f0b0011;
-        public static final int hello_world=0x7f0b0012;
-        public static final int title_activity_como_limpar=0x7f0b0013;
+        public static final int app_name=0x7f0b0010;
+        public static final int title_activity_como_limpar=0x7f0b0011;
     }
     public static final class style {
         public static final int ActionBarTabStyle=0x7f0c0000;

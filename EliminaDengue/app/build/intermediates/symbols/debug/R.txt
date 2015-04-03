@@ -378,6 +378,7 @@ int id decor_content_parent 0x7f09002f
 int id default_activity_button 0x7f090024
 int id dialog 0x7f09001b
 int id disableHome 0x7f09000c
+int id dpDiaPrevencao 0x7f09004a
 int id dropdown 0x7f09001c
 int id edit_query 0x7f090033
 int id end 0x7f090014
@@ -398,7 +399,7 @@ int id never 0x7f090019
 int id none 0x7f09000e
 int id normal 0x7f09000a
 int id pager 0x7f090043
-int id picture 0x7f09004c
+int id picture 0x7f09004d
 int id progress_circular 0x7f090005
 int id progress_horizontal 0x7f090006
 int id radio 0x7f09002b
@@ -419,11 +420,11 @@ int id showTitle 0x7f090011
 int id split_action_bar 0x7f090007
 int id submit_area 0x7f09003c
 int id tabMode 0x7f09000b
-int id text 0x7f09004d
+int id text 0x7f09004e
 int id textView 0x7f090046
 int id textView2 0x7f090041
 int id title 0x7f090027
-int id tpHorarioPrevencao 0x7f09004a
+int id tpHorarioPrevencao 0x7f09004c
 int id txtComoLimpar 0x7f090042
 int id txtGeneric 0x7f090049
 int id txtNmFoco 0x7f090040
@@ -461,9 +462,10 @@ int layout activity_main 0x7f040018
 int layout fragment_agendamento 0x7f040019
 int layout fragment_prevencao 0x7f04001a
 int layout modal_agendamento 0x7f04001b
-int layout modal_timepicker 0x7f04001c
-int layout support_simple_spinner_dropdown_item 0x7f04001d
-int layout tile_image_item 0x7f04001e
+int layout modal_datepicker 0x7f04001c
+int layout modal_timepicker 0x7f04001d
+int layout support_simple_spinner_dropdown_item 0x7f04001e
+int layout tile_image_item 0x7f04001f
 int mipmap ic_launcher 0x7f030000
 int mipmap ok_icon 0x7f030001
 int string abc_action_bar_home_description 0x7f0b0000
@@ -482,10 +484,8 @@ int string abc_searchview_description_voice 0x7f0b000c
 int string abc_shareactionprovider_share_with 0x7f0b000d
 int string abc_shareactionprovider_share_with_application 0x7f0b000e
 int string abc_toolbar_collapse_description 0x7f0b000f
-int string action_settings 0x7f0b0010
-int string app_name 0x7f0b0011
-int string hello_world 0x7f0b0012
-int string title_activity_como_limpar 0x7f0b0013
+int string app_name 0x7f0b0010
+int string title_activity_como_limpar 0x7f0b0011
 int style ActionBarTabStyle 0x7f0c0000
 int style AppTheme 0x7f0c0001
 int style Base_TextAppearance_AppCompat 0x7f0c0002

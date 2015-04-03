@@ -10,16 +10,20 @@ import br.com.eliminadengue.entity.FocoEntity;
  */
 public class FocoController {
 
+    private FocoEntity fe;
     private Context ctx;
 
 
     public FocoController(Context ctx){
         this.ctx = ctx;
+        this.fe = new FocoEntity(ctx);
     }
 
 
     public Foco getFoco(String idFoco){
-       return new FocoEntity(this.ctx).getFoco(Integer.parseInt(idFoco));
+       return fe.getFoco(Integer.parseInt(idFoco));
     }
+
+
 
 }

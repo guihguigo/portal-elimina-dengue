@@ -2,12 +2,14 @@ package br.com.eliminadengue.view.adapter;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -15,6 +17,7 @@ import android.widget.TimePicker;
 import com.easyandroidanimations.library.BlinkAnimation;
 import com.easyandroidanimations.library.HighlightAnimation;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -23,23 +26,31 @@ import br.com.eliminadengue.R;
 import br.com.eliminadengue.bean.Foco;
 import br.com.eliminadengue.bean.Prevencao;
 import br.com.eliminadengue.controller.PrevencaoController;
-import br.com.eliminadengue.view.fragment.AgendamentoFragment;
+import br.com.eliminadengue.entity.FocoEntity;
+import br.com.eliminadengue.entity.PrevencaoEntity;
+import br.com.eliminadengue.utils.DateUtils;
+import br.com.eliminadengue.utils.DialogUtils;
 
 
-public class AgendamentoAdapter extends BaseAdapter{
+public class AgendamentoAdapter extends BaseAdapter {
     private Context context;
     private List<Foco> FocoList;
     private final LayoutInflater mInflater;
     private PrevencaoController pc;
     private Prevencao prevencao;
+    private Handler handler;
+    private Date dtPrazo;
 
-
-    public AgendamentoAdapter(Context context, List<Foco> arr_foco) {
+    public AgendamentoAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
         this.context = context;
-        this.FocoList = arr_foco;
+        popularList();
         this.pc = new PrevencaoController(context);
         this.prevencao = new Prevencao();
+
+        dtPrazo = new Date();
+        dtPrazo.setHours(00);
+        dtPrazo.setMinutes(00);
     }
 
     @Override
@@ -121,10 +132,42 @@ public class AgendamentoAdapter extends BaseAdapter{
                 prevencao.setSync(0);
                 prevencao.setDataCriacao(new Date());
                 //
-                setHoraPrevencao();
+                setDataPrevencao();
             }
         });
 
+        dialog.show();
+    }
+
+
+    //Modal DatePicker
+    private void setDataPrevencao() {
+        final Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.modal_datepicker);
+        final DatePicker dpDefineData = (DatePicker) dialog.findViewById(R.id.dpDiaPrevencao);
+        Button btnSalvar = (Button) dialog.findViewById(R.id.btnConfirma);
+
+        //dpDefineData.set(Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
+
+        btnSalvar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                //Seta data para prevenção
+                dtPrazo.setYear(dpDefineData.getYear() - 1900);
+                dtPrazo.setMonth(dpDefineData.getMonth());
+                dtPrazo.setDate(dpDefineData.getDayOfMonth());
+                // prevencao.setDataPrazo(pc.setDataPrevencaoAgendamento(tpDefineData.getCurrentHour(), tpDefineData.getCurrentMinute()));
+                if(new DateUtils().validaDtPrazo(dtPrazo)) {
+                    setHoraPrevencao();
+                }else{
+                    new DialogUtils(context).MsgToast("O prazo informado é menor que a data atual. \n Favor preencher corretamente.");
+                }
+                //new PrevencaoAdapter(context).atualizaAdapter();
+
+            }
+        });
         dialog.show();
     }
 
@@ -144,20 +187,48 @@ public class AgendamentoAdapter extends BaseAdapter{
             public void onClick(View v) {
                 dialog.dismiss();
                 //Seta data para prevenção
-                prevencao.setDataPrazo(pc.setDataPrevencaoAgendamento(tpDefineData.getCurrentHour(), tpDefineData.getCurrentMinute()));
-                pc.salvaPrevencao(prevencao);
-                atualizaAdapter();
-                //new PrevencaoAdapter(context).atualizaAdapter();
+                dtPrazo.setHours(tpDefineData.getCurrentHour());
+                dtPrazo.setMinutes(tpDefineData.getCurrentMinute());
+                if(new DateUtils().validaHrPrazo(dtPrazo)){
+                    prevencao.setDataPrazo(dtPrazo);
+                    pc.salvaPrevencao(prevencao);
+                    atualizaAdapter();
+                }else{
+                    new DialogUtils(context).MsgToast("O prazo informado é menor que a data atual. \n Favor preencher corretamente.");
+                }
+
 
             }
         });
         dialog.show();
     }
 
+    public void atualizaAdapter() {
+        handler = new Handler();
+        new Thread() {
+            @Override
+            public void run() {
+                popularList();
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        notifyDataSetChanged();
+                    }
+                });
+            }
+        }.start();
+    }
 
-    public void atualizaAdapter(){
-        this.FocoList = new AgendamentoFragment().popularList(this.context);
-        notifyDataSetChanged();
+    private void popularList() {
+        PrevencaoEntity pe = new PrevencaoEntity(context);
+        FocoEntity fe = new FocoEntity(context);
+        FocoList = new ArrayList<Foco>();
+        int i = 0;
+        while (fe.getFoco(++i).getCodigo() != -1) {
+            if (pe.getPrevencao(i).getFoco().getCodigo() == -1) {
+                this.FocoList.add(fe.getFoco(i));
+            }
+        }
     }
 
 

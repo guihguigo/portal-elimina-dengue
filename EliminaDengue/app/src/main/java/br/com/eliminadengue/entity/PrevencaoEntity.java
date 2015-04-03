@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.ArrayList;
+
 import br.com.eliminadengue.bean.Foco;
 import br.com.eliminadengue.bean.Prevencao;
 import br.com.eliminadengue.entity.db.EliminaDengueDb;
@@ -14,11 +16,6 @@ import br.com.eliminadengue.utils.DateUtils;
  * Created by Alexandre on 04/03/2015.
  */
 public class PrevencaoEntity extends EliminaDengueDb {
-
-
-
-
-  //  private static final String TABELA_PREVENCAO = "prevencao";
 
     private static final String ID_FOCO = "id_foco";
     private static final String DATA_CRIACAO = "dt_criacao";
@@ -39,12 +36,6 @@ public class PrevencaoEntity extends EliminaDengueDb {
         return CREATE_TABLE_PREVENCAO;
     }
 
-   /* public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABELA_PREVENCAO);
-
-        onCreate(db);
-    }*/
-
 
     public void addPrevencao(Prevencao prevencao) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -61,9 +52,68 @@ public class PrevencaoEntity extends EliminaDengueDb {
         db.close();
     }
 
+    public Prevencao getUltimaPrevencao(){
+        Prevencao prev = new Prevencao();
+
+        Foco f = new Foco();
+        f.setCodigo(-1);
+        prev.setFoco(f);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT * FROM " + TABELA_PREVENCAO + " ORDER BY " + DATA_PRAZO + " ASC";
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c.getCount() > 0) {
+            c.moveToFirst();
+
+            f = new FocoEntity(super.context).getFoco((c.getInt(c.getColumnIndex(ID_FOCO))));
+            prev.setFoco(f);
+            prev.setDataCriacao(new DateUtils().StringToDate(c.getString(c.getColumnIndex(DATA_CRIACAO))));
+            prev.setDataEfetuada(new DateUtils().StringToDate(c.getString(c.getColumnIndex(DATA_EFETUADA))));
+            prev.setDataPrazo(new DateUtils().StringToDate(c.getString(c.getColumnIndex(DATA_PRAZO))));
+            prev.setSync(c.getInt(c.getColumnIndex(SYNC)));
+
+        }
+
+        return prev;
+    }
+
+    public ArrayList<Prevencao> getAllPrevencoes() {
+        ArrayList<Prevencao> arrPrev = new ArrayList<Prevencao>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT * FROM " + TABELA_PREVENCAO + " ORDER BY " + DATA_PRAZO + " ASC";
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c.getCount() > 0) {
+            c.moveToFirst();
+
+
+            do {
+                Prevencao prev = new Prevencao();
+                prev.setFoco(new FocoEntity(super.context).getFoco((c.getInt(c.getColumnIndex(ID_FOCO)))));
+                prev.setDataCriacao(new DateUtils().StringToDate(c.getString(c.getColumnIndex(DATA_CRIACAO))));
+                prev.setDataEfetuada(new DateUtils().StringToDate(c.getString(c.getColumnIndex(DATA_EFETUADA))));
+                prev.setDataPrazo(new DateUtils().StringToDate(c.getString(c.getColumnIndex(DATA_PRAZO))));
+                prev.setSync(c.getInt(c.getColumnIndex(SYNC)));
+                arrPrev.add(prev);
+            } while (c.moveToNext());
+
+        }
+
+        return arrPrev;
+    }
+
+
+
+
+
     public Prevencao getPrevencao(int idFoco) {
         Prevencao prev = new Prevencao();
-       // prev.getFoco().getCodigo();
 
         Foco f = new Foco();
         f.setCodigo(-1);

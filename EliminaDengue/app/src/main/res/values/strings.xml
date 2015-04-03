@@ -1,7 +1,4 @@
 <resources>
-    <string name="app_name">EliminaDengue</string>
+    <string name="app_name">Aedes</string>
     <string name="title_activity_como_limpar">Como limpar?</string>
-
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
 </resources>
