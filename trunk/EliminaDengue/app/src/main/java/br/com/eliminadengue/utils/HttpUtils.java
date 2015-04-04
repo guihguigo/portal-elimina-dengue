@@ -5,7 +5,9 @@ import android.util.Log;
 import com.google.gson.Gson;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -61,6 +63,35 @@ public class HttpUtils {
             Log.d("InputStream", e.getLocalizedMessage());
             return null;
         }
+    }
+
+    public String enviaHttpGet(){
+
+        HttpClient client = new DefaultHttpClient();
+        HttpGet request = new HttpGet(URL);
+        InputStream inputStream = null;
+
+        HttpResponse response;
+        try {
+            response = client.execute(request);
+
+            inputStream = response.getEntity().getContent();
+
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                return convertInputStreamToString(inputStream);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        return null;
+
     }
 
     private static String convertInputStreamToString(InputStream inputStream) throws IOException {
