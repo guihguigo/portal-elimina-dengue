@@ -1,11 +1,17 @@
 package br.com.eliminadengue.service;
 
 
-
 /**
  * Created by Alexandre on 04/04/2015.
  */
 
+
+import android.content.Context;
+import android.opengl.GLSurfaceView;
+import android.util.Log;
+
+import com.google.gson.Gson;
+import org.json.JSONObject;
 
 import br.com.eliminadengue.bean.Endereco;
 import br.com.eliminadengue.controller.EnderecoController;
@@ -25,43 +31,35 @@ public class EnderecoService {
     public EnderecoService(Context ctx) {
         this.ctx = ctx;
         endereco = new Endereco();
-        enderecoController = new EnderecoController(ctx);
     }
 
     public Endereco getEndereco() {
-        new Thread() {
-            double latitude;
-            double longitude;
+        enderecoController = new EnderecoController(this.ctx);
 
-            @Override
-            public void run() {
-                latitude = enderecoController.getLatitude();
-                longitude = enderecoController.getLongitude();
-                httpUtils = new HttpUtils(ConexaoConfig.URL_MAPS);
-                enviaRecebeJsonPost();
-            }
-        }.start();
+        double latitude;
+        double longitude;
+
+        latitude = enderecoController.getLatitude();
+        longitude = enderecoController.getLongitude();
+        getJsonPostMaps(latitude, longitude);
+
 
 
         return endereco;
     }
 
 
-    private JSONObject enviaRecebeJsonPost(double latitude, double longitude) {
+    private JSONObject getJsonPostMaps(double latitude, double longitude) {
         JSONObject jsonEndereco = null;
+        Gson objGson = new Gson();
         String strJson = null;
-        BasicNameValuePair valuePair = new BasicNameValuePair("latlng", latitude + "," + longitude);
-
-
-
-        strJson = httpUtils.enviaJsonPost(strJson);
-
+        httpUtils = new HttpUtils(ConexaoConfig.URL_MAPS + latitude + "," + longitude);
+        strJson = httpUtils.enviaHttpGet();
         try {
             jsonEndereco = new JSONObject(strJson);
         } catch (Exception ex) {
             Log.d("Erro ao buscar Endereço", ex.getMessage());
         }
-
 
         return jsonEndereco;
     }
