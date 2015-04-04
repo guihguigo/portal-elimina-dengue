@@ -1,6 +1,7 @@
 package br.com.eliminadengue.view.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 
 import com.easyandroidanimations.library.BlinkAnimation;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import br.com.eliminadengue.R;
@@ -77,6 +80,19 @@ public class PrevencaoAdapter extends BaseAdapter{
         iconFoco.setImageResource(prevencao.getFoco().getIcone());
         txtDadosPrevencao.setText(prevencao.getFoco().getNome() + "\n" + new DateUtils().DateViewFormatted(prevencao.getDataPrazo()));
 
+
+        switch(pc.getSituacaoPrevencao(prevencao.getDataPrazo(), (double) prevencao.getFoco().getPrazo())){
+            case 1:
+                txtDadosPrevencao.setBackgroundColor(Color.parseColor("#6429e40a"));
+                break;
+            case 2:
+                txtDadosPrevencao.setBackgroundColor(Color.parseColor("#64dbe41a"));
+                break;
+            case 3:
+                txtDadosPrevencao.setBackgroundColor(Color.parseColor("#64c40005"));
+                break;
+        }
+
         iconFoco.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,7 +100,6 @@ public class PrevencaoAdapter extends BaseAdapter{
                 atualizaAdapter();
             }
         });
-
 
         return v;
     }
@@ -109,19 +124,5 @@ public class PrevencaoAdapter extends BaseAdapter{
         this.PrevencaoList = pc.getPrevencoes();
     }
 
-   /* private void popularList() {
-        PrevencaoEntity pe = new PrevencaoEntity(this.context);
-        FocoEntity fe = new FocoEntity(this.context);
-
-        PrevencaoList = new ArrayList<Prevencao>();
-
-        int count = fe.getFocoCount();
-        for (int i = 1; i <= count; i++) {
-            if (pe.getPrevencao(i).getFoco().getCodigo() != -1) {
-                this.PrevencaoList.add(pe.getPrevencao(i));
-            }
-        }
-
-*/
-
     }
+
