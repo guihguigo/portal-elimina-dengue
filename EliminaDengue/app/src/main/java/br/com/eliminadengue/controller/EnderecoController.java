@@ -29,12 +29,10 @@ public class EnderecoController {
 
     private void atualizaCoordenadas() {
         location.getLocation();
-
         if (location.isLocalAtualizado) {
             latitude = location.getLatitude();
             longitude = location.getLongitude();
         }
-
     }
 
 

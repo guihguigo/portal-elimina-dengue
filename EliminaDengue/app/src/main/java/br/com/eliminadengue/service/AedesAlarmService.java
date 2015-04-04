@@ -1,8 +1,9 @@
-package br.com.eliminadengue.controller.notificador;
+package br.com.eliminadengue.service;
 
 import android.content.Context;
 
 import br.com.eliminadengue.bean.Prevencao;
+import br.com.eliminadengue.controller.notificador.AedesNotificador;
 import br.com.eliminadengue.entity.PrevencaoEntity;
 
 /**
@@ -34,8 +35,8 @@ public class AedesAlarmService {
 
 
     public void atualizaNotificador(Prevencao prevencao) {
-        verificaDtPrazo(prevencao);
-        if(this.prevencao.getFoco().getCodigo() != prevEntity.getUltimaPrevencao().getFoco().getCodigo()) {
+        if (prevencao.getFoco().getCodigo() != this.prevencao.getFoco().getCodigo()) {
+            verificaDtPrazo(prevencao);
             if (this.prevencao.getFoco().getCodigo() != -1) {
                 aedesNotif = new AedesNotificador("Prevenção a fazer", this.prevencao.getFoco().getNome(),
                         this.prevencao.getDataPrazo(), this.prevencao.getFoco().getIcone(), ctx);
