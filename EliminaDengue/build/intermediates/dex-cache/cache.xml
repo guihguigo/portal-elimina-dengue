@@ -2,39 +2,39 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\Alexandre\Desktop\EliminaDengue\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="C:\Users\Alexandre\Desktop\EliminaDengue\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-0ad4cee58b914f36cbaf358713582b6de448e6ff.jar" />
-    </item>
-    <item
-        jar="C:\Users\Alexandre\Desktop\EliminaDengue\app\libs\easyandroidanimationslibrary-v0.5.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="81d390299222db75e62708400b299080d122b28b">
-        <dex dex="C:\Users\Alexandre\Desktop\EliminaDengue\app\build\intermediates\pre-dexed\debug\easyandroidanimationslibrary-v0.5-25639bc5428892c67caee33a8ce269360a3ebcff.jar" />
-    </item>
-    <item
-        jar="C:\Users\Alexandre\Desktop\EliminaDengue\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="C:\Users\Alexandre\Desktop\EliminaDengue\app\build\intermediates\pre-dexed\debug\classes-1f77eacf999f565d15a051b1723107ab5e548a62.jar" />
-    </item>
-    <item
-        jar="C:\Users\Alexandre\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
+        jar="C:\Users\Denise\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\21.0.3\support-annotations-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="C:\Users\Alexandre\Desktop\EliminaDengue\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-374258312780c521575c3324a0124cc81e40913d.jar" />
+        <dex dex="C:\EliminaDengueAPP\app\build\intermediates\pre-dexed\debug\support-annotations-21.0.3-51f4d725b6734e9a955021c1561fde0d4734b6c6.jar" />
     </item>
     <item
-        jar="C:\Users\Alexandre\Desktop\EliminaDengue\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
+        jar="C:\EliminaDengueAPP\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\21.0.3\classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex dex="C:\Users\Alexandre\Desktop\EliminaDengue\app\build\intermediates\pre-dexed\debug\classes-fa606d6f6303e2a49f4e22b8f087ab37faf9531b.jar" />
+        <dex dex="C:\EliminaDengueAPP\app\build\intermediates\pre-dexed\debug\classes-d974da27db99c5fe11e2497406e5d5e583e39084.jar" />
+    </item>
+    <item
+        jar="C:\EliminaDengueAPP\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="C:\EliminaDengueAPP\app\build\intermediates\pre-dexed\debug\classes-70c7bccc33ebdd716653d7c0b685844729b85690.jar" />
+    </item>
+    <item
+        jar="C:\EliminaDengueAPP\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
+        <dex dex="C:\EliminaDengueAPP\app\build\intermediates\pre-dexed\debug\internal_impl-21.0.3-9a3717e1120522bd86512fdca85b87333a844b31.jar" />
+    </item>
+    <item
+        jar="C:\EliminaDengueAPP\app\libs\easyandroidanimationslibrary-v0.5.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="81d390299222db75e62708400b299080d122b28b">
+        <dex dex="C:\EliminaDengueAPP\app\build\intermediates\pre-dexed\debug\easyandroidanimationslibrary-v0.5-3455e872c770c3e37d45d48640d2257d723edf2b.jar" />
     </item>
 
 </items>
