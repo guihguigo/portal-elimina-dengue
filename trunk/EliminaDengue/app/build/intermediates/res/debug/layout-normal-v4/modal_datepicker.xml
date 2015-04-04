@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15sp"
+    android:layout_marginLeft="20sp"
+    android:layout_marginRight="15sp"
+    android:layout_marginBottom="15sp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Data da Prevenção"
+        android:textSize="24sp"
+        android:layout_marginBottom="20sp"
+        android:id="@+id/textView" />
+        <DatePicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="20sp"
+            android:calendarViewShown="false"
+            android:id="@+id/dpDiaPrevencao" />
+
+    <Button
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:layout_marginRight="20sp"
+        android:layout_marginBottom="20sp"
+        android:layout_gravity="right"
+        android:id="@+id/btnConfirma"
+        android:background="@mipmap/ok_icon"
+        />
+
+
+
+
+
+
+</LinearLayout><!-- From: file:/C:/EliminaDengueAPP/app/src/main/res/layout-normal/modal_datepicker.xml -->

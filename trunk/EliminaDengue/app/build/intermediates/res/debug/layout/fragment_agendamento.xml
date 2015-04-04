@@ -14,4 +14,4 @@
         android:listSelector="@android:color/transparent"
         android:numColumns="2"/>
 
-</FrameLayout><!-- From: file:/C:/Users/Alexandre/Desktop/EliminaDengue/app/src/main/res/layout/fragment_agendamento.xml -->
+</FrameLayout><!-- From: file:/C:/EliminaDengueAPP/app/src/main/res/layout/fragment_agendamento.xml -->
