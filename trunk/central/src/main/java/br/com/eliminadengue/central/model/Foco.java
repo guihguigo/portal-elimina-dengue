@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 
 @XmlRootElement
-public class Foco implements Serializable {
+public class Foco implements Serializable, Comparable<Foco>{
 
     private int codigo;
     private String nome;
@@ -51,6 +51,11 @@ public class Foco implements Serializable {
     @Override
     public String toString() {
         return "Foco{" + "codigo=" + codigo + ", nome=" + nome + ", comoLispar=" + comoLimpar + '}';
+    }
+
+    @Override
+    public int compareTo(Foco o) {
+        return this.getNome().compareTo(o.getNome());
     }
 
 }

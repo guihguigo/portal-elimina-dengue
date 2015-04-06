@@ -5,7 +5,6 @@
  */
 package br.com.eliminadengue.central.model;
 
-import br.com.eliminadengue.central.grafico.PercentualPrevencoesPorMesFactory;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;

@@ -10,23 +10,21 @@
                         <a href="#">Por mês</a>
                     </li>
                     <li>
-                        <a href="#">Por foco</a>
+                        <a href="#">Item 1</a>
                     </li>
                     <li>
-                        <a href="#">Overview</a>
+                        <a href="#">Item 2</a>
                     </li>
                     <li>
-                        <a href="#">Events</a>
+                        <a href="#">Item 3</a>
                     </li>
                     <li>
-                        <a href="#">About</a>
+                        <a href="#">Item 4</a>
                     </li>
                     <li>
-                        <a href="#">Services</a>
+                        <a href="#">Item 5</a>
                     </li>
-                    <li>
-                        <a href="#">Contact</a>
-                    </li>
+                    
                 </ul>
             </div>
             <!-- /#sidebar-wrapper -->

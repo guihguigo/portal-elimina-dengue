@@ -1,13 +1,15 @@
 package br.com.eliminadengue.central.rest;
 
-import br.com.eliminadengue.central.grafico.PercentualPrevencoesPorMesFactory;
+import br.com.eliminadengue.central.model.PercentualPrevencoesPorMesFactory;
 import br.com.eliminadengue.central.model.PercentualPrevencoes;
-import br.com.eliminadengue.central.model.PercentualPrevencoesPorMes;
 
 import br.com.eliminadengue.central.model.Prevencao;
+import static br.com.eliminadengue.central.persistence.EntidadeDao.PREVENCAO;
 import br.com.eliminadengue.central.persistence.PrevencaoDao;
 import br.com.eliminadengue.central.persistence.Perssiste;
+import com.google.gson.Gson;
 import java.util.List;
+import java.util.Set;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -17,6 +19,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 /**
@@ -27,7 +30,7 @@ import javax.ws.rs.core.Response;
 public class PrevencaoRest {
 
     @Inject
-    @Perssiste
+    @Perssiste(entidadeDao = PREVENCAO)
     private PrevencaoDao prevencaoDao;
 
     @GET
@@ -78,10 +81,35 @@ public class PrevencaoRest {
     @GET
     @Path("/percentualPrevencoes")
     @Produces({"application/json"})
-    public List<PercentualPrevencoes> percentPorMes() {
+    public List<PercentualPrevencoes> percentualPorMes() {
         List<Prevencao> prevencoes = prevencaoDao.todos();
-        List<PercentualPrevencoes> percentualPrevencoes = 
-                new PercentualPrevencoesPorMesFactory().constroi(prevencoes);
+        List<PercentualPrevencoes> percentualPrevencoes
+                = new PercentualPrevencoesPorMesFactory().constroi(prevencoes);
         return percentualPrevencoes;
     }
+
+    @GET
+    @Path("percentaulPorFocoNoMes")
+    @Produces("application/json")
+    public List<PercentualPrevencoes> percentualFocoPorMes(@QueryParam("idFoco") Integer idFoco,
+            @QueryParam("estado") String estado, @QueryParam("cidade") String cidade,
+            @QueryParam("bairro") String bairro) {
+
+        List<Prevencao> prevencoes = prevencaoDao.todos(idFoco, estado, cidade, bairro);
+        List<PercentualPrevencoes> percentualPrevencoes = new PercentualPrevencoesPorMesFactory()
+                .constroi(prevencoes);
+
+        return percentualPrevencoes;
+    }
+
+    @GET
+    @Path("regioes")
+    @Produces("application/json")
+    public String estados(@QueryParam("regiao") String regiao) {
+        Set<String> locais = prevencaoDao.localizacoes(regiao);
+
+        String locaisJson = new Gson().toJson(locais);
+        return locaisJson;
+    }
+
 }

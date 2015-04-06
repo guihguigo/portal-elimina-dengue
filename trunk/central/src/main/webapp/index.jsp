@@ -20,42 +20,80 @@
 
     <!-- Custom CSS -->
     <link href="css/simple-sidebar.css" rel="stylesheet">
+
+    <!-- UI-Widget CSS -->
+    <link href="css/jquery-ui.min.css" rel="stylesheet">
+
+    <link href="css/jquery-ui.structure.min.css" rel="stylesheet">
+
+    <link href="css/padrao.css" rel="stylesheet">
     <body>
 
         <div id="wrapper">
             <jsp:include page="menu.jsp"></jsp:include>
-            
+
             <!-- Page Content -->
             <div id="page-content-wrapper">
                 <div class="container-fluid">
-                    <div style="width: 75%">
-                        <canvas id="canvas" height="300" width="450"></canvas>
-                        
+                    <div class="row">
+                        <div class="col-md-4">
+                            <select class="form-control " id="lista-focos">
+                                <option value="0">Geral</option>
+                            </select>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="input-group stylish-input-group ">
+                                <input id="filtro-regiao" type="text" class="form-control "  placeholder="Filtrar Região" >
+                                <span class="input-group-addon">
+                                    <button id="filtrar">
+                                        <span class="glyphicon glyphicon-search"></span>
+                                    </button>  
+                                </span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div style="width: 65%">
+                            <canvas id="canvas" height="300" width="450"></canvas>
+                        </div>
                     </div>
                 </div>
+
+
             </div>
-            <!-- /#page-content-wrapper -->
-
         </div>
-        <!-- /#wrapper -->
+        <!-- /#page-content-wrapper -->
 
-        <!-- jQuery -->
-        <script src="scripts/jquery-1.11.2.min.js"></script>
-        <!-- Bootstrap Core JavaScript -->
-        <script src="scripts/bootstrap.min.js"></script>
-        <!-- Chart core -->
-        <script src="scripts/Chart.min.js"></script>
-        <!-- Mustache core -->
-        <script src="scripts/mustache.min.js"></script>
+    </div>
+    <!-- /#wrapper -->
 
-        <script src="scripts/graficos.js"></script>
+    <!-- jQuery -->
+    <script src="scripts/jquery-1.11.2.min.js"></script>
 
-        <!-- Menu Toggle Script -->
-        <script>
-            $("#menu-toggle").click(function (e) {
-                e.preventDefault();
-                $("#wrapper").toggleClass("toggled");
-            });
-        </script>
-    </body>
+    <!--JQuery UI-->
+    <script src="scripts/jquery-ui.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="scripts/bootstrap.min.js"></script>
+    <!-- Chart core -->
+    <script src="scripts/Chart.min.js"></script>
+    <!-- Mustache core -->
+    <script src="scripts/mustache.min.js"></script>
+
+    <script src="scripts/graficos.js"></script>
+
+    <script src="scripts/auto-complete.js"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+</body>
 </html>
