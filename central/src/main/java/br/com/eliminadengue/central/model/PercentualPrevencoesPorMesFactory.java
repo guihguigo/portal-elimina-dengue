@@ -2,7 +2,7 @@
  * Classe reponsável por fazer o calculo do percentual de prevenções em dia e atrasadas
  * 
  */
-package br.com.eliminadengue.central.grafico;
+package br.com.eliminadengue.central.model;
 
 import br.com.eliminadengue.central.model.Factory;
 import br.com.eliminadengue.central.model.PercentualPrevencoes;
@@ -31,6 +31,9 @@ public class PercentualPrevencoesPorMesFactory implements Factory {
      */
     @Override
     public List<PercentualPrevencoes> constroi(List<Prevencao> todasPrevencoes) {
+        if (todasPrevencoes.isEmpty())
+            throw new IllegalStateException("Lita de prevenções não pode ser vazia");
+        
         //Ordena a lista por data em ordem crescente
         Collections.sort(todasPrevencoes, new Comparator<Prevencao>() {
             @Override
@@ -40,7 +43,7 @@ public class PercentualPrevencoesPorMesFactory implements Factory {
                 Integer mes1 = calendar.get(Calendar.MONTH);
                 calendar.setTime(o2.getDataPrazo());
                 Integer mes2 = calendar.get(Calendar.MONTH);
-                
+
                 return mes1.compareTo(mes2);
             }
         });
@@ -92,7 +95,7 @@ public class PercentualPrevencoesPorMesFactory implements Factory {
                 efetuadas++;
             }
         }
-        
+
         efetuadas = (efetuadas * 100) / prevencoes.size();
         atrasadas = (atrasadas * 100) / prevencoes.size();
 

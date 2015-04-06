@@ -1,18 +1,25 @@
 $(function () {
     var percentualTemplate = '[{{percentualEfetuada}}, {{percentualAtrasada}}], {{nomeMes}}';
+    constroiBarChart();
+    getPercentualPorMes('', '', '', '');
+});
 
-    function constroiPorMes() {
-        $.getJSON("http://localhost:8083/central/webresources/prevencao/percentualPrevencoes"
-                ,
-                function (result) {
-                    $.each(result, function (i, obj) {
-                        window.myBar.addData([obj.percentualEfetuada.toFixed(2), obj.percentualAtrasada.toFixed(2)], obj.nomeMes);
-//                        window.myBar.addData(Mustache.render(percentualTemplate, obj));
-                    });
+function getPercentualPorMes(foco, estado, cidade, bairro) {
+    var url = 'http://localhost:8083/central/webresources/prevencao/percentaulPorFocoNoMes/';
+
+
+    var data = {idFoco: foco, estado: estado, cidade: cidade, bairro: bairro};
+
+    $.getJSON(url, data
+            ,
+            function (result) {
+                $.each(result, function (i, obj) {
+                    window.myBar.addData([obj.percentualEfetuada.toFixed(2), obj.percentualAtrasada.toFixed(2)], obj.nomeMes);
                 });
-    }
+            });
+}
 
-
+function constroiBarChart() {
     var barChartData = {
         labels: [],
         datasets: [
@@ -35,13 +42,21 @@ $(function () {
         responsive: true,
         legendTemplate: '<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].fillColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>'
     };
+    var ctx = document.getElementById("canvas").getContext("2d");
 
-    window.onload = function () {
-        var ctx = document.getElementById("canvas").getContext("2d");
+    window.myBar = new Chart(ctx).Bar(barChartData, options);
+}
 
-        window.myBar = new Chart(ctx).Bar(barChartData, options);
-        constroiPorMes();
-    };
+function atualizaBarChart(foco, estado, cidade, bairro) {
+    var canvas = document.getElementById("canvas");
+    var ctx = document.getElementById("canvas").getContext("2d");
+    ctx.beginPath();
+    ctx.save();
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.restore();
+    constroiBarChart();
+    getPercentualPorMes(foco, estado, cidade, bairro);
+}
 
-});
 
