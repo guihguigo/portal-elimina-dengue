@@ -269,7 +269,7 @@ public class PrevencaoDao implements Dao<Prevencao> {
                 + "where 1 = 1";
 
         if (codFoco != null) {
-            sql += " and cod_foco = " + codFoco;
+            sql += " and f.cod_foco = " + codFoco;
         }
 
         if (estado != null && !estado.trim().equals("")) {

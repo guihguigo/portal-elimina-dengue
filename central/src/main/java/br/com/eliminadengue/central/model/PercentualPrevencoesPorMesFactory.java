@@ -31,9 +31,13 @@ public class PercentualPrevencoesPorMesFactory implements Factory {
      */
     @Override
     public List<PercentualPrevencoes> constroi(List<Prevencao> todasPrevencoes) {
-        if (todasPrevencoes.isEmpty())
-            throw new IllegalStateException("Lita de prevenções não pode ser vazia");
+        List<Prevencao> prevencoesPorMes = new ArrayList<>();
+        List<PercentualPrevencoes> percentualPrevecoesPorMes = new ArrayList<>();
+
+        if (todasPrevencoes.isEmpty()) 
+            return percentualPrevecoesPorMes;
         
+
         //Ordena a lista por data em ordem crescente
         Collections.sort(todasPrevencoes, new Comparator<Prevencao>() {
             @Override
@@ -48,8 +52,6 @@ public class PercentualPrevencoesPorMesFactory implements Factory {
             }
         });
 
-        List<Prevencao> prevencoesPorMes = new ArrayList<>();
-        List<PercentualPrevencoes> percentualPrevecoesPorMes = new ArrayList<>();
         //recupera o 1º mes da lita
         Date dataPrazo = todasPrevencoes.get(0).getDataPrazo();
         Calendar calendar = Calendar.getInstance();

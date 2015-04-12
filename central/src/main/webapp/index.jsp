@@ -25,6 +25,8 @@
     <link href="css/jquery-ui.min.css" rel="stylesheet">
 
     <link href="css/jquery-ui.structure.min.css" rel="stylesheet">
+    
+    <link href="css/jquery-ui.theme.min.css" rel="stylesheet">
 
     <link href="css/padrao.css" rel="stylesheet">
     <body>
@@ -87,7 +89,8 @@
     <script src="scripts/graficos.js"></script>
 
     <script src="scripts/auto-complete.js"></script>
-
+    
+    <script src="scripts/geral.js"></script>
     <!-- Menu Toggle Script -->
     <script>
         $("#menu-toggle").click(function (e) {
