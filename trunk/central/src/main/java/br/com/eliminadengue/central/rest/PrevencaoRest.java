@@ -93,8 +93,10 @@ public class PrevencaoRest {
     @Produces("application/json")
     public List<PercentualPrevencoes> percentualFocoPorMes(@QueryParam("idFoco") Integer idFoco,
             @QueryParam("estado") String estado, @QueryParam("cidade") String cidade,
-            @QueryParam("bairro") String bairro) {
-
+            @QueryParam("bairro") String bairro) {       
+        if (idFoco != null && idFoco.equals(0))
+            idFoco = null;
+        
         List<Prevencao> prevencoes = prevencaoDao.todos(idFoco, estado, cidade, bairro);
         List<PercentualPrevencoes> percentualPrevencoes = new PercentualPrevencoesPorMesFactory()
                 .constroi(prevencoes);
@@ -105,7 +107,7 @@ public class PrevencaoRest {
     @GET
     @Path("regioes")
     @Produces("application/json")
-    public String estados(@QueryParam("regiao") String regiao) {
+    public String regioes(@QueryParam("regiao") String regiao) {
         Set<String> locais = prevencaoDao.localizacoes(regiao);
 
         String locaisJson = new Gson().toJson(locais);

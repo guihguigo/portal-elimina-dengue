@@ -77,6 +77,10 @@
     background: rgba(220,220,220, 0.3);
 }
 
+.active {
+    background: rgba(220,220,220, 0.3);
+}
+
 .sidebar-nav li a:active,
 .sidebar-nav li a:focus {
     text-decoration: none;

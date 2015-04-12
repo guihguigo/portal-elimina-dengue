@@ -6,11 +6,11 @@
                             Infográficos
                         </a>
                     </li>
-                    <li>
+                    <li value="PercentualPrevencoesPorMes">
                         <a href="#">Por mês</a>
                     </li>
                     <li>
-                        <a href="#">Item 1</a>
+                        <a href="#">Geral</a>
                     </li>
                     <li>
                         <a href="#">Item 2</a>

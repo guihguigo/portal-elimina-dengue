@@ -19,7 +19,10 @@ $(function () {
             data: {'regiao': regiao},
             success: function (result) {
                 $('#filtro-regiao').autocomplete({
-                    source: result
+                    source: result,
+                    select: function () {
+                        filtrar();
+                    }
                 });
             }
         });
@@ -27,19 +30,26 @@ $(function () {
 
     $('#filtro-regiao').keypress(function (e) {
         if (e.which === 13) {
-            console.log("Enter foi pressionado.");
+            filtrar();
         }
     });
 
     $('#filtrar').click(function () {
+        filtrar();
+    });
+
+    $('.sidebar-nav li').click(function () {
+        $('.sidebar-nav li.active').removeClass('active');
+        $(this).addClass('active');
+    });
+
+    function filtrar() {
         var regiao = $('#filtro-regiao').val();
         var endereco = obtemRegiao(regiao);
-        var foco = $('lista-focos').val();
+        var foco = $('#lista-focos').val();
 
-
-
-        atualizaBarChart(foco, endereco[0], endereco[1], endereco[2]);
-    });
+        atualizarGrafico(foco, endereco[0], endereco[1], endereco[2])
+    }
 
     function obtemRegiao(regiao) {
         var endereco = [];
@@ -67,7 +77,7 @@ $(function () {
         } else {
             estado = regiao;
         }
-        
+
         endereco[0] = estado;
         endereco[1] = cidade;
         endereco[2] = bairro;
@@ -75,20 +85,6 @@ $(function () {
         return endereco;
     }
 
-//    $('#foco').select(function () {
-//        atualizar();
-//    });
-//
-//
-//
-//    function atualizar() {
-//        var foco = $('#foco').val();
-//        var estado = $('#estado').val();
-//        var cidade = $('#cidade').val();
-//        var bairro = $('#bairro').val();
-//
-//        atualizaBarChart(foco, estado, cidade, bairro);
-//    }
 });
 
 
