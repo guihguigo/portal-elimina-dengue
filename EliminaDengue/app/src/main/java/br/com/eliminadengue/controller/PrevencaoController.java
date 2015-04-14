@@ -7,8 +7,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 import br.com.eliminadengue.bean.Prevencao;
-import br.com.eliminadengue.service.AedesAlarmService;
 import br.com.eliminadengue.entity.PrevencaoEntity;
+import br.com.eliminadengue.service.AedesAlarmService;
 import br.com.eliminadengue.service.EnderecoService;
 
 /**
@@ -19,6 +19,7 @@ public class PrevencaoController {
     private PrevencaoEntity pe;
     private AedesAlarmService alarmService;
     private EnderecoService enderecoService;
+    private EnderecoController enderecoController;
 
     public PrevencaoController(Context ctx) {
         this.ctx = ctx;
@@ -27,7 +28,9 @@ public class PrevencaoController {
         this.alarmService = new AedesAlarmService(ctx);
     }
 
-    /** @deprecated */
+    /**
+     * @deprecated
+     */
     public Date setDataPrevencaoAgendamento(int hrPrevencao, int mnPrevencao) {
         Calendar dtPrazo = Calendar.getInstance();
         dtPrazo.set(Calendar.HOUR_OF_DAY, hrPrevencao);
@@ -44,10 +47,12 @@ public class PrevencaoController {
     public void salvaPrevencao(Prevencao prevencao) {
         // Adiciona código do celular
         // prevencao.setCodigoCelular(Settings.Secure.getString(this.ctx.getContentResolver(), Settings.Secure.ANDROID_ID));
+        enderecoController = new EnderecoController(this.ctx);
+        prevencao.setLatitude(enderecoController.getLatitude());
+        prevencao.setLongitude(enderecoController.getLongitude());
         pe.addPrevencao(prevencao);
         atualizaNotificador(prevencao);
-        enderecoService.getEndereco();
-
+        //enderecoService.getEndereco();
     }
 
     public void atualizaNotificador(Prevencao prevencao) {
@@ -78,8 +83,8 @@ public class PrevencaoController {
         long diffTime = lngDtPrazo - lngDtAtual;
         long diffDays = diffTime / (1000 * 60 * 60 * 24);
 
-        if(periodicidade < 1){ // Caso o foco enviado não possua periodicidade pré-estabelecida
-                               // este seta como default sua periodicidade para 1 semana como limite
+        if (periodicidade < 1) { // Caso o foco enviado não possua periodicidade pré-estabelecida
+            // este seta como default sua periodicidade para 1 semana como limite
             periodicidade = 7;
         }
 

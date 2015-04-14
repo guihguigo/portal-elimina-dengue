@@ -21,6 +21,9 @@ public class PrevencaoEntity extends EliminaDengueDb {
     private static final String DATA_CRIACAO = "dt_criacao";
     private static final String DATA_PRAZO = "dt_prazo";
     private static final String DATA_EFETUADA = "dt_efetuada";
+    private static final String LATITUDE = "latitude";
+    private static final String LONGITUDE = "longitude";
+
     private static final String SYNC = "sync"; // Campo que indica se conteúdo foi sincronizado com a Central [1/0]
 
     public PrevencaoEntity(Context context) {
@@ -30,7 +33,9 @@ public class PrevencaoEntity extends EliminaDengueDb {
 
     public String createPrevencaoTable() {
         String CREATE_TABLE_PREVENCAO = "CREATE TABLE " + TABELA_PREVENCAO + "("
-                + ID_FOCO + " INTEGER PRIMARY KEY,"
+                + ID_FOCO + " INTEGER PRIMARY KEY, "
+                + LATITUDE + " FLOAT, "
+                + LONGITUDE + " FLOAT, "
                 + DATA_CRIACAO + " DATE, " + DATA_EFETUADA + " DATE, " + DATA_PRAZO + " DATE, " + SYNC + " CHAR" + ");";
 
         return CREATE_TABLE_PREVENCAO;
@@ -42,6 +47,8 @@ public class PrevencaoEntity extends EliminaDengueDb {
 
         ContentValues values = new ContentValues();
         values.put(ID_FOCO, prevencao.getFoco().getCodigo());
+        values.put(LATITUDE, prevencao.getLatitude());
+        values.put(LONGITUDE, prevencao.getLongitude());
         values.put(DATA_CRIACAO, new DateUtils().DateToString(prevencao.getDataCriacao()));
         values.put(DATA_PRAZO, new DateUtils().DateToString(prevencao.getDataPrazo()));
         values.put(DATA_EFETUADA, new DateUtils().DateToString(prevencao.getDataEfetuada()));
@@ -70,6 +77,8 @@ public class PrevencaoEntity extends EliminaDengueDb {
 
             f = new FocoEntity(super.context).getFoco((c.getInt(c.getColumnIndex(ID_FOCO))));
             prev.setFoco(f);
+            prev.setLatitude(c.getDouble(c.getColumnIndex(LATITUDE)));
+            prev.setLongitude(c.getDouble(c.getColumnIndex(LONGITUDE)));
             prev.setDataCriacao(new DateUtils().StringToDate(c.getString(c.getColumnIndex(DATA_CRIACAO))));
             prev.setDataEfetuada(new DateUtils().StringToDate(c.getString(c.getColumnIndex(DATA_EFETUADA))));
             prev.setDataPrazo(new DateUtils().StringToDate(c.getString(c.getColumnIndex(DATA_PRAZO))));
@@ -145,6 +154,8 @@ public class PrevencaoEntity extends EliminaDengueDb {
 
         ContentValues values = new ContentValues();
         values.put(ID_FOCO, prev.getFoco().getCodigo());
+        values.put(LATITUDE, prev.getLatitude());
+        values.put(LONGITUDE, prev.getLongitude());
         values.put(DATA_EFETUADA, new DateUtils().DateToString(prev.getDataEfetuada()));
         values.put(DATA_PRAZO, new DateUtils().DateToString(prev.getDataPrazo()));
         values.put(DATA_CRIACAO, new DateUtils().DateToString(prev.getDataCriacao()));

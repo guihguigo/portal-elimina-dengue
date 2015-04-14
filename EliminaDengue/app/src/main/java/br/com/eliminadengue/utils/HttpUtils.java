@@ -5,20 +5,16 @@ import android.util.Log;
 import com.google.gson.Gson;
 
 import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.protocol.HTTP;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-
-import br.com.eliminadengue.service.connection.ConexaoConfig;
 
 /**
  * Created by Alexandre on 04/04/2015.
@@ -65,7 +61,7 @@ public class HttpUtils {
         }
     }
 
-    public String enviaHttpGet(){
+    public String enviaHttpGet() {
 
         HttpClient client = new DefaultHttpClient();
         HttpGet request = new HttpGet(URL);
@@ -77,9 +73,7 @@ public class HttpUtils {
 
             inputStream = response.getEntity().getContent();
 
-        } catch (ClientProtocolException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {

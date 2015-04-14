@@ -7,10 +7,11 @@ package br.com.eliminadengue.service;
 
 
 import android.content.Context;
-import android.opengl.GLSurfaceView;
 import android.util.Log;
 
 import com.google.gson.Gson;
+
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import br.com.eliminadengue.bean.Endereco;
@@ -34,18 +35,42 @@ public class EnderecoService {
     }
 
     public Endereco getEndereco() {
+        atualizaEndereco();
+        return this.endereco;
+    }
+
+    public void atualizaEndereco() {
         enderecoController = new EnderecoController(this.ctx);
 
-        double latitude;
-        double longitude;
 
-        latitude = enderecoController.getLatitude();
-        longitude = enderecoController.getLongitude();
-        getJsonPostMaps(latitude, longitude);
+        new Runnable() {
+            @Override
+            public void run() {
+                final double latitude = enderecoController.getLatitude();
+                final double longitude = enderecoController.getLongitude();
+
+                new Thread() {
+                    @Override
+                    public void run() {
+                        JSONObject jsonEndereco;
+
+                        jsonEndereco = getJsonPostMaps(latitude, longitude);
+
+                        try {
+                            JSONArray resultEndereco = jsonEndereco.getJSONArray("results");
+                            resultEndereco = resultEndereco.getJSONObject(0).getJSONArray("address_components");
+                            endereco.setBairro(resultEndereco.getJSONObject(2).getString("short_name"));
+                            endereco.setCidade(resultEndereco.getJSONObject(3).getString("short_name"));
+                            endereco.setEstado(resultEndereco.getJSONObject(5).getString("long_name"));
+                        } catch (Exception ex) {
+                            Log.d("Exception", ex.getMessage());
+                        }
+                    }
+                }.start();
+            }
+        }.run();
 
 
-
-        return endereco;
     }
 
 
