@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\Alexandre\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-v4\18.0.0\support-v4-18.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="44ec51e9d395a47aab135e5e1b556c0007442156">
+        <dex dex="C:\Users\Alexandre\Desktop\AedesMobile\app\build\intermediates\pre-dexed\debug\support-v4-18.0.0-a831e9158b7eb4a9fbd825212488b98331b845b8.jar" />
+    </item>
+    <item
+        jar="C:\Users\Alexandre\Desktop\AedesMobile\app\libs\gson-2.3.1.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
+        <dex dex="C:\Users\Alexandre\Desktop\AedesMobile\app\build\intermediates\pre-dexed\debug\gson-2.3.1-33cb4d9541706c372508cfe7218a3679cf6d09af.jar" />
+    </item>
+    <item
+        jar="C:\Users\Alexandre\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-v4\18.0.0\support-v4-18.0.0.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="44ec51e9d395a47aab135e5e1b556c0007442156">
+        <dex dex="C:\Users\Alexandre\Desktop\AedesMobile\app\build\intermediates\pre-dexed\debug\support-v4-18.0.0-a831e9158b7eb4a9fbd825212488b98331b845b8.jar" />
+    </item>
+    <item
+        jar="C:\Users\Alexandre\Desktop\AedesMobile\app\libs\easyandroidanimationslibrary-v0.5.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="81d390299222db75e62708400b299080d122b28b">
+        <dex dex="C:\Users\Alexandre\Desktop\AedesMobile\app\build\intermediates\pre-dexed\debug\easyandroidanimationslibrary-v0.5-e76ecbbc09c7fd225fed0616ee11b67a47cae8d7.jar" />
+    </item>
+
+</items>
