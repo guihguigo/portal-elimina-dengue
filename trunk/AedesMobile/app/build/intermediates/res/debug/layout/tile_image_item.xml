@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp">
+
+    <br.com.eliminadengue.utils.TileImageView
+        android:id="@+id/picture"
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+       />
+
+    <TextView
+        android:id="@+id/text"
+        android:textSize="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:layout_gravity="bottom"
+        android:textColor="@android:color/white"
+        android:background="#64000000"/>
+
+</FrameLayout><!-- From: file:/C:/Users/Alexandre/Desktop/AedesMobile/app/src/main/res/layout/tile_image_item.xml -->

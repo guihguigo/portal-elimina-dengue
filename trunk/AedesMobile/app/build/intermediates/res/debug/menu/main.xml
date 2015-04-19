@@ -1,0 +1,19 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/action_add_prevencao"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom"
+        android:icon="@drawable/ic_action_add"
+        android:title="Adicionar Prevenção"
+        />
+    <item
+        android:id="@+id/action_ajuda"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom"
+        android:icon="@drawable/ic_action_help"
+        android:title="Ajuda"
+        />
+
+</menu>
+<!-- From: file:/C:/Users/Alexandre/Desktop/AedesMobile/app/src/main/res/menu/main.xml -->
