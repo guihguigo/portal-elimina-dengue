@@ -14,8 +14,6 @@ public class AgendaFragment extends ListFragment {
         super.onCreate(savedInstancePrevencao);
         prevencaoAdapter = new PrevencaoAdapter(getActivity());
         setListAdapter(prevencaoAdapter);
-
-       ;
     }
 
 

@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import info.androidhive.view.R;
+import br.com.aedes.R;
 import view.model.NavDrawerItem;
 
 public class NavDrawerListAdapter extends BaseAdapter {

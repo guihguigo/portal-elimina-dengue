@@ -6,8 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import bean.Foco;
+import br.com.aedes.R;
 import entity.db.EliminaDengueDb;
-import info.androidhive.view.R;
 
 /**
  * Created by Alexandre on 22/02/2015.
@@ -20,7 +20,6 @@ public class FocoEntity extends EliminaDengueDb {
     private static final String COMOLIMPAR = "comolimpar";
     private static final String ICONE = "icone";
     private static final String PRAZO = "prazo";
-
 
 
     public FocoEntity(Context context) {
@@ -36,7 +35,7 @@ public class FocoEntity extends EliminaDengueDb {
         return CREATE_TABLE_FOCO;
     }
 
-    public String[] DmlFocos(){
+    public String[] DmlFocos() {
         String[] DMLFocos = {"INSERT INTO "
                 + TABELA_FOCO
                 + "("
@@ -48,7 +47,7 @@ public class FocoEntity extends EliminaDengueDb {
                 + ", "
                 + ICONE
                 + ")"
-                + "VALUES('Vasos (Flores e Plantas)', 'Use água, esponja e sabão para limpeza. Deposite areia na vasilha sob o vaso a cada limpeza.', 0, "
+                + "VALUES('Vasos de plantas', 'Use água, esponja e sabão para limpeza. Deposite areia na vasilha sob o vaso a cada limpeza.', 0, "
                 + R.drawable.vazos_plantas + ");",
                 "INSERT INTO "
                         + TABELA_FOCO
@@ -74,7 +73,7 @@ public class FocoEntity extends EliminaDengueDb {
                         + ", "
                         + ICONE
                         + ")"
-                        + "VALUES('Recipientes para Armazenamento de Água', 'Use água, esponja e sabão para limpeza. (Jarras, garrafas, potes e baldes).', 7, "
+                        + "VALUES('Recipientes com água', 'Use água, esponja e sabão para limpeza. (Jarras, garrafas, potes e baldes).', 7, "
                         + R.drawable.recipientes_armazenamento_agua + ");",
                 "INSERT INTO "
                         + TABELA_FOCO
@@ -183,7 +182,7 @@ public class FocoEntity extends EliminaDengueDb {
         return DMLFocos;
     }
 
-    public int getFocoCount(){
+    public int getFocoCount() {
         String selectQuery = "SELECT * FROM " + TABELA_FOCO;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(selectQuery, null);
@@ -217,7 +216,7 @@ public class FocoEntity extends EliminaDengueDb {
         SQLiteDatabase db = this.getReadableDatabase();
 
         String selectQuery = "SELECT * FROM " + TABELA_FOCO + " WHERE id = " + idFoco;
-       // String selectQuery = "SELECT * FROM foco";
+
         Cursor c = db.rawQuery(selectQuery, null);
 
         if (c.getCount() > 0) {
