@@ -16,7 +16,7 @@ import java.util.List;
 
 import bean.Prevencao;
 import controller.PrevencaoController;
-import info.androidhive.view.R;
+import br.com.aedes.R;
 
 public class PrevencaoAdapter extends BaseAdapter {
     private Context context;

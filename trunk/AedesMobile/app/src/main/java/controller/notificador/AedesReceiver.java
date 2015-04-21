@@ -12,8 +12,8 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 
-import info.androidhive.view.R;
-import view.MainActivity;
+import br.com.aedes.R;
+import view.activity.MainActivity;
 
 
 /**
