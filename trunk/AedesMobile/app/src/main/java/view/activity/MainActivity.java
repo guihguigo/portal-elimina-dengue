@@ -110,9 +110,7 @@ public class MainActivity extends Activity {
         }
     }
 
-    /**
-     * Slide menu item click listener
-     */
+
     private class SlideMenuClickListener implements
             ListView.OnItemClickListener {
         @Override
@@ -133,7 +131,6 @@ public class MainActivity extends Activity {
         if (mDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
-        // Handle action bar actions click
         switch (item.getItemId()) {
             case R.id.action_add_prevencao:
                 showAddFoco();
@@ -145,9 +142,6 @@ public class MainActivity extends Activity {
         }
     }
 
-    /* *
-     * Called when invalidateOptionsMenu() is triggered
-     */
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
@@ -217,6 +211,9 @@ public class MainActivity extends Activity {
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
+    /**
+     * Chamar activity com lista para gerenciamento de cadastro de Prevenções
+     * */
     public void showAddFoco() {
         Intent i = new Intent(MainActivity.this, AddFocoActivity.class);
         this.startActivity(i);

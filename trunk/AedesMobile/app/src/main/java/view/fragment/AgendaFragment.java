@@ -16,6 +16,13 @@ public class AgendaFragment extends ListFragment {
         setListAdapter(prevencaoAdapter);
     }
 
+    @Override
+    public void onResume(){
+        super.onResume();
+        prevencaoAdapter = new PrevencaoAdapter(getActivity());
+        setListAdapter(prevencaoAdapter);
+    }
+
 
 }
 

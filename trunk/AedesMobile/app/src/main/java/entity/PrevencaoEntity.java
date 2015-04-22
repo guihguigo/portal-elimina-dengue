@@ -59,6 +59,13 @@ public class PrevencaoEntity extends EliminaDengueDb {
         db.close();
     }
 
+
+    public void delPrevencao(int idFoco){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.delete(TABELA_PREVENCAO, ID_FOCO + "=" + idFoco, null);
+    }
+
     public Prevencao getUltimaPrevencao(){
         Prevencao prev = new Prevencao();
 

@@ -1,6 +1,7 @@
 package view.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -12,11 +13,13 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import bean.Prevencao;
-import controller.PrevencaoController;
 import br.com.aedes.R;
+import controller.PrevencaoController;
+import utils.DateUtils;
 
 public class PrevencaoAdapter extends BaseAdapter {
     private Context context;
@@ -48,8 +51,7 @@ public class PrevencaoAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
-        Calendar c = Calendar.getInstance();
+        Typeface bebas = Typeface.createFromAsset(context.getAssets(), "fonts/bebas.otf");
 
         // Recupera o estado da posição atual
         Prevencao prevencao = PrevencaoList.get(position);
@@ -59,27 +61,49 @@ public class PrevencaoAdapter extends BaseAdapter {
         final LayoutInflater inflater = (LayoutInflater)
                 context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View view = inflater.inflate(R.layout.fragment_agenda, null);
-
-        Typeface bebas = Typeface.createFromAsset(context.getAssets(), "fonts/bebas.otf");
-
         // Titulo
-        final TextView textTitulo = (TextView) view.findViewById(R.id.txtNmFoco);
-        textTitulo.setTypeface(bebas);
-        textTitulo.setText(prevencao.getFoco().getNome());
-
+        final TextView txtMes = (TextView) view.findViewById(R.id.txtMes);
+        final TextView txtTitulo = (TextView) view.findViewById(R.id.txtNmFoco);
         final TextView txtDiaPrevencao = (TextView) view.findViewById(R.id.txtDiaPrevencao);
-        txtDiaPrevencao.setTypeface(bebas);
-        txtDiaPrevencao.setText(String.valueOf(c.get(Calendar.DAY_OF_MONTH)));
-
         final TextView txtHrPrevencao = (TextView) view.findViewById(R.id.txtHrPrevencao);
-        //txtHrPrevencao.setTypeface(bebas);
-        txtHrPrevencao.setText(c.get(Calendar.HOUR_OF_DAY) + ":" + (c.get(Calendar.MINUTE)));
-
-
-        //Imagem
         final ImageView img = (ImageView) view.findViewById(R.id.imgIconFoco);
-        img.setImageResource(prevencao.getFoco().getIcone());
 
+
+        if (prevencao.getDataCriacao() == null) {
+            txtMes.setText(new DateUtils().convertMesView(prevencao.getDataPrazo()).toUpperCase());
+
+            txtTitulo.setVisibility(View.GONE);
+            txtDiaPrevencao.setVisibility(View.GONE);
+            txtHrPrevencao.setVisibility(View.GONE);
+            img.setVisibility(View.GONE);
+
+
+            view.setEnabled(false);
+            view.setOnClickListener(null);
+
+
+        } else {
+            Calendar calPrazo = Calendar.getInstance();
+            calPrazo.setTime(prevencao.getDataPrazo());
+
+
+            txtMes.setVisibility(View.GONE);
+            txtTitulo.setTypeface(bebas);
+            txtTitulo.setText(prevencao.getFoco().getNome());
+
+            txtDiaPrevencao.setTypeface(bebas);
+            txtDiaPrevencao.setText(String.format("%02d", calPrazo.get(Calendar.DAY_OF_MONTH)));
+
+            //txtHrPrevencao.setTypeface(bebas);
+            txtHrPrevencao.setText(String.format("%02d",calPrazo.get(Calendar.HOUR_OF_DAY)) + ":" + String.format("%02d",calPrazo.get(Calendar.MINUTE)));
+
+
+            //Imagem
+            img.setImageResource(prevencao.getFoco().getIcone());
+
+            indicaPrevencaoDia(prevencao.getDataPrazo(), view);
+
+        }
 
         return view;
     }
@@ -106,6 +130,19 @@ public class PrevencaoAdapter extends BaseAdapter {
 
     private void popularList() {
         this.PrevencaoList = pc.getPrevencoes();
+        for (int i = 0; i < this.PrevencaoList.size(); i++) {
+            if (pc.verificaTituloMes((ArrayList) PrevencaoList, i)) {
+                Prevencao p = new Prevencao();
+                p.setDataPrazo(this.PrevencaoList.get(i).getDataPrazo());
+                this.PrevencaoList.add(i, p);
+                i++;
+            }
+        }
+    }
 
+    //Mudar a cor da row caso o dia da prevenção seja a data atual
+    private void indicaPrevencaoDia(Date dtPrazo, View view){
+        if(new Date().getMonth() == dtPrazo.getMonth() && new Date().getDay() == dtPrazo.getDay())
+            view.setBackgroundColor(Color.parseColor("#255BFFF5"));
     }
 }

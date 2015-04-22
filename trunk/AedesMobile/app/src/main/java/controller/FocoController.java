@@ -3,10 +3,13 @@ package controller;
 import android.content.Context;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 import bean.Foco;
+import bean.Prevencao;
 import entity.FocoEntity;
+import entity.PrevencaoEntity;
+import utils.DateUtils;
 
 
 /**
@@ -15,12 +18,14 @@ import entity.FocoEntity;
 public class FocoController {
 
     private FocoEntity fe;
+    PrevencaoEntity pe;
     private Context ctx;
 
 
     public FocoController(Context ctx) {
         this.ctx = ctx;
         this.fe = new FocoEntity(ctx);
+        this.pe = new PrevencaoEntity(ctx);
     }
 
 
@@ -28,24 +33,20 @@ public class FocoController {
         return fe.getFoco(Integer.parseInt(idFoco));
     }
 
-    public List<Foco> getAllFocos() {
-        ArrayList<Foco> focos = new ArrayList<Foco>();
-
-        int i = 0;
-        while (fe.getFoco(++i).getCodigo() != -1) {
-            focos.add(fe.getFoco(i));
-        }
-
-        return focos;
+    /**
+     * @return Todos os focos cadastrados no banco
+     * */
+    public ArrayList<Foco> getAllFocos() {
+        return fe.getAllFocos();
     }
+
 
     /**
      * @param dias Periodicidade do foco
      * @return String formatada para camada de visualização com as instruções de periodicidade para usuário
-     *
      */
-    public String definePeriodicidade(int dias){
-        switch(dias){
+    public String definePeriodicidade(int dias) {
+        switch (dias) {
             case 0:
                 return "Não há periodicidade";
             case 1:
@@ -53,6 +54,42 @@ public class FocoController {
             default:
                 return "Limpar a cada " + dias + " dias";
         }
+    }
+
+    /**
+     * @return Verdadeiro caso já esteja agendada, Falso caso contrário.
+     */
+    public boolean verificaAgendamento(int idFoco) {
+        return pe.getPrevencao(idFoco).getFoco().getCodigo() != -1;
+    }
+
+    private void salvarAgendamento(Prevencao prevencao) {
+        prevencao.setDataCriacao(new Date());
+
+        pe.addPrevencao(prevencao);
+    }
+
+    /**
+     * Método verifica se já existe uma prevenção cadastrada para o foco
+     * Caso possua, este removerá, caso contrário irá incluir.
+     * */
+    public void atualizaAgendamento(Prevencao prevencao){
+        if(verificaAgendamento(prevencao.getFoco().getCodigo()))
+            removerAgendamento(prevencao.getFoco().getCodigo());
+        else
+            salvarAgendamento(prevencao);
+    }
+
+    private void removerAgendamento(int idFoco){
+        pe.delPrevencao(idFoco);
+    }
+
+    public Date verificaDataPrazo(Date dtPrazo) {
+        if (new DateUtils().validaDtPrazo(dtPrazo))
+            return dtPrazo;
+        else
+            return null;
+
     }
 
 

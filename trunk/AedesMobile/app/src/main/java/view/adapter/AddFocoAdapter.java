@@ -1,30 +1,43 @@
 package view.adapter;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import com.easyandroidanimations.library.RotationAnimation;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import bean.Foco;
+import bean.Prevencao;
 import br.com.aedes.R;
 import controller.FocoController;
+import utils.DateUtils;
+import utils.DialogUtils;
 
 public class AddFocoAdapter extends BaseAdapter {
     private Context context;
     private List<Foco> FocosList;
     Handler handler;
     private FocoController fc;
+    Prevencao prevencao;
+    private Date dtPrazo;
+
 
     private List<Integer> idFocos;
 
@@ -34,6 +47,12 @@ public class AddFocoAdapter extends BaseAdapter {
         this.FocosList = new ArrayList<Foco>();
         this.idFocos = new ArrayList<Integer>();
         popularList();
+
+
+        prevencao = new Prevencao();
+        dtPrazo = new Date();
+        dtPrazo.setHours(00);
+        dtPrazo.setMinutes(00);
     }
 
     @Override
@@ -71,22 +90,32 @@ public class AddFocoAdapter extends BaseAdapter {
 
         final TextView txtPeriodicidade = (TextView) view.findViewById(R.id.txtPeriodicidade);
         txtPeriodicidade.setTypeface(bebas);
-            txtPeriodicidade.setText(fc.definePeriodicidade(foco.getPrazo()));
+        txtPeriodicidade.setText(fc.definePeriodicidade(foco.getPrazo()));
 
         //Imagem
         final ImageView img = (ImageView) view.findViewById(R.id.imgIconFoco);
         img.setImageResource(foco.getIcone());
 
         //Botão para adicionar
-        final Button btnAdd = (Button) view.findViewById(R.id.btnAdd);
+        final CheckBox ckbAdd = (CheckBox) view.findViewById(R.id.ckbAdd);
+        ckbAdd.setChecked(fc.verificaAgendamento(foco.getCodigo()));
 
-        btnAdd.setOnClickListener(new View.OnClickListener() {
+        ckbAdd.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                new RotationAnimation(view).animate();
-                view.setBackgroundResource(R.drawable.ic_checked);
+            public void onClick(View view){
+                ckbAdd.setChecked(false);
 
-                idFocos.add(foco.getCodigo());
+                Prevencao p = new Prevencao();
+                p.setFoco(foco);
+
+                if (!fc.verificaAgendamento(foco.getCodigo())) {
+                    showModalAgendamento(foco);
+                }
+                else {
+                    fc.atualizaAgendamento(p);
+                    atualizaAdapter();
+                }
+
             }
         });
 
@@ -118,5 +147,101 @@ public class AddFocoAdapter extends BaseAdapter {
         this.FocosList = fc.getAllFocos();
     }
 
+    private void showModalAgendamento(final Foco foco) {
+        final Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.modal_agendamento);
+
+        TextView txtNmFoco = (TextView) dialog.findViewById(R.id.txtNmFoco);
+        TextView txtPrazo = (TextView) dialog.findViewById(R.id.txtPeriodicidade);
+        TextView txtComoLimpar = (TextView) dialog.findViewById(R.id.txtComoLimpar);
+        ImageView imgIconFoco = (ImageView) dialog.findViewById(R.id.imgFocoIcon);
+        Button btnAdd = (Button) dialog.findViewById(R.id.btnAddFoco);
+
+        txtNmFoco.setText(foco.getNome());
+        txtPrazo.setText(txtPrazo.getText().toString() + " " + foco.getPrazo() + " dia(s)");
+        txtComoLimpar.setText(foco.getComoLimpar());
+
+        imgIconFoco.setImageResource(foco.getIcone());
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new RotationAnimation(v).animate();
+                dialog.dismiss();
+                // Seta informações da prevenção
+                prevencao.setFoco(foco);
+                prevencao.setSync(0);
+                prevencao.setDataCriacao(new Date());
+                //
+                setDataPrevencao();
+            }
+        });
+
+        dialog.show();
+    }
+
+
+    //Modal DatePicker
+    private void setDataPrevencao() {
+        final Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.modal_datepicker);
+        final DatePicker dpDefineData = (DatePicker) dialog.findViewById(R.id.dpDiaPrevencao);
+        Button btnSalvar = (Button) dialog.findViewById(R.id.btnConfirma);
+
+        //dpDefineData.set(Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
+
+        btnSalvar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                //Seta data para prevenção
+                dtPrazo.setYear(dpDefineData.getYear() - 1900);
+                dtPrazo.setMonth(dpDefineData.getMonth());
+                dtPrazo.setDate(dpDefineData.getDayOfMonth());
+                // prevencao.setDataPrazo(pc.setDataPrevencaoAgendamento(tpDefineData.getCurrentHour(), tpDefineData.getCurrentMinute()));
+                if (new DateUtils().validaDtPrazo(dtPrazo)) {
+                    setHoraPrevencao();
+                } else {
+                    new DialogUtils(context).MsgToast("O prazo informado é menor que a data atual. \n Favor preencher corretamente.");
+                }
+                //new PrevencaoAdapter(context).atualizaAdapter();
+
+            }
+        });
+        dialog.show();
+    }
+
+
+    //Modal TimePicker
+    private void setHoraPrevencao() {
+        final Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.modal_timepicker);
+        final TimePicker tpDefineData = (TimePicker) dialog.findViewById(R.id.tpHorarioPrevencao);
+        Button btnSalvar = (Button) dialog.findViewById(R.id.btnConfirma);
+        tpDefineData.setIs24HourView(true);
+        tpDefineData.setCurrentHour(Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
+
+        btnSalvar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                //Seta data para prevenção
+                dtPrazo.setHours(tpDefineData.getCurrentHour());
+                dtPrazo.setMinutes(tpDefineData.getCurrentMinute());
+                if (new DateUtils().validaHrPrazo(dtPrazo)) {
+                    prevencao.setDataPrazo(dtPrazo);
+                    fc.atualizaAgendamento(prevencao);
+                    atualizaAdapter();
+                } else {
+                    new DialogUtils(context).MsgToast("O prazo informado é menor que a data atual. \n Favor preencher corretamente.");
+                }
+
+
+            }
+        });
+        dialog.show();
+    }
 
 }
