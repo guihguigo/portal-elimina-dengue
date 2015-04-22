@@ -28,13 +28,13 @@ public final class R {
     }
     public static final class drawable {
         public static final int add=0x7f020000;
-        public static final int add_foco=0x7f020001;
-        public static final int alto_lajes_telhas=0x7f020002;
-        public static final int bebedouros_animais=0x7f020003;
-        public static final int bkg_aedes=0x7f020004;
-        public static final int caixa_ar=0x7f020005;
-        public static final int caixa_dagua=0x7f020006;
-        public static final int calhas=0x7f020007;
+        public static final int alto_lajes_telhas=0x7f020001;
+        public static final int bebedouros_animais=0x7f020002;
+        public static final int bkg_aedes=0x7f020003;
+        public static final int caixa_ar=0x7f020004;
+        public static final int caixa_dagua=0x7f020005;
+        public static final int calhas=0x7f020006;
+        public static final int ckb_add_foco=0x7f020007;
         public static final int counter_bg=0x7f020008;
         public static final int depressoes_terreno=0x7f020009;
         public static final int garagens_subsolos=0x7f02000a;
@@ -71,30 +71,31 @@ public final class R {
         public static final int vazos_plantas=0x7f020029;
     }
     public static final class id {
-        public static final int action_add_prevencao=0x7f0a0018;
-        public static final int action_ajuda=0x7f0a0019;
-        public static final int btnAdd=0x7f0a0009;
-        public static final int btnAddFoco=0x7f0a0010;
-        public static final int btnConfirma=0x7f0a0014;
+        public static final int action_add_prevencao=0x7f0a0019;
+        public static final int action_ajuda=0x7f0a001a;
+        public static final int btnAddFoco=0x7f0a000f;
+        public static final int btnConfirma=0x7f0a0015;
+        public static final int ckbAdd=0x7f0a0009;
         public static final int counter=0x7f0a0005;
-        public static final int dpDiaPrevencao=0x7f0a0013;
+        public static final int dpDiaPrevencao=0x7f0a0014;
         public static final int drawer_layout=0x7f0a0000;
         public static final int frame_container=0x7f0a0001;
         public static final int icon=0x7f0a0003;
-        public static final int image=0x7f0a000f;
-        public static final int imgFocoIcon=0x7f0a000e;
+        public static final int image=0x7f0a0010;
+        public static final int imgFocoIcon=0x7f0a0011;
         public static final int imgIconFoco=0x7f0a0006;
         public static final int list_slidermenu=0x7f0a0002;
-        public static final int picture=0x7f0a0016;
-        public static final int text=0x7f0a0017;
-        public static final int textView=0x7f0a000d;
+        public static final int picture=0x7f0a0017;
+        public static final int text=0x7f0a0018;
+        public static final int textView=0x7f0a000e;
         public static final int title=0x7f0a0004;
-        public static final int tpHorarioPrevencao=0x7f0a0015;
-        public static final int txtComoLimpar=0x7f0a0012;
-        public static final int txtDiaPrevencao=0x7f0a000a;
-        public static final int txtGeneric=0x7f0a0011;
-        public static final int txtHrPrevencao=0x7f0a000b;
-        public static final int txtLabel=0x7f0a000c;
+        public static final int tpHorarioPrevencao=0x7f0a0016;
+        public static final int txtComoLimpar=0x7f0a0013;
+        public static final int txtDiaPrevencao=0x7f0a000b;
+        public static final int txtGeneric=0x7f0a0012;
+        public static final int txtHrPrevencao=0x7f0a000c;
+        public static final int txtLabel=0x7f0a000d;
+        public static final int txtMes=0x7f0a000a;
         public static final int txtNmFoco=0x7f0a0007;
         public static final int txtPeriodicidade=0x7f0a0008;
     }

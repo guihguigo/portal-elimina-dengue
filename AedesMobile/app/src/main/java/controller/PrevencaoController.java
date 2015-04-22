@@ -61,7 +61,20 @@ public class PrevencaoController {
 
     public ArrayList<Prevencao> getPrevencoes() {
         return pe.getAllPrevencoes();
+    }
 
+    public boolean verificaTituloMes(ArrayList<Prevencao> arr_prev, int i) {
+        if (i > 0) {
+            if(arr_prev.get(i-1).getDataCriacao() != null) {
+                if (!(arr_prev.get(i).getDataPrazo().getMonth() == arr_prev.get(i - 1).getDataPrazo().getMonth())) {
+                    return true;
+                }
+            }
+        } else {
+            return true;
+        }
+
+        return false;
     }
 
 

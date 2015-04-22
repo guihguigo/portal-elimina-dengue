@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.ArrayList;
+
 import bean.Foco;
 import br.com.aedes.R;
 import entity.db.EliminaDengueDb;
@@ -35,6 +37,99 @@ public class FocoEntity extends EliminaDengueDb {
         return CREATE_TABLE_FOCO;
     }
 
+    public int getFocoCount() {
+        String selectQuery = "SELECT * FROM " + TABELA_FOCO;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+        return c.getCount();
+    }
+
+
+ /*   public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS " + TABELA_FOCO);
+        onCreate(db);
+    }*/
+
+
+    public void addFoco(Foco foco) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(NOME, foco.getNome());
+        values.put(COMOLIMPAR, foco.getComoLimpar());
+        values.put(ICONE, foco.getIcone());
+        values.put(PRAZO, foco.getPrazo());
+        // Inserting Row
+        db.insert(TABELA_FOCO, null, values);
+        db.close();
+    }
+
+    public Foco getFoco(int idFoco) {
+        Foco f = new Foco();
+        f.setCodigo(-1);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT * FROM " + TABELA_FOCO + " WHERE id = " + idFoco;
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c.getCount() > 0) {
+            c.moveToFirst();
+
+            f.setCodigo(c.getInt(c.getColumnIndex(ID)));
+            f.setNome((c.getString(c.getColumnIndex(NOME))));
+            f.setComoLimpar((c.getString(c.getColumnIndex(COMOLIMPAR))));
+            f.setPrazo((c.getInt((c.getColumnIndex(PRAZO)))));
+            f.setIcone(c.getInt(c.getColumnIndex(ICONE)));
+        }
+
+
+        return f;
+    }
+
+
+    public int updateFoco(Foco foco) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(NOME, foco.getNome());
+        values.put(COMOLIMPAR, foco.getComoLimpar());
+        values.put(ICONE, foco.getIcone());
+        values.put(PRAZO, foco.getPrazo());
+
+        return db.update(TABELA_FOCO, values, ID + " = ?",
+                new String[]{String.valueOf(foco.getCodigo())});
+    }
+
+
+    public ArrayList<Foco> getAllFocos() {
+        ArrayList<Foco> arrFocos = new ArrayList<Foco>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT * FROM " + TABELA_FOCO + " ORDER BY " + NOME + " ASC";
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c.getCount() > 0) {
+            c.moveToFirst();
+
+
+            do {
+                Foco f = new Foco();
+                f.setCodigo(c.getInt(c.getColumnIndex(ID)));
+                f.setNome((c.getString(c.getColumnIndex(NOME))));
+                f.setComoLimpar((c.getString(c.getColumnIndex(COMOLIMPAR))));
+                f.setPrazo((c.getInt((c.getColumnIndex(PRAZO)))));
+                f.setIcone(c.getInt(c.getColumnIndex(ICONE)));
+                arrFocos.add(f);
+            } while (c.moveToNext());
+
+        }
+
+        return arrFocos;
+    }
     public String[] DmlFocos() {
         String[] DMLFocos = {"INSERT INTO "
                 + TABELA_FOCO
@@ -182,69 +277,6 @@ public class FocoEntity extends EliminaDengueDb {
         return DMLFocos;
     }
 
-    public int getFocoCount() {
-        String selectQuery = "SELECT * FROM " + TABELA_FOCO;
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = db.rawQuery(selectQuery, null);
-        return c.getCount();
-    }
 
-
- /*   public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABELA_FOCO);
-        onCreate(db);
-    }*/
-
-
-    public void addFoco(Foco foco) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(NOME, foco.getNome());
-        values.put(COMOLIMPAR, foco.getComoLimpar());
-        values.put(ICONE, foco.getIcone());
-        values.put(PRAZO, foco.getPrazo());
-        // Inserting Row
-        db.insert(TABELA_FOCO, null, values);
-        db.close();
-    }
-
-    public Foco getFoco(int idFoco) {
-        Foco f = new Foco();
-        f.setCodigo(-1);
-
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        String selectQuery = "SELECT * FROM " + TABELA_FOCO + " WHERE id = " + idFoco;
-
-        Cursor c = db.rawQuery(selectQuery, null);
-
-        if (c.getCount() > 0) {
-            c.moveToFirst();
-
-            f.setCodigo(c.getInt(c.getColumnIndex(ID)));
-            f.setNome((c.getString(c.getColumnIndex(NOME))));
-            f.setComoLimpar((c.getString(c.getColumnIndex(COMOLIMPAR))));
-            f.setPrazo((c.getInt((c.getColumnIndex(PRAZO)))));
-            f.setIcone(c.getInt(c.getColumnIndex(ICONE)));
-        }
-
-
-        return f;
-    }
-
-
-    public int updateFoco(Foco foco) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(NOME, foco.getNome());
-        values.put(COMOLIMPAR, foco.getComoLimpar());
-        values.put(ICONE, foco.getIcone());
-        values.put(PRAZO, foco.getPrazo());
-
-        return db.update(TABELA_FOCO, values, ID + " = ?",
-                new String[]{String.valueOf(foco.getCodigo())});
-    }
 
 }
