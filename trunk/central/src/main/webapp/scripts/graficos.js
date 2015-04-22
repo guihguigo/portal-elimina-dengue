@@ -14,7 +14,7 @@ function construirGrafico(foco, estado, cidade, bairro) {
 }
 
 function popularPercentualPorMes(foco, estado, cidade, bairro) {
-    var url = 'http://localhost:8083/central/webresources/prevencao/percentaulPorFocoNoMes/';
+    var url = 'http://54.94.249.193:8083/central/webresources/prevencao/percentaulPorFocoNoMes/';
 
 
     var data = {idFoco: foco, estado: estado, cidade: cidade, bairro: bairro};
