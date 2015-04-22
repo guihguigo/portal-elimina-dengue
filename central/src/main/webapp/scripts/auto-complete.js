@@ -1,6 +1,7 @@
 $(function () {
+    var host = 'http://54.94.249.193:8083/central/webresources/';
     $.ajax({
-        url: 'http://localhost:8083/central/webresources/foco',
+        url: host + 'foco',
         success: function (result) {
             var options;
 
@@ -15,7 +16,7 @@ $(function () {
     $('#filtro-regiao').keyup(function (e) {
         var regiao = this.value;
         $.ajax({
-            url: 'http://localhost:8083/central/webresources/prevencao/regioes',
+            url: host + 'prevencao/regioes',
             data: {'regiao': regiao},
             success: function (result) {
                 $('#filtro-regiao').autocomplete({
