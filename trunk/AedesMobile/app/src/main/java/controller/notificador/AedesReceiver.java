@@ -30,7 +30,7 @@ public class AedesReceiver extends BroadcastReceiver {
         this.ticker = "Aedes";
         this.titulo = "Titulo";
         this.mensagem = "Mensagem";
-        this.icone = R.drawable.ic_aedes;
+        this.icone = R.drawable.ic_aedes_launcher;
     }
 
     @Override
@@ -58,7 +58,7 @@ public class AedesReceiver extends BroadcastReceiver {
         Notification n = builder.build();
         n.vibrate = new long[]{150, 300, 150, 600};
         n.flags = Notification.FLAG_AUTO_CANCEL;
-        nm.notify(R.drawable.ic_aedes, n);
+        nm.notify(R.drawable.ic_aedes_launcher, n);
 
         try {
             Uri som = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);

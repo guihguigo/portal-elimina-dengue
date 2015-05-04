@@ -23,6 +23,13 @@ public class AedesAlarmService {
     }
 
     private void verificaDtPrazo(Prevencao prevencao) {
+
+        Prevencao prev = prevEntity.getUltimaPrevencao();
+        if (prev.getFoco().getCodigo() == this.prevencao.getFoco().getCodigo()) {
+            this.prevencao.getFoco().setCodigo(-1);
+            return;
+        }
+
         if (prevencao.getFoco().getCodigo() != -1) {
             if (this.prevencao.getFoco().getCodigo() != -1) {
                 if (prevencao.getDataPrazo().before(this.prevencao.getDataPrazo())) {
@@ -32,6 +39,7 @@ public class AedesAlarmService {
                 this.prevencao = prevencao;
             }
         }
+
     }
 
 

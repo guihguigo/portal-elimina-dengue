@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import android.widget.TimePicker;
 
 import com.easyandroidanimations.library.RotationAnimation;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -27,6 +29,7 @@ import bean.Foco;
 import bean.Prevencao;
 import br.com.aedes.R;
 import controller.FocoController;
+import uk.me.lewisdeane.ldialogs.CustomDialog;
 import utils.DateUtils;
 import utils.DialogUtils;
 
@@ -35,7 +38,9 @@ public class AddFocoAdapter extends BaseAdapter {
     private List<Foco> FocosList;
     Handler handler;
     private FocoController fc;
-    Prevencao prevencao;
+
+    private Typeface bebas;
+    private Prevencao prevencao;
     private Date dtPrazo;
 
 
@@ -81,7 +86,7 @@ public class AddFocoAdapter extends BaseAdapter {
                 context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View view = inflater.inflate(R.layout.fragment_add_foco, null);
 
-        Typeface bebas = Typeface.createFromAsset(context.getAssets(), "fonts/bebas.otf");
+        bebas = Typeface.createFromAsset(context.getAssets(), "fonts/bebas.otf");
 
         // Titulo
         final TextView textTitulo = (TextView) view.findViewById(R.id.txtNmFoco);
@@ -102,7 +107,7 @@ public class AddFocoAdapter extends BaseAdapter {
 
         ckbAdd.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
                 ckbAdd.setChecked(false);
 
                 Prevencao p = new Prevencao();
@@ -110,10 +115,8 @@ public class AddFocoAdapter extends BaseAdapter {
 
                 if (!fc.verificaAgendamento(foco.getCodigo())) {
                     showModalAgendamento(foco);
-                }
-                else {
-                    fc.atualizaAgendamento(p);
-                    atualizaAdapter();
+                } else {
+                    MaterialDialogYesNo("Remover Prevenção", "Deseja remover essa prevenção da agenda?", p);
                 }
 
             }
@@ -189,7 +192,8 @@ public class AddFocoAdapter extends BaseAdapter {
         final DatePicker dpDefineData = (DatePicker) dialog.findViewById(R.id.dpDiaPrevencao);
         Button btnSalvar = (Button) dialog.findViewById(R.id.btnConfirma);
 
-        //dpDefineData.set(Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
+
+        hideYear(dpDefineData);
 
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -212,6 +216,27 @@ public class AddFocoAdapter extends BaseAdapter {
         dialog.show();
     }
 
+    private void hideYear(DatePicker dpDefineData) {
+        try {
+            Field f[] = dpDefineData.getClass().getDeclaredFields();
+            for (Field field : f) {
+                if (field.getName().equals("mYearSpinner")) {
+                    field.setAccessible(true);
+                    Object yearPicker = new Object();
+                    yearPicker = field.get(dpDefineData);
+                    ((View) yearPicker).setEnabled(false);
+                }
+            }
+        } catch (SecurityException e) {
+            Log.d("ERROR", e.getMessage());
+        } catch (IllegalArgumentException e) {
+            Log.d("ERROR", e.getMessage());
+        } catch (IllegalAccessException e) {
+            Log.d("ERROR", e.getMessage());
+        }
+
+    }
+
 
     //Modal TimePicker
     private void setHoraPrevencao() {
@@ -219,9 +244,13 @@ public class AddFocoAdapter extends BaseAdapter {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.modal_timepicker);
         final TimePicker tpDefineData = (TimePicker) dialog.findViewById(R.id.tpHorarioPrevencao);
+
+
         Button btnSalvar = (Button) dialog.findViewById(R.id.btnConfirma);
         tpDefineData.setIs24HourView(true);
         tpDefineData.setCurrentHour(Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
+
+
 
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -242,6 +271,41 @@ public class AddFocoAdapter extends BaseAdapter {
             }
         });
         dialog.show();
+    }
+
+
+    private void MaterialDialogYesNo(String titulo, String pergunta, final Prevencao prevencao) {
+        CustomDialog.Builder builder = new CustomDialog.Builder(context, titulo, "Sim");
+
+        builder.content(pergunta);
+        builder.negativeText("Não");
+        builder.typeface(Typeface.createFromAsset(context.getAssets(), "fonts/bebas.otf"));
+        builder.contentTextSize(18);
+        builder.buttonTextSize(20);
+        builder.contentColor("#363835");
+        builder.positiveColor("#2BC230");
+        builder.negativeColor("#D95555");
+
+        CustomDialog customDialog = builder.build();
+
+        customDialog.setClickListener(new CustomDialog.ClickListener() {
+            @Override
+            public void onConfirmClick() {
+                fc.atualizaAgendamento(prevencao);
+                atualizaAdapter();
+
+            }
+
+
+            @Override
+            public void onCancelClick() {
+                atualizaAdapter();
+            }
+        });
+
+        customDialog.show();
+
+
     }
 
 }

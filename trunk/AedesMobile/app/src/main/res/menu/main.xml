@@ -4,14 +4,14 @@
         android:id="@+id/action_add_prevencao"
         android:orderInCategory="100"
         android:showAsAction="ifRoom"
-        android:icon="@drawable/ic_action_add"
+        android:icon="@drawable/ic_action_av_my_library_add"
         android:title="Adicionar Prevenção"
         />
     <item
         android:id="@+id/action_ajuda"
         android:orderInCategory="100"
         android:showAsAction="ifRoom"
-        android:icon="@drawable/ic_action_help"
+        android:icon="@drawable/ic_action_action_help"
         android:title="Ajuda"
         />
 

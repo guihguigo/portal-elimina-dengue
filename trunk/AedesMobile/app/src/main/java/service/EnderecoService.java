@@ -28,26 +28,76 @@ public class EnderecoService {
     private EnderecoController enderecoController;
     private HttpUtils httpUtils;
 
+    private boolean bEnderecoAtualizado = false;
+
 
     public EnderecoService(Context ctx) {
         this.ctx = ctx;
         endereco = new Endereco();
     }
 
-    public Endereco getEndereco() {
-        atualizaEndereco();
+
+    public Endereco getEndereco(double lat, double lng) {
+        bEnderecoAtualizado = false;
+
+        if(lat != 0.0 && lng != 0.0){
+            atualizaEndereco(lat, lng);
+        }else{
+            atualizaEndereco();
+        }
+
+        while(!bEnderecoAtualizado){
+            Log.d("Aguardando sincronização", " EnderecoService");
+        }
+
         return this.endereco;
     }
 
-    public void atualizaEndereco() {
+    private void atualizaEndereco(final double lat,final double lng) {
         enderecoController = new EnderecoController(this.ctx);
 
 
         new Runnable() {
             @Override
             public void run() {
-                final double latitude = enderecoController.getLatitude();
-                final double longitude = enderecoController.getLongitude();
+
+
+                new Thread() {
+                    @Override
+                    public void run() {
+                        JSONObject jsonEndereco;
+
+                        jsonEndereco = getJsonPostMaps(lat, lng);
+                        try {
+                            JSONArray resultEndereco = jsonEndereco.getJSONArray("results");
+                            resultEndereco = resultEndereco.getJSONObject(0).getJSONArray("address_components");
+                            endereco.setBairro(resultEndereco.getJSONObject(2).getString("short_name"));
+                            endereco.setCidade(resultEndereco.getJSONObject(3).getString("short_name"));
+                            endereco.setEstado(resultEndereco.getJSONObject(5).getString("long_name"));
+                        } catch (Exception ex) {
+                            Log.d("Exception", ex.getMessage());
+                        }finally{
+                            bEnderecoAtualizado = true;
+                        }
+
+                    }
+                }.start();
+            }
+        }.run();
+
+
+    }
+
+    private void atualizaEndereco() {
+        enderecoController = new EnderecoController(this.ctx);
+
+
+        new Runnable() {
+            @Override
+            public void run() {
+
+                    final double latitude = enderecoController.getLatitude();
+                    final double longitude = enderecoController.getLongitude();
 
                 new Thread() {
                     @Override
@@ -64,6 +114,8 @@ public class EnderecoService {
                             endereco.setEstado(resultEndereco.getJSONObject(5).getString("long_name"));
                         } catch (Exception ex) {
                             Log.d("Exception", ex.getMessage());
+                        }finally {
+                            bEnderecoAtualizado = true;
                         }
                     }
                 }.start();

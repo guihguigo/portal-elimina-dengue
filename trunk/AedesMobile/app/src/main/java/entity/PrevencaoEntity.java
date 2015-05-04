@@ -24,8 +24,6 @@ public class PrevencaoEntity extends EliminaDengueDb {
     private static final String LATITUDE = "latitude";
     private static final String LONGITUDE = "longitude";
 
-    private static final String SYNC = "sync"; // Campo que indica se conteúdo foi sincronizado com a Central [1/0]
-
     public PrevencaoEntity(Context context) {
         super(context);
     }
@@ -36,7 +34,7 @@ public class PrevencaoEntity extends EliminaDengueDb {
                 + ID_FOCO + " INTEGER PRIMARY KEY, "
                 + LATITUDE + " FLOAT, "
                 + LONGITUDE + " FLOAT, "
-                + DATA_CRIACAO + " DATE, " + DATA_EFETUADA + " DATE, " + DATA_PRAZO + " DATE, " + SYNC + " CHAR" + ");";
+                + DATA_CRIACAO + " DATE, " + DATA_EFETUADA + " DATE, " + DATA_PRAZO + " DATE);";
 
         return CREATE_TABLE_PREVENCAO;
     }
@@ -52,11 +50,10 @@ public class PrevencaoEntity extends EliminaDengueDb {
         values.put(DATA_CRIACAO, new DateUtils().DateToString(prevencao.getDataCriacao()));
         values.put(DATA_PRAZO, new DateUtils().DateToString(prevencao.getDataPrazo()));
         values.put(DATA_EFETUADA, new DateUtils().DateToString(prevencao.getDataEfetuada()));
-        values.put(SYNC, prevencao.getSync());
-
 
         db.insert(TABELA_PREVENCAO, null, values);
         db.close();
+
     }
 
 
@@ -89,7 +86,6 @@ public class PrevencaoEntity extends EliminaDengueDb {
             prev.setDataCriacao(new DateUtils().StringToDate(c.getString(c.getColumnIndex(DATA_CRIACAO))));
             prev.setDataEfetuada(new DateUtils().StringToDate(c.getString(c.getColumnIndex(DATA_EFETUADA))));
             prev.setDataPrazo(new DateUtils().StringToDate(c.getString(c.getColumnIndex(DATA_PRAZO))));
-            prev.setSync(c.getInt(c.getColumnIndex(SYNC)));
 
         }
 
@@ -115,7 +111,6 @@ public class PrevencaoEntity extends EliminaDengueDb {
                 prev.setDataCriacao(new DateUtils().StringToDate(c.getString(c.getColumnIndex(DATA_CRIACAO))));
                 prev.setDataEfetuada(new DateUtils().StringToDate(c.getString(c.getColumnIndex(DATA_EFETUADA))));
                 prev.setDataPrazo(new DateUtils().StringToDate(c.getString(c.getColumnIndex(DATA_PRAZO))));
-                prev.setSync(c.getInt(c.getColumnIndex(SYNC)));
                 arrPrev.add(prev);
             } while (c.moveToNext());
 
@@ -148,8 +143,6 @@ public class PrevencaoEntity extends EliminaDengueDb {
                 prev.setDataCriacao(new DateUtils().StringToDate(c.getString(c.getColumnIndex(DATA_CRIACAO))));
                 prev.setDataEfetuada(new DateUtils().StringToDate(c.getString(c.getColumnIndex(DATA_EFETUADA))));
                 prev.setDataPrazo(new DateUtils().StringToDate(c.getString(c.getColumnIndex(DATA_PRAZO))));
-                prev.setSync(c.getInt(c.getColumnIndex(SYNC)));
-
             }
 
         return prev;
@@ -166,8 +159,6 @@ public class PrevencaoEntity extends EliminaDengueDb {
         values.put(DATA_EFETUADA, new DateUtils().DateToString(prev.getDataEfetuada()));
         values.put(DATA_PRAZO, new DateUtils().DateToString(prev.getDataPrazo()));
         values.put(DATA_CRIACAO, new DateUtils().DateToString(prev.getDataCriacao()));
-        values.put(SYNC, prev.getSync());
-
 
         return db.update(TABELA_PREVENCAO, values, ID_FOCO + " = ?",
                 new String[]{String.valueOf(prev.getFoco().getCodigo())});
