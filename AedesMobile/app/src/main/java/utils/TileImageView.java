@@ -6,7 +6,12 @@ import android.widget.ImageView;
 
 /**
  * Created by Alexandre on 01/03/2015.
+ *
  */
+
+/**
+ * @deprecated Utilizado antes da reformulação do layout
+ * */
 public class TileImageView extends ImageView {
     public TileImageView(Context context) {
         super(context);

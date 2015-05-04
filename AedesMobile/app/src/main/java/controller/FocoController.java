@@ -9,6 +9,8 @@ import bean.Foco;
 import bean.Prevencao;
 import entity.FocoEntity;
 import entity.PrevencaoEntity;
+import entity.SyncTableEntity;
+import service.AedesAlarmService;
 import utils.DateUtils;
 
 
@@ -20,12 +22,14 @@ public class FocoController {
     private FocoEntity fe;
     PrevencaoEntity pe;
     private Context ctx;
+    private AedesAlarmService alarm;
 
 
     public FocoController(Context ctx) {
         this.ctx = ctx;
         this.fe = new FocoEntity(ctx);
         this.pe = new PrevencaoEntity(ctx);
+        this.alarm = new AedesAlarmService(ctx);
     }
 
 
@@ -67,6 +71,8 @@ public class FocoController {
         prevencao.setDataCriacao(new Date());
 
         pe.addPrevencao(prevencao);
+
+        alarm.atualizaNotificador(prevencao);
     }
 
     /**
@@ -74,10 +80,18 @@ public class FocoController {
      * Caso possua, este removerá, caso contrário irá incluir.
      * */
     public void atualizaAgendamento(Prevencao prevencao){
-        if(verificaAgendamento(prevencao.getFoco().getCodigo()))
+        if(verificaAgendamento(prevencao.getFoco().getCodigo())) {
             removerAgendamento(prevencao.getFoco().getCodigo());
-        else
+            prevencao.setDataCriacao(null);
+        }
+        else {
             salvarAgendamento(prevencao);
+        }
+
+
+
+        new SyncTableEntity(this.ctx).addSync(prevencao);
+
     }
 
     private void removerAgendamento(int idFoco){

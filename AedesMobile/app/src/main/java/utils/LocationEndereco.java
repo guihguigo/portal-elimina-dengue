@@ -1,16 +1,17 @@
 package utils;
 
-import android.app.AlertDialog;
 import android.app.Service;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
+
+import uk.me.lewisdeane.ldialogs.CustomDialog;
 
 public class LocationEndereco extends Service implements LocationListener {
 
@@ -73,8 +74,10 @@ public class LocationEndereco extends Service implements LocationListener {
 				}
 			}
 
-			isInternetLigada = mLocationManager
-					.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+			/*isInternetLigada = mLocationManager
+					.isProviderEnabled(LocationManager.NETWORK_PROVIDER);*/
+
+            isInternetLigada = new ConnectionHelper().internetHabilitada(mContext);
 
 			if (isInternetLigada) {
 				mLocationManager.requestLocationUpdates(
@@ -91,7 +94,7 @@ public class LocationEndereco extends Service implements LocationListener {
 				}
 			}
 
-			if (!isGPSLigado) {
+			if (!isGPSLigado && isInternetLigada) {
 				dialogHabilitarGPS();
 			}
 
@@ -103,23 +106,35 @@ public class LocationEndereco extends Service implements LocationListener {
 		return null;
 	}
 
-	public void dialogHabilitarGPS() {
-		AlertDialog.Builder mAlertDialog = new AlertDialog.Builder(mContext);
+    public void dialogHabilitarGPS() {
+        CustomDialog.Builder builder = new CustomDialog.Builder(mContext, "GPS Desabilitado", "Sim");
 
-		mAlertDialog.setTitle("GPS Desabilitado")
-		.setMessage("Deseja habilitar a função GPS para que seus dados sejam atualizados?")
-		.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-				mContext.startActivity(intent);
-				}
-			})
-			.setNegativeButton("Não",new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int which) {
-					dialog.cancel();
-					}
-				}).show();
-	}
+        builder.content("Deseja habilitar a função GPS para que seus dados sejam atualizados?");
+        builder.negativeText("Não");
+        builder.typeface(Typeface.createFromAsset(mContext.getAssets(), "fonts/bebas.otf"));
+        builder.contentTextSize(18);
+        builder.buttonTextSize(20);
+        builder.contentColor("#363835");
+        builder.positiveColor("#2BC230");
+        builder.negativeColor("#D95555");
+
+        CustomDialog customDialog = builder.build();
+
+        customDialog.setClickListener(new CustomDialog.ClickListener() {
+            @Override
+            public void onConfirmClick() {
+                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                mContext.startActivity(intent);
+            }
+
+            @Override
+            public void onCancelClick() {
+            }
+        });
+
+        customDialog.show();
+
+    }
 
 
 	@Override

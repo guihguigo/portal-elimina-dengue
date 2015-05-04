@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Typeface;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -17,6 +18,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import br.com.aedes.R;
+import uk.me.lewisdeane.ldialogs.CustomDialog;
 
 /**
  * Created by Alexandre on 22/03/2015.
@@ -45,6 +47,32 @@ public class DialogUtils {
         Toast.makeText(ctx, mensagem, Toast.LENGTH_LONG).show();
     }
 
+    public boolean MsgAlertDialogYesNo(String pergunta) {
+        final boolean[] bRespostaDialog = new boolean[1];
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case DialogInterface.BUTTON_POSITIVE:
+                        bRespostaDialog[0] = true;
+                        break;
+
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        bRespostaDialog[0] = false;
+                        break;
+                }
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this.ctx);
+        builder.setMessage(pergunta).setNegativeButton("Não", dialogClickListener)
+                .setPositiveButton("Sim", dialogClickListener).show();
+
+
+        return bRespostaDialog[0];
+    }
+
+    @Deprecated
     public Date DateAlertDialog() {
         final Date dtResult = new Date();
         final Dialog dialog = new Dialog(ctx);
@@ -71,7 +99,7 @@ public class DialogUtils {
         return dtResult;
     }
 
-
+    @Deprecated
     public Date TimeAlertDialog() {
         final Date dtResult = new Date();
 
@@ -98,6 +126,50 @@ public class DialogUtils {
         dialog.show();
 
         return dtResult;
+
+    }
+
+
+    public void MaterialDialogOk(String titulo, String corpo) {
+        CustomDialog.Builder builder = new CustomDialog.Builder(this.ctx, titulo, "Ok");
+        builder.content(corpo);
+        builder.typeface(Typeface.createFromAsset(ctx.getAssets(), "fonts/bebas.otf"));
+        builder.contentTextSize(18);
+        builder.buttonTextSize(20);
+        builder.contentColor("#363835");
+        builder.positiveColor("#1976D2");
+        CustomDialog customDialog = builder.build();
+
+        customDialog.show();
+    }
+
+    @Deprecated
+    private void MaterialDialogYesNo(String titulo, String corpo) {
+        CustomDialog.Builder builder = new CustomDialog.Builder(this.ctx, titulo, "Sim");
+
+        builder.content(corpo);
+        builder.negativeText("Não");
+        builder.typeface(Typeface.createFromAsset(ctx.getAssets(), "fonts/bebas.otf"));
+        builder.contentTextSize(18);
+        builder.buttonTextSize(20);
+        builder.contentColor("#363835");
+        builder.positiveColor("#2BC230");
+        builder.negativeColor("#D95555");
+
+        CustomDialog customDialog = builder.build();
+
+        customDialog.setClickListener(new CustomDialog.ClickListener() {
+            @Override
+            public void onConfirmClick() {
+            }
+
+            @Override
+            public void onCancelClick() {
+            }
+        });
+
+        customDialog.show();
+
 
     }
 }

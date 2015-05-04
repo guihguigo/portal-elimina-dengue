@@ -15,7 +15,7 @@
         android:text="Data da Prevenção"
         android:textSize="24sp"
         android:layout_marginBottom="20sp"
-        android:id="@+id/textView" />
+        android:id="@+id/txtTitleDtPrevencao" />
     <DatePicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

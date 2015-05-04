@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import entity.FocoEntity;
 import entity.PrevencaoEntity;
+import entity.SyncTableEntity;
 
 
 /**
@@ -20,6 +21,7 @@ public class EliminaDengueDb extends SQLiteOpenHelper {
     //Tables
     protected static final String TABELA_FOCO = "foco";
     protected static final String TABELA_PREVENCAO = "prevencao";
+    protected static final String TABELA_SYNC = "sync";
 
     // Popular FOCOS
     protected String[] DMLFocos;
@@ -36,6 +38,7 @@ public class EliminaDengueDb extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(new FocoEntity(this.context).createFocoTable());
         db.execSQL(new PrevencaoEntity(this.context).createPrevencaoTable());
+        db.execSQL(new SyncTableEntity(this.context).createSyncTable());
 
         //Popular Focos
         this.DMLFocos = new FocoEntity(this.context).DmlFocos();

@@ -8,6 +8,7 @@ import java.util.Date;
 
 import bean.Prevencao;
 import entity.PrevencaoEntity;
+import entity.SyncTableEntity;
 import service.AedesAlarmService;
 import service.EnderecoService;
 
@@ -29,6 +30,29 @@ public class PrevencaoController {
         this.alarmService = new AedesAlarmService(ctx);
     }
 
+
+    public void atualizaPrevencao(Prevencao prevencao) {
+        enderecoController = new EnderecoController(this.ctx);
+        prevencao.setLatitude(enderecoController.getLatitude());
+        prevencao.setLongitude(enderecoController.getLongitude());
+        pe.updatePrevencao(prevencao);
+        atualizaNotificador(prevencao);
+
+        new SyncTableEntity(this.ctx).addSync(prevencao);
+
+    }
+
+    public void efetuarPrevencao(Prevencao prevencao) {
+        new SyncTableEntity(this.ctx).addSync(prevencao);
+
+        Calendar c = Calendar.getInstance();
+        c.setTime(prevencao.getDataPrazo());
+        c.add(Calendar.DATE, prevencao.getFoco().getPrazo());
+        prevencao.setDataEfetuada(null);
+        prevencao.setDataPrazo(atualizarDtPrevencao(prevencao));
+        atualizaPrevencao(prevencao);
+    }
+
     /**
      * @deprecated
      */
@@ -42,6 +66,23 @@ public class PrevencaoController {
             dtPrazo.add(Calendar.DATE, 1);
         }
         return dtPrazo.getTime();
+    }
+
+    /**
+     *
+     *@return Data atualizada para setar no DatePicker como default para próxima prevenção
+     */
+    public Date atualizarDtPrevencao(Prevencao prevencao){
+        Calendar c = Calendar.getInstance();
+
+        if(prevencao.getFoco().getPrazo() > 0)
+            c.add(Calendar.DATE, prevencao.getFoco().getPrazo());
+        else
+            c.add(Calendar.DATE, 1);
+
+
+        return c.getTime();
+
     }
 
     public void salvaPrevencao(Prevencao prevencao) {
@@ -65,7 +106,7 @@ public class PrevencaoController {
 
     public boolean verificaTituloMes(ArrayList<Prevencao> arr_prev, int i) {
         if (i > 0) {
-            if(arr_prev.get(i-1).getDataCriacao() != null) {
+            if (arr_prev.get(i - 1).getDataCriacao() != null) {
                 if (!(arr_prev.get(i).getDataPrazo().getMonth() == arr_prev.get(i - 1).getDataPrazo().getMonth())) {
                     return true;
                 }

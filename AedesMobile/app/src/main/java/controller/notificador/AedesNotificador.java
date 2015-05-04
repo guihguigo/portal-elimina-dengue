@@ -39,7 +39,6 @@ public class AedesNotificador {
         intent.putExtra("icone", icone);
 
         PendingIntent p = PendingIntent.getBroadcast(ctx, 0, intent, 0);
-
         AlarmManager alarme = (AlarmManager) ctx.getSystemService(ctx.ALARM_SERVICE);
         alarme.set(AlarmManager.RTC_WAKEUP, dtPrazo.getTimeInMillis(), p);
     }
