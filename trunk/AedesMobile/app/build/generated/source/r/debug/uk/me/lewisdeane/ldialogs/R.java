@@ -12,7 +12,7 @@ public final class R {
 		public static final int LDialogs_transparent = 0x7f070001;
 	}
 	public static final class drawable {
-		public static final int button_selector = 0x7f020068;
+		public static final int button_selector = 0x7f020067;
 	}
 	public static final class id {
 		public static final int dialog_custom_alongside_buttons = 0x7f090041;

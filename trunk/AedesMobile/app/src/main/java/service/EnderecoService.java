@@ -40,20 +40,20 @@ public class EnderecoService {
     public Endereco getEndereco(double lat, double lng) {
         bEnderecoAtualizado = false;
 
-        if(lat != 0.0 && lng != 0.0){
+        if (lat != 0.0 && lng != 0.0) {
             atualizaEndereco(lat, lng);
-        }else{
+        } else {
             atualizaEndereco();
         }
 
-        while(!bEnderecoAtualizado){
+        while (!bEnderecoAtualizado) {
             Log.d("Aguardando sincronização", " EnderecoService");
         }
 
         return this.endereco;
     }
 
-    private void atualizaEndereco(final double lat,final double lng) {
+    private void atualizaEndereco(final double lat, final double lng) {
         enderecoController = new EnderecoController(this.ctx);
 
 
@@ -68,15 +68,20 @@ public class EnderecoService {
                         JSONObject jsonEndereco;
 
                         jsonEndereco = getJsonPostMaps(lat, lng);
+
+
                         try {
-                            JSONArray resultEndereco = jsonEndereco.getJSONArray("results");
-                            resultEndereco = resultEndereco.getJSONObject(0).getJSONArray("address_components");
-                            endereco.setBairro(resultEndereco.getJSONObject(2).getString("short_name"));
-                            endereco.setCidade(resultEndereco.getJSONObject(3).getString("short_name"));
-                            endereco.setEstado(resultEndereco.getJSONObject(5).getString("long_name"));
+                            if(jsonEndereco != null) {
+                                JSONArray resultEndereco = jsonEndereco.getJSONArray("results");
+                                resultEndereco = resultEndereco.getJSONObject(0).getJSONArray("address_components");
+                                endereco.setBairro(resultEndereco.getJSONObject(2).getString("short_name"));
+                                endereco.setCidade(resultEndereco.getJSONObject(3).getString("short_name"));
+                                endereco.setEstado(resultEndereco.getJSONObject(5).getString("long_name"));
+                            }
+
                         } catch (Exception ex) {
                             Log.d("Exception", ex.getMessage());
-                        }finally{
+                        } finally {
                             bEnderecoAtualizado = true;
                         }
 
@@ -96,8 +101,8 @@ public class EnderecoService {
             @Override
             public void run() {
 
-                    final double latitude = enderecoController.getLatitude();
-                    final double longitude = enderecoController.getLongitude();
+                final double latitude = enderecoController.getLatitude();
+                final double longitude = enderecoController.getLongitude();
 
                 new Thread() {
                     @Override
@@ -107,14 +112,17 @@ public class EnderecoService {
                         jsonEndereco = getJsonPostMaps(latitude, longitude);
 
                         try {
-                            JSONArray resultEndereco = jsonEndereco.getJSONArray("results");
-                            resultEndereco = resultEndereco.getJSONObject(0).getJSONArray("address_components");
-                            endereco.setBairro(resultEndereco.getJSONObject(2).getString("short_name"));
-                            endereco.setCidade(resultEndereco.getJSONObject(3).getString("short_name"));
-                            endereco.setEstado(resultEndereco.getJSONObject(5).getString("long_name"));
+                            if(jsonEndereco != null) {
+                                JSONArray resultEndereco = jsonEndereco.getJSONArray("results");
+                                resultEndereco = resultEndereco.getJSONObject(0).getJSONArray("address_components");
+                                endereco.setBairro(resultEndereco.getJSONObject(2).getString("short_name"));
+                                endereco.setCidade(resultEndereco.getJSONObject(3).getString("short_name"));
+                                endereco.setEstado(resultEndereco.getJSONObject(5).getString("long_name"));
+                            }
                         } catch (Exception ex) {
                             Log.d("Exception", ex.getMessage());
-                        }finally {
+                            endereco = new Endereco();
+                        } finally {
                             bEnderecoAtualizado = true;
                         }
                     }
@@ -127,17 +135,20 @@ public class EnderecoService {
 
 
     private JSONObject getJsonPostMaps(double latitude, double longitude) {
-        JSONObject jsonEndereco = null;
         Gson objGson = new Gson();
-        String strJson = null;
-        httpUtils = new HttpUtils(ConexaoConfig.URL_MAPS + latitude + "," + longitude);
-        strJson = httpUtils.enviaHttpGet();
+        JSONObject jsonEndereco = null;
+
+
         try {
-            jsonEndereco = new JSONObject(strJson);
+            if (latitude != 0 && longitude != 0) {
+                String strJson;
+                httpUtils = new HttpUtils(ConexaoConfig.URL_MAPS + latitude + "," + longitude);
+                strJson = httpUtils.enviaHttpGet();
+                jsonEndereco = new JSONObject(strJson);
+            }
         } catch (Exception ex) {
             Log.d("Erro ao buscar Endereço", ex.getMessage());
         }
-
         return jsonEndereco;
     }
 }

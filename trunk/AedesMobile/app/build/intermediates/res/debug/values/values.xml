@@ -90,6 +90,9 @@
     <color name="abc_search_url_text_normal">#7fa87f</color>
     <color name="abc_search_url_text_pressed">@android:color/black</color>
     <color name="abc_search_url_text_selected">@android:color/black</color>
+    <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/src/main/res/values/color.xml -->
+    <eat-comment/>
+    <color name="action_bar_color">#2196F3</color>
     <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="background_color">#E0E0E0</color>

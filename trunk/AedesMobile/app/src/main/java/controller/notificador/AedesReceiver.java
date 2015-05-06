@@ -44,21 +44,22 @@ public class AedesReceiver extends BroadcastReceiver {
 
 
     public void gerarNotificacao(Context context, Intent intent) {
-        NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager nm = (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
         PendingIntent p = PendingIntent.getActivity(context, 0, intent, 0);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
         builder.setTicker(ticker);
         builder.setContentTitle(titulo);
         builder.setContentText(mensagem);
-        builder.setSmallIcon(icone);
+        builder.setSmallIcon(R.drawable.icon_aedes);
         builder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), icone));
         builder.setContentIntent(p);
+        
 
         Notification n = builder.build();
         n.vibrate = new long[]{150, 300, 150, 600};
         n.flags = Notification.FLAG_AUTO_CANCEL;
-        nm.notify(R.drawable.ic_aedes_launcher, n);
+        nm.notify(R.drawable.icon_aedes, n);
 
         try {
             Uri som = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);

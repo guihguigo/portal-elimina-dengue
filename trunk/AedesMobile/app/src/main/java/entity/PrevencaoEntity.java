@@ -63,7 +63,7 @@ public class PrevencaoEntity extends EliminaDengueDb {
         db.delete(TABELA_PREVENCAO, ID_FOCO + "=" + idFoco, null);
     }
 
-    public Prevencao getUltimaPrevencao(){
+    public Prevencao getProximaPrevencao(){
         Prevencao prev = new Prevencao();
 
         Foco f = new Foco();
@@ -72,7 +72,7 @@ public class PrevencaoEntity extends EliminaDengueDb {
 
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String selectQuery = "SELECT * FROM " + TABELA_PREVENCAO + " ORDER BY " + DATA_PRAZO + " ASC";
+        String selectQuery = "SELECT * FROM " + TABELA_PREVENCAO +" WHERE " + DATA_PRAZO + " > date('now')" + " ORDER BY " + DATA_PRAZO + " ASC";
 
         Cursor c = db.rawQuery(selectQuery, null);
 

@@ -49,7 +49,6 @@ public class CentralSyncService {
     }
 
     private void atualizaCentral() {
-        final Context ctx = this.context;
         ScheduledExecutorService scheduler =
                 Executors.newSingleThreadScheduledExecutor();
 
@@ -64,18 +63,21 @@ public class CentralSyncService {
                             @Override
                             public void run() {
                                 try {
-                                    final HashMap<String, String> prev = getSyncPendente();
-                                    if (prev != null) {
-                                        new Thread() {
-                                            @Override
-                                            public void run() {
-                                                int respostaServer = enviaJsonCentral(objectToJson(prev));
-                                                if (respostaServer == 200) {
-                                                    syncEntity.removeFirstSync();
-                                                }
-                                            }
-                                        }.start();
 
+                                    if (new ConnectionHelper().internetHabilitada(context)) {
+                                        final HashMap<String, String> prev = getSyncPendente();
+                                        if (prev != null) {
+                                            new Thread() {
+                                                @Override
+                                                public void run() {
+                                                     int respostaServer = enviaJsonCentral(objectToJson(prev));
+                                                    if (respostaServer == 200) {
+                                                        syncEntity.removeFirstSync();
+                                                    }
+                                                }
+                                            }.start();
+
+                                        }
                                     }
                                 } catch (Exception ex) {
                                     Log.d("CentralSyncService", ex.getMessage());
@@ -86,7 +88,7 @@ public class CentralSyncService {
 
 
                     }
-                }, 0, 30L, TimeUnit.SECONDS);
+                }, 0, 180L, TimeUnit.SECONDS);
 
     }
 

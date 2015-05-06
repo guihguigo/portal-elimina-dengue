@@ -50,8 +50,8 @@ public final class ConnectionHelper {
         try {
             HttpURLConnection httpConn = (HttpURLConnection) conn;
 
-            httpConn.setConnectTimeout(10000);
-            httpConn.setReadTimeout(10000);
+            httpConn.setConnectTimeout(5000);
+            httpConn.setReadTimeout(5000);
             httpConn.setAllowUserInteraction(false);
             httpConn.setInstanceFollowRedirects(true);
             httpConn.setRequestMethod("POST");
