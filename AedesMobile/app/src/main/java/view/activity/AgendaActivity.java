@@ -3,6 +3,7 @@ package view.activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,10 +21,10 @@ public class AgendaActivity extends ListActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.fragment_agenda);
         this.setListAdapter(new PrevencaoAdapter(this));
         this.getListView().setBackgroundColor(Color.parseColor("#E0E0E0"));
-        //customizarActionBar();
+
+
         CentralSyncService sync = new CentralSyncService(this);
        }
 

@@ -2,7 +2,9 @@ package controller;
 
 import android.content.Context;
 
-import utils.LocationEndereco;
+import bean.Endereco;
+import entity.EnderecoEntity;
+import service.LocationEndereco;
 
 
 /**
@@ -11,10 +13,12 @@ import utils.LocationEndereco;
 public class EnderecoController {
     private LocationEndereco location;
     private double latitude, longitude;
+    private EnderecoEntity enderecoEntity;
 
 
     public EnderecoController(Context ctx) {
         location = new LocationEndereco(ctx);
+        enderecoEntity = new EnderecoEntity(ctx);
     }
 
     public double getLatitude() {
@@ -34,6 +38,17 @@ public class EnderecoController {
             latitude = location.getLatitude();
             longitude = location.getLongitude();
         }
+    }
+
+    public Endereco getEndereco() {
+        return enderecoEntity.getEndereco();
+    }
+
+    public void salvarEndereco(Endereco e) {
+        if (getEndereco() != null)
+            enderecoEntity.updateEndereco(e);
+        else
+            enderecoEntity.addEndereco(e);
     }
 
 

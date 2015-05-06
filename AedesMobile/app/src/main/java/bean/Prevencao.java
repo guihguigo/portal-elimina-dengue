@@ -68,6 +68,7 @@ public class Prevencao {
 
     public void setDataPrazo(Date dataPrazo) {
         this.dataPrazo = dataPrazo;
+        this.dataPrazo.setSeconds(0);
     }
 
     public Date getDataCriacao() {

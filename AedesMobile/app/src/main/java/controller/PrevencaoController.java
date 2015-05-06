@@ -23,6 +23,7 @@ public class PrevencaoController {
     private EnderecoService enderecoService;
     private EnderecoController enderecoController;
 
+
     public PrevencaoController(Context ctx) {
         this.ctx = ctx;
         this.pe = new PrevencaoEntity(ctx);
@@ -33,10 +34,8 @@ public class PrevencaoController {
 
     public void atualizaPrevencao(Prevencao prevencao) {
         enderecoController = new EnderecoController(this.ctx);
-        prevencao.setLatitude(enderecoController.getLatitude());
-        prevencao.setLongitude(enderecoController.getLongitude());
         pe.updatePrevencao(prevencao);
-        atualizaNotificador(prevencao);
+        alarmService.atualizaNotificador(prevencao);
 
         new SyncTableEntity(this.ctx).addSync(prevencao);
 
@@ -85,20 +84,6 @@ public class PrevencaoController {
 
     }
 
-    public void salvaPrevencao(Prevencao prevencao) {
-        // Adiciona código do celular
-        // prevencao.setCodigoCelular(Settings.Secure.getString(this.ctx.getContentResolver(), Settings.Secure.ANDROID_ID));
-        enderecoController = new EnderecoController(this.ctx);
-        prevencao.setLatitude(enderecoController.getLatitude());
-        prevencao.setLongitude(enderecoController.getLongitude());
-        pe.addPrevencao(prevencao);
-        atualizaNotificador(prevencao);
-        //enderecoService.getEndereco();
-    }
-
-    public void atualizaNotificador(Prevencao prevencao) {
-        alarmService.atualizaNotificador(prevencao);
-    }
 
     public ArrayList<Prevencao> getPrevencoes() {
         return pe.getAllPrevencoes();
