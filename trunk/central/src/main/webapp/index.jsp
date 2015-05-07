@@ -1,102 +1,147 @@
 <%-- 
     Document   : index
-    Created on : 20/01/2015, 22:00:29
+    Created on : 01/05/2015, 22:56:05
     Author     : T2S
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Aedes - Elimina Dengue</title>
 
-    <title>Simple Sidebar - Start Bootstrap Template</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="css/simple-sidebar.css" rel="stylesheet">
-
-    <!-- UI-Widget CSS -->
-    <link href="css/jquery-ui.min.css" rel="stylesheet">
-
-    <link href="css/jquery-ui.structure.min.css" rel="stylesheet">
-    
-    <link href="css/jquery-ui.theme.min.css" rel="stylesheet">
-
-    <link href="css/padrao.css" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/main.css" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
+    </head>
     <body>
 
-        <div id="wrapper">
-            <jsp:include page="menu.jsp"></jsp:include>
-
-            <!-- Page Content -->
-            <div id="page-content-wrapper">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <select class="form-control " id="lista-focos">
-                                <option value="0">Geral</option>
-                            </select>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="input-group stylish-input-group ">
-                                <input id="filtro-regiao" type="text" class="form-control "  placeholder="Filtrar Região" >
-                                <span class="input-group-addon">
-                                    <button id="filtrar">
-                                        <span class="glyphicon glyphicon-search"></span>
-                                    </button>  
-                                </span>
-                            </div>
-
-                        </div>
-                    </div>
-
+        <!-- Fixed navbar -->
+        <div class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.jsp"><b>Aedes</b></a>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div style="width: 65%">
-                            <canvas id="canvas" height="300" width="450"></canvas>
-                        </div>
-                    </div>
-                </div>
-
-
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="infografico.jsp">Consultar infográficos?</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
             </div>
         </div>
-        <!-- /#page-content-wrapper -->
 
-    </div>
-    <!-- /#wrapper -->
+        <div id="headerwrap">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h1>A prevenção é a única arma contra a dengue<br/>
+                            Baixe o aplicativo</h1>
+                        <p class="lead">
+                            <a href="#" class="btn btn-default">Baixar</a>
+                        </p>				
+                    </div><!-- /col-lg-6 -->
+                    <div class="col-lg-6">
+                        <img class="img-responsive" src="images/ipad-hand.png" alt="">
+                    </div><!-- /col-lg-6 -->
 
-    <!-- jQuery -->
-    <script src="scripts/jquery-1.11.2.min.js"></script>
+                </div><!-- /row -->
+            </div><!-- /container -->
+        </div><!-- /headerwrap -->
 
-    <!--JQuery UI-->
-    <script src="scripts/jquery-ui.min.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="scripts/bootstrap.min.js"></script>
-    <!-- Chart core -->
-    <script src="scripts/Chart.min.js"></script>
-    <!-- Mustache core -->
-    <script src="scripts/mustache.min.js"></script>
+        <div class="container">
+            <div class="row mt centered">
+                <div class="col-lg-6 col-lg-offset-3">
+                    <h1>Mantenha-se longe da dengue <br/>em três passos!</h1>
+                    <h3>Agende suas prevenções e deixe-nos lhe ajudar nesta tarefa.</h3>
+                </div>
+            </div><!-- /row -->
 
-    <script src="scripts/graficos.js"></script>
+            <div class="row mt centered">
+                <div class="col-lg-4">
+                    <img src="images/checklist.png" width="180" alt="">
+                    <h4>1º Agende suas prevenções</h4>
+                    <p>Faça o checklist dos possíveis focos de dengue em sua residência para que as prevenções sejam agendadas.</p>
+                </div><!--/col-lg-4 -->
 
-    <script src="scripts/auto-complete.js"></script>
-    
-    <script src="scripts/geral.js"></script>
-    <!-- Menu Toggle Script -->
-    <script>
-        $("#menu-toggle").click(function (e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-        });
-    </script>
-</body>
+                <div class="col-lg-4">
+                    <img src="images/notificacao.png" width="180" alt="">
+                    <h4>2º É hora da prevenção</h4>
+                    <p>Receba uma notificação no momento de efetuar a prevenção. .</p>
+
+                </div><!--/col-lg-4 -->
+
+                <div class="col-lg-4">
+                    <img src="images/reagendar.png" width="180" alt="">
+                    <h4>3º Agora é só reangedar</h4>
+                    <p>Após efetuada, reagende e continue a manter sua residência livre desta ameaça.</p>
+
+                </div><!--/col-lg-4 -->
+            </div><!-- /row -->
+        </div><!-- /container -->
+
+
+
+        <div class="container">
+
+            <div class="row mt centered">
+                <div class="col-lg-6 col-lg-offset-3">
+                    <h1>O Aplicativo...</h1>
+                    <h3></h3>
+                </div>
+            </div><!-- /row -->
+
+            <! -- CAROUSEL -->
+            <div class="row mt centered">
+                <div class="col-lg-6 col-lg-offset-3">
+                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                        </ol>
+
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <img src="images/p01.png" alt="">
+                            </div>
+                            <div class="item">
+                                <img src="images/p02.png" alt="">
+                            </div>
+                            <div class="item">
+                                <img src="images/p03.png" alt="">
+                            </div>
+                        </div>
+                    </div>			
+                </div><!-- /col-lg-8 -->
+            </div><!-- /row -->
+        </div><! --/container -->
+
+
+        <div class="container">
+
+            <div class="row mt centered">
+                <div class="col-lg-6 col-lg-offset-3">
+                    <h1>Consulte os infográficos <br</h1>
+                    <h3>Verifique o quão protegida sua região se encontra.</h3>
+                </div>
+            </div><!-- /row -->
+
+
+            <div class="container">
+                <hr>
+                <p class="centered">Criado by Pimpolhos - 2015</p>
+            </div><!-- /container -->
+
+            <script src="scripts/jquery-1.11.2.min.js"></script>
+            <script src="scripts/bootstrap.min.js"></script>
+    </body>
 </html>

@@ -1,30 +1,17 @@
 <!-- Sidebar -->
             <div id="sidebar-wrapper">
-                <ul class="sidebar-nav navbar-default">
-                    <li class="sidebar-brand">
-                        <a href="#">
-                            Infográficos
-                        </a>
+                <ul class="sidebar-nav">
+                    <li value="PercentualPrevencoesPorMes" >
+                        <a href="#" data-toggle="collapse" class="active" data-target="#focos">Por mês</a>
+                        <ul id="focos" class="collapse">
+                        </ul>
                     </li>
-                    <li value="PercentualPrevencoesPorMes">
-                        <a href="#">Por mês</a>
+                    <li value="PercentualPrevencoesTopEfetuadas">
+                        <a href="#">Top em dia</a>
                     </li>
-                    <li>
-                        <a href="#">Geral</a>
+                    <li value="PercentualPrevencoesTopAtrasadas">
+                        <a href="#">Top Atrasadas</a>
                     </li>
-                    <li>
-                        <a href="#">Item 2</a>
-                    </li>
-                    <li>
-                        <a href="#">Item 3</a>
-                    </li>
-                    <li>
-                        <a href="#">Item 4</a>
-                    </li>
-                    <li>
-                        <a href="#">Item 5</a>
-                    </li>
-                    
                 </ul>
             </div>
             <!-- /#sidebar-wrapper -->
