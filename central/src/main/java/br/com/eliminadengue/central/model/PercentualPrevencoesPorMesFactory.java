@@ -4,12 +4,6 @@
  */
 package br.com.eliminadengue.central.model;
 
-import br.com.eliminadengue.central.model.Factory;
-import br.com.eliminadengue.central.model.PercentualPrevencoes;
-import br.com.eliminadengue.central.model.PercentualPrevencoesPorMes;
-import br.com.eliminadengue.central.model.Prevencao;
-import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -21,7 +15,7 @@ import java.util.List;
  *
  * @author Guilherme Alves
  */
-public class PercentualPrevencoesPorMesFactory implements Factory {
+public class PercentualPrevencoesPorMesFactory extends PercentualPrevencoesFactory {
 
     /**
      * Constroi perceutal de prevenções por mês
@@ -64,7 +58,7 @@ public class PercentualPrevencoesPorMesFactory implements Factory {
             int mes = calendar.get(Calendar.MONTH);
 
             if (mesAtual != mes) {
-                criaGuardaPercentualPorMes(percentualPrevecoesPorMes, prevencoesPorMes, mesAtual);
+                criaGuardaPercentualPorMes(percentualPrevecoesPorMes, prevencoesPorMes, mesAtual, prevencao.getFoco().getNome());
                 prevencoesPorMes = new ArrayList<>();
                 mesAtual = mes;
             }
@@ -73,40 +67,11 @@ public class PercentualPrevencoesPorMesFactory implements Factory {
         }
 
         //adiciona o último mês
-        criaGuardaPercentualPorMes(percentualPrevecoesPorMes, prevencoesPorMes, mesAtual);
+        criaGuardaPercentualPorMes(percentualPrevecoesPorMes, prevencoesPorMes, mesAtual, prevencoesPorMes.get(0).getFoco().getNome());
 
         return percentualPrevecoesPorMes;
     }
 
-    private void criaGuardaPercentualPorMes(List<PercentualPrevencoes> percentualPrevecoes,
-            List<Prevencao> prevencoesMes, int mesAtual) {
-
-        PercentualPrevencoesPorMes percentualPrevencoesPorMes = calculaPercentual(mesAtual, prevencoesMes);
-        percentualPrevecoes.add(percentualPrevencoesPorMes);
-
-    }
-
-    private PercentualPrevencoesPorMes calculaPercentual(int mesAtual, List<Prevencao> prevencoes) {
-        double efetuadas = 0;
-        double atrasadas = 0;
-
-        for (int i = 0; i < prevencoes.size(); i++) {
-            if (prevencoes.get(i).estaAtrasada()) {
-                atrasadas++;
-            } else {
-                efetuadas++;
-            }
-        }
-
-        efetuadas = (efetuadas * 100) / prevencoes.size();
-        atrasadas = (atrasadas * 100) / prevencoes.size();
-
-        PercentualPrevencoesPorMes percentual = new PercentualPrevencoesPorMes();
-        percentual.setMes(mesAtual);
-        percentual.setPercentualEfetuada(efetuadas);
-        percentual.setPercentualAtrasada(atrasadas);
-
-        return percentual;
-    }
+    
 
 }

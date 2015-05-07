@@ -2,12 +2,15 @@ package br.com.eliminadengue.central.rest;
 
 import br.com.eliminadengue.central.model.PercentualPrevencoesPorMesFactory;
 import br.com.eliminadengue.central.model.PercentualPrevencoes;
+import br.com.eliminadengue.central.model.PercentualPrevencoesFactory;
+import br.com.eliminadengue.central.model.PercentualPrevencoesTopFactory;
 
 import br.com.eliminadengue.central.model.Prevencao;
 import static br.com.eliminadengue.central.persistence.EntidadeDao.PREVENCAO;
 import br.com.eliminadengue.central.persistence.PrevencaoDao;
 import br.com.eliminadengue.central.persistence.Perssiste;
 import com.google.gson.Gson;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import javax.inject.Inject;
@@ -87,25 +90,75 @@ public class PrevencaoRest {
                 = new PercentualPrevencoesPorMesFactory().constroi(prevencoes);
         return percentualPrevencoes;
     }
-
+    
     @GET
-    @Path("percentaulPorFocoNoMes")
+    @Path("/percentualTopAtrasadas")
     @Produces("application/json")
-    public List<PercentualPrevencoes> percentualFocoPorMes(@QueryParam("idFoco") Integer idFoco,
-            @QueryParam("estado") String estado, @QueryParam("cidade") String cidade,
-            @QueryParam("bairro") String bairro) {       
-        if (idFoco != null && idFoco.equals(0))
-            idFoco = null;
-        
-        List<Prevencao> prevencoes = prevencaoDao.todos(idFoco, estado, cidade, bairro);
-        List<PercentualPrevencoes> percentualPrevencoes = new PercentualPrevencoesPorMesFactory()
-                .constroi(prevencoes);
+    public List<PercentualPrevencoes> percentualTopAtrasada(@QueryParam("estado") String estado,
+            @QueryParam("cidade") String cidade, @QueryParam("bairro") String bairro) {
+
+        List<PercentualPrevencoes> percentualPrevencoes = null;
+        List<Prevencao> prevencoes = prevencaoDao.todos(null, estado, cidade, bairro);
+        PercentualPrevencoesFactory factory = new PercentualPrevencoesTopFactory(new Comparator<PercentualPrevencoes>() {
+            @Override
+            public int compare(PercentualPrevencoes o1, PercentualPrevencoes o2) {
+                if (o1.getPercentualAtrasada() > o2.getPercentualAtrasada()) {
+                    return 1;
+                } else if (o1.getPercentualAtrasada() < o2.getPercentualAtrasada()) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            }
+
+        });
+        percentualPrevencoes = factory.constroi(prevencoes);
+
+        return percentualPrevencoes;
+    }
+    
+    @GET
+    @Path("/percentualTopEfetuadas")
+    @Produces("application/json")
+    public List<PercentualPrevencoes> percentualTopEfetuada(@QueryParam("estado") String estado,
+            @QueryParam("cidade") String cidade, @QueryParam("bairro") String bairro) {
+
+        List<PercentualPrevencoes> percentualPrevencoes = null;
+        List<Prevencao> prevencoes = prevencaoDao.todos(null, estado, cidade, bairro);
+        PercentualPrevencoesFactory factory = new PercentualPrevencoesTopFactory(new Comparator<PercentualPrevencoes>() {
+            @Override
+            public int compare(PercentualPrevencoes o1, PercentualPrevencoes o2) {
+                if (o1.getPercentualEfetuada() > o2.getPercentualEfetuada()) {
+                    return 1;
+                } else if (o1.getPercentualEfetuada() < o2.getPercentualEfetuada()) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            }
+
+        });
+        percentualPrevencoes = factory.constroi(prevencoes);
 
         return percentualPrevencoes;
     }
 
     @GET
-    @Path("regioes")
+    @Path("/percentualPorMes")
+    @Produces("application/json")
+    public List<PercentualPrevencoes> percentualPorMes(@QueryParam("estado") String estado,
+            @QueryParam("cidade") String cidade, @QueryParam("bairro") String bairro) {
+
+        List<PercentualPrevencoes> percentualPrevencoes = null;
+        List<Prevencao> prevencoes = prevencaoDao.todos(null, estado, cidade, bairro);
+        PercentualPrevencoesFactory factory = new PercentualPrevencoesPorMesFactory();
+        percentualPrevencoes = factory.constroi(prevencoes);
+
+        return percentualPrevencoes;
+    }
+
+    @GET
+    @Path("/regioes")
     @Produces("application/json")
     public String regioes(@QueryParam("regiao") String regiao) {
         Set<String> locais = prevencaoDao.localizacoes(regiao);

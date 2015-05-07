@@ -1,15 +1,18 @@
 $(function () {
-    var host = 'http://54.94.249.193:8083/central/webresources/';
+    var host = 'http://localhost:8083/central/webresources/';
     $.ajax({
         url: host + 'foco',
         success: function (result) {
             var options;
+            var lis = "";
 
             $.each(result, function (i, obj) {
-                options = options + "<option value='" + obj.codigo + "'> " + obj.nome + "</option>";
+//                options = options + "<option value='" + obj.codigo + "'> " + obj.nome + "</option>";
+                lis = lis + "<li value='" + obj.codigo + "'><a href='#'>" + obj.nome + "</a></li>";
             });
 
             $('#lista-focos').append(options);
+            $('#focos').append(lis);
         }
     });
 
@@ -39,17 +42,22 @@ $(function () {
         filtrar();
     });
 
-    $('.sidebar-nav li').click(function () {
-        $('.sidebar-nav li.active').removeClass('active');
-        $(this).addClass('active');
+    $('.sidebar-nav').on('click', 'li' ,function (e) {
+        $('.sidebar-nav .active').removeClass('active');
+        $(this).find("> a").addClass('active');
+        filtrar();
+//        e.stopPropagation();
+
     });
+    
+ 
 
     function filtrar() {
         var regiao = $('#filtro-regiao').val();
         var endereco = obtemRegiao(regiao);
         var foco = $('#lista-focos').val();
 
-        atualizarGrafico(foco, endereco[0], endereco[1], endereco[2])
+        atualizarGrafico(endereco[0], endereco[1], endereco[2])
     }
 
     function obtemRegiao(regiao) {
