@@ -150,6 +150,7 @@ public class PrevencaoAdapter extends BaseAdapter {
         btnFeito.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                prevAdapter = prevencao;
                 redefineDtPrazo();
                 MaterialDialogYesNo("Efetuar Prevenção", "Deseja marcar essa prevenção como feita?", prevencao);
             }
