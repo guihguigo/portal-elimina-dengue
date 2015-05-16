@@ -1,117 +1,69 @@
 <%-- 
-    Document   : index
-    Created on : 20/01/2015, 22:00:29
+    Document   : infografico.jsp
+    Created on : 16/05/2015, 15:37:04
     Author     : T2S
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!--Import materialize.css-->
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
 
-
-    <title>Infográficos</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="css/simple-sidebar.css" rel="stylesheet">
-
-    <!-- UI-Widget CSS -->
-    <link href="css/jquery-ui.min.css" rel="stylesheet">
-
-    <link href="css/jquery-ui.structure.min.css" rel="stylesheet">
-
-    <link href="css/jquery-ui.theme.min.css" rel="stylesheet">
+        <!-- Custom css-->
+        <link type="text/css" rel="stylesheet" href="css/custom.css">
+        <!--Let browser know website is optimized for mobile-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 
 
 
-    <link href="css/material.min.css" rel="stylesheet">
-    <link href="css/main.css" rel="stylesheet">
-    <link href="css/roboto.min.css" rel="stylesheet">
+        <title>Consultar inforgraficos</title>
+    </head>
+    <body style="background-color: #eeeded">
+        <div class="wrap-container">          
+            <nav>
+                <div class="nav-wrapper">
+                    <form>
+                        <div class="input-field">
+                            <input id="search" type="search" required>
+                            <label for="search"><i class="mdi-action-search"></i></label>
+                            <i class="mdi-navigation-close"></i>
+                        </div>
+                    </form>
+                </div>
+            </nav>
 
-    <body>
+            <div class="navbar-fixed">
+                <nav>
+                    <div class="nav-wrapper blue darken-1">
 
-        <div id="wrapper">
-            <div class="navbar navbar-default navbar-fixed-top navbar-material-blue">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="index.jsp"><b>Aedes</b></a>
-                    </div>
-                    <div class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#">Consultar infográficos?</a></li>
+                        <a href="#!" class="brand-logo">Aedes</a>
+                        <ul class="right hide-on-med-and-down">                        
+                            <li><a href="Inforgrafico.jsp">Consultar infograficos?</a></li>
                         </ul>
-                    </div><!--/.nav-collapse -->
-                </div>
-            </div>
-            <jsp:include page="menu.jsp"></jsp:include>
 
-            <!-- Page Content -->
-            <div id="page-content-wrapper" class="form-group">
-                <div class="container-fluid" id="buscar-região">
-                    <div class="row">
-                        <div class="col-md-5" >
-                            <input id="filtro-regiao" type="text" class="form-control form-control-success floating-label"  placeholder="Filtrar Região" >
-                        </div>
                     </div>
-                </div>
+                </nav>
+            </div>
+
+
+            <div class="graficos container">
+                <h3>Percentual dos últimos 6 mêses</h3>
                 <div class="row">
-                    <div class="col-md-8">
-                        <div style="width: 100%">
-                            <canvas id="canvas" height="270" width="420"></canvas>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div id="legend"></div>
-                        <div class="well">
-                            Look, I'm in a well!
+                    <div class="col s12 m5">
+                        <div class="card-panel white">
+                            <span>I am a very simple card. I am good at containing small bits of information.
+                                I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
+                            </span>
                         </div>
                     </div>
                 </div>
             </div>
-
 
         </div>
-    </div>
-    <!-- /#page-content-wrapper -->
-
-</div>
-<!-- /#wrapper -->
-
-<!-- jQuery -->
-<script src="scripts/jquery-1.11.2.min.js"></script>
-
-<!--JQuery UI-->
-<script src="scripts/jquery-ui.min.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="scripts/bootstrap.min.js"></script>
-<!-- Chart core -->
-<script src="scripts/Chart.min.js"></script>
-<!-- Mustache core -->
-
-<script src="scripts/graficos.js"></script>
-
-<script src="scripts/auto-complete.js"></script>
-
-<script src="scripts/material.min.js"></script>
-<!-- Menu Toggle Script -->
-<script>
-    $("#menu-toggle").click(function (e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-
-
-</script>
-</body>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="js/materialize.min.js"></script>
+    </body>
 </html>

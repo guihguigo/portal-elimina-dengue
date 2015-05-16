@@ -12,11 +12,8 @@
         <title>Aedes - Elimina Dengue</title>
 
         <link href="css/bootstrap.min.css" rel="stylesheet">
-
-        <link href="css/material.min.css" rel="stylesheet">
         <link href="css/main.css" rel="stylesheet">
 
-        <link href="css/roboto.min.css" rel="stylesheet">
     </head>
     <body>
 
@@ -145,7 +142,7 @@
                 <p class="centered">Criado by Pimpolhos - 2015</p>
             </div><!-- /container -->
 
-            <script src="scripts/jquery-1.11.2.min.js"></script>
-            <script src="scripts/bootstrap.min.js"></script>
+            <script src="js/jquery-1.11.2.min.js"></script>
+            
     </body>
 </html>
