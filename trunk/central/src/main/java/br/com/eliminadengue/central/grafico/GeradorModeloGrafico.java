@@ -1,6 +1,6 @@
 package br.com.eliminadengue.central.grafico;
 
-import br.com.eliminadengue.central.model.PercentualPrevencoes;
+import br.com.eliminadengue.central.model.PercentualPrevencao;
 import br.com.eliminadengue.central.model.Prevencao;
 import java.util.List;
 
@@ -16,7 +16,7 @@ public class GeradorModeloGrafico {
     private ModeloGrafico modeloGrafico;
     private Indicador indicador;
 
-    public GeradorModeloGrafico(List<PercentualPrevencoes> lsita, ModeloGrafico modeloGrafico) {
+    public GeradorModeloGrafico(List<PercentualPrevencao> lsita, ModeloGrafico modeloGrafico) {
    
         
         modeloGrafico = new GraficoBarra();

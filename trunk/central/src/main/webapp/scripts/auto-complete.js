@@ -42,15 +42,18 @@ $(function () {
         filtrar();
     });
 
-    $('.sidebar-nav').on('click', 'li' ,function (e) {
+    $('.sidebar-nav').on('click', 'li', function (e) {
         $('.sidebar-nav .active').removeClass('active');
         $(this).find("> a").addClass('active');
+        
+        if (!($(this).hasClass('level1')))
+            e.stopPropagation();
+
         filtrar();
-//        e.stopPropagation();
 
     });
-    
- 
+
+
 
     function filtrar() {
         var regiao = $('#filtro-regiao').val();

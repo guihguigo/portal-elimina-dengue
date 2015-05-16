@@ -6,12 +6,10 @@
 package br.com.eliminadengue.central.rest;
 
 import br.com.eliminadengue.central.model.Foco;
-import br.com.eliminadengue.central.persistence.Dao;
 import static br.com.eliminadengue.central.persistence.EntidadeDao.FOCO;
 import br.com.eliminadengue.central.persistence.FocoDao;
 import br.com.eliminadengue.central.persistence.Perssiste;
 import java.util.Set;
-import java.util.TreeSet;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Path;

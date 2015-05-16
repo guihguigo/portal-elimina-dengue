@@ -12,13 +12,16 @@
         <title>Aedes - Elimina Dengue</title>
 
         <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <link href="css/material.min.css" rel="stylesheet">
         <link href="css/main.css" rel="stylesheet">
-        <link href='http://fonts.googleapis.com/css?family=Lato:300,400,900' rel='stylesheet' type='text/css'>
+
+        <link href="css/roboto.min.css" rel="stylesheet">
     </head>
     <body>
 
         <!-- Fixed navbar -->
-        <div class="navbar navbar-default navbar-fixed-top">
+        <div class="navbar navbar-default navbar-fixed-top navbar-material-blue">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -36,14 +39,15 @@
             </div>
         </div>
 
-        <div id="headerwrap">
+        <div id="headerwrap" class="">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
                         <h1>A prevenção é a única arma contra a dengue<br/>
                             Baixe o aplicativo</h1>
                         <p class="lead">
-                            <a href="#" class="btn btn-default">Baixar</a>
+                            <!--<a href="https://play.google.com/store?hl=pt_BR" class="btn ">Baixar</a>-->
+                            <button id="btn-baixar" class="btn btn-default"><i class="mdi-file-file-download"></i>Baixar</button>
                         </p>				
                     </div><!-- /col-lg-6 -->
                     <div class="col-lg-6">

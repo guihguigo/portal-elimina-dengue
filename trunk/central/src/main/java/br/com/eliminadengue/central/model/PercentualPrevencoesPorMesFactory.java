@@ -24,9 +24,9 @@ public class PercentualPrevencoesPorMesFactory extends PercentualPrevencoesFacto
      * @return PercentualPrevençõesPorMes
      */
     @Override
-    public List<PercentualPrevencoes> constroi(List<Prevencao> todasPrevencoes) {
+    public List<PercentualPrevencao> constroi(List<Prevencao> todasPrevencoes) {
         List<Prevencao> prevencoesPorMes = new ArrayList<>();
-        List<PercentualPrevencoes> percentualPrevecoesPorMes = new ArrayList<>();
+        List<PercentualPrevencao> percentualPrevecoesPorMes = new ArrayList<>();
 
         if (todasPrevencoes.isEmpty()) 
             return percentualPrevecoesPorMes;
@@ -58,7 +58,7 @@ public class PercentualPrevencoesPorMesFactory extends PercentualPrevencoesFacto
             int mes = calendar.get(Calendar.MONTH);
 
             if (mesAtual != mes) {
-                criaGuardaPercentualPorMes(percentualPrevecoesPorMes, prevencoesPorMes, mesAtual, prevencao.getFoco().getNome());
+                criaGuardaPercentualGrupoPrevencoes(percentualPrevecoesPorMes, prevencoesPorMes, mesAtual, prevencao.getFoco().getNome());
                 prevencoesPorMes = new ArrayList<>();
                 mesAtual = mes;
             }
@@ -67,7 +67,7 @@ public class PercentualPrevencoesPorMesFactory extends PercentualPrevencoesFacto
         }
 
         //adiciona o último mês
-        criaGuardaPercentualPorMes(percentualPrevecoesPorMes, prevencoesPorMes, mesAtual, prevencoesPorMes.get(0).getFoco().getNome());
+        criaGuardaPercentualGrupoPrevencoes(percentualPrevecoesPorMes, prevencoesPorMes, mesAtual, prevencoesPorMes.get(0).getFoco().getNome());
 
         return percentualPrevecoesPorMes;
     }
