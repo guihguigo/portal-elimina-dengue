@@ -2,7 +2,7 @@ package br.com.eliminadengue.central.persistence;
 
 import br.com.eliminadengue.central.model.Endereco;
 import br.com.eliminadengue.central.model.Foco;
-import br.com.eliminadengue.central.model.PercentualPrevencoesPorMes;
+import br.com.eliminadengue.central.model.PercentualGrupoPrevencao;
 import br.com.eliminadengue.central.model.Prevencao;
 import static br.com.eliminadengue.central.persistence.EntidadeDao.PREVENCAO;
 import java.sql.Connection;
@@ -185,9 +185,9 @@ public class PrevencaoDao implements Dao<Prevencao> {
         return null;
     }
 
-    public List<PercentualPrevencoesPorMes> parcentualPorMes() {
-        List<PercentualPrevencoesPorMes> prevencoes = new ArrayList<>();
-        PercentualPrevencoesPorMes percentPrevencaoPorMes = null;
+    public List<PercentualGrupoPrevencao> parcentualPorMes() {
+        List<PercentualGrupoPrevencao> prevencoes = new ArrayList<>();
+        PercentualGrupoPrevencao percentPrevencaoPorMes = null;
 
         String sql = "select * from PREVENCAO_PERCENTUAL_MES";
         try {
@@ -200,10 +200,10 @@ public class PrevencaoDao implements Dao<Prevencao> {
                 double percentualAtrasada = result.getDouble("PER_ATRASADA");
                 double percentualEfetuada = result.getDouble("PER_EFETUADA");
 
-                percentPrevencaoPorMes = new PercentualPrevencoesPorMes();
+                percentPrevencaoPorMes = new PercentualGrupoPrevencao();
                 percentPrevencaoPorMes.setMes(mes);
                 percentPrevencaoPorMes.setPercentualAtrasada(percentualAtrasada);
-                percentPrevencaoPorMes.setPercentualEfetuada(percentualEfetuada);
+                percentPrevencaoPorMes.setPercentualEmDia(percentualEfetuada);
                 prevencoes.add(percentPrevencaoPorMes);
             }
         } catch (SQLException ex) {

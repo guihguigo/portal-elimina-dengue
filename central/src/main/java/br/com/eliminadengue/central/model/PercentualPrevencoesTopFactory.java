@@ -17,17 +17,17 @@ import java.util.List;
  */
 public class PercentualPrevencoesTopFactory extends PercentualPrevencoesFactory{
     
-    private Comparator<PercentualPrevencoes> ordenador;
+    private Comparator<PercentualPrevencao> ordenador;
     
-    public PercentualPrevencoesTopFactory(Comparator<PercentualPrevencoes> ordenador) {
+    public PercentualPrevencoesTopFactory(Comparator<PercentualPrevencao> ordenador) {
         this.ordenador = ordenador;
     }
     
     
     @Override
-    public List<PercentualPrevencoes> constroi(List<Prevencao> todasPrevencoes) {
+    public List<PercentualPrevencao> constroi(List<Prevencao> todasPrevencoes) {
         List<Prevencao> prevencoesPorMes = new ArrayList<>();
-        List<PercentualPrevencoes> percentualPrevecoesPorMes = new ArrayList<>();
+        List<PercentualPrevencao> percentualPrevecoesPorMes = new ArrayList<>();
         
         if (todasPrevencoes.isEmpty())
             return percentualPrevecoesPorMes;
@@ -51,7 +51,7 @@ public class PercentualPrevencoesTopFactory extends PercentualPrevencoesFactory{
             if (!nomeAtual.equals(nome)) {
                 
                 
-                criaGuardaPercentualPorMes(percentualPrevecoesPorMes, prevencoesPorMes, mes,nomeAtual);
+                criaGuardaPercentualGrupoPrevencoes(percentualPrevecoesPorMes, prevencoesPorMes, mes,nomeAtual);
                 prevencoesPorMes = new ArrayList<>();
                 nomeAtual = prevencao.getFoco().getNome();
             }
@@ -61,10 +61,12 @@ public class PercentualPrevencoesTopFactory extends PercentualPrevencoesFactory{
         
         
         //adiciona o último mês
-        criaGuardaPercentualPorMes(percentualPrevecoesPorMes, prevencoesPorMes, mes, nomeAtual);
+        criaGuardaPercentualGrupoPrevencoes(percentualPrevecoesPorMes, prevencoesPorMes, 
+                mes, nomeAtual);
         Collections.sort(percentualPrevecoesPorMes, ordenador);
         return percentualPrevecoesPorMes;
 
     }
+   
     
 }

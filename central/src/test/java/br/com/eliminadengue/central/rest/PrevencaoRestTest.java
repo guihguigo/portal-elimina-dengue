@@ -2,7 +2,7 @@ package br.com.eliminadengue.central.rest;
 
 import br.com.eliminadengue.central.model.Endereco;
 import br.com.eliminadengue.central.model.Foco;
-import br.com.eliminadengue.central.model.PercentualPrevencoesPorMes;
+import br.com.eliminadengue.central.model.PercentualGrupoPrevencao;
 import br.com.eliminadengue.central.model.Prevencao;
 import java.net.URI;
 import java.text.ParseException;
@@ -155,7 +155,7 @@ public class PrevencaoRestTest {
 //        List<PercentualPrevencoesPorMes> prevencoes = target.path("/prevencao/percentualPrevencoesPorMes")
 //                .request().accept(MediaType.APPLICATION_JSON)
 //                .get(genericType);
-//        PercentualPrevencoesPorMes prevencao = prevencoes.get(0);
+//        PercentualGrupoPrevencao prevencao = prevencoes.get(0);
 //        
 //        assertEquals(1, prevencao.getMes());
 //        assertTrue(100.00 == prevencao.getPercentAtrasada());

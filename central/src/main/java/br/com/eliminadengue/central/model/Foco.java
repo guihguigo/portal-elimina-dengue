@@ -23,6 +23,10 @@ public class Foco implements Serializable, Comparable<Foco>{
 
     public Foco() {
     }
+    
+    public Foco(int codigo) {
+        this.codigo = codigo;
+    }
 
     public int getCodigo() {
         return codigo;

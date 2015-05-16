@@ -72,12 +72,12 @@ public class GeradorGraficoTest {
         prevencoes.add(prevencao4);
         
         PercentualPrevencoesPorMesFactory factory = new PercentualPrevencoesPorMesFactory();
-        List<PercentualPrevencoes> percentualPrevencoesPorMes = factory.constroi(prevencoes);
+        List<PercentualPrevencao> percentualPrevencoesPorMes = factory.constroi(prevencoes);
         
         
-        for (PercentualPrevencoes percentual : percentualPrevencoesPorMes) {
-            System.out.println("Mês: " + ((PercentualPrevencoesPorMes) percentual).getNomeMes());
-            System.out.println(percentual.getPercentualEfetuada() );
+        for (PercentualPrevencao percentual : percentualPrevencoesPorMes) {
+            System.out.println("Mês: " + ((PercentualGrupoPrevencao) percentual).getNomeMes());
+            System.out.println(percentual.getPercentualEmDia() );
             System.out.println(percentual.getPercentualAtrasada());
         }
 

@@ -8,9 +8,9 @@ package br.com.eliminadengue.central.model;
 import java.util.List;
 
 /**
- *
+ * Factory genérico para construir percentuais de prevenções agendadas
  * @author T2S
  */
 public interface Factory {
-    public abstract List<PercentualPrevencoes> constroi(List<Prevencao> todasPrevencoes);
+    public abstract List<PercentualPrevencao> constroi(List<Prevencao> todasPrevencoes);
 }
