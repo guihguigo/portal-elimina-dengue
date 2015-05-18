@@ -19,21 +19,23 @@ public class EnderecoController {
     public EnderecoController(Context ctx) {
         location = new LocationEndereco(ctx);
         enderecoEntity = new EnderecoEntity(ctx);
+
+        location.getLocation();
+
     }
 
     public double getLatitude() {
-        atualizaCoordenadas();
+        latitude = location.getLatitude();
         return this.latitude;
     }
 
     public double getLongitude() {
-        atualizaCoordenadas();
+        longitude = location.getLongitude();
         return this.longitude;
     }
 
 
     private void atualizaCoordenadas() {
-        location.getLocation();
         if (location.isLocalAtualizado) {
             latitude = location.getLatitude();
             longitude = location.getLongitude();

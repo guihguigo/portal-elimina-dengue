@@ -6,9 +6,14 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 
+import com.github.amlcurran.showcaseview.ShowcaseView;
+
 import view.adapter.AddFocoAdapter;
 
 public class AddFocoActivity extends ListActivity {
+    private final String PREFS = "PrimeiraUtilizacao";
+    private ShowcaseView showcaseView;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,4 +33,6 @@ public class AddFocoActivity extends ListActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+
 }

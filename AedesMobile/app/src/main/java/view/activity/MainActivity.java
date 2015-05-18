@@ -22,7 +22,7 @@ import br.com.aedes.R;
 import view.adapter.NavDrawerListAdapter;
 import view.fragment.AgendaFragment;
 import view.model.NavDrawerItem;
-
+@Deprecated
 public class MainActivity extends Activity {
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;

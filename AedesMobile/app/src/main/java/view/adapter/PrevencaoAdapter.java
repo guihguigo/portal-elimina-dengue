@@ -123,7 +123,7 @@ public class PrevencaoAdapter extends BaseAdapter {
             txtDiaPrevencao.setTypeface(bebas);
             txtDiaPrevencao.setText(String.format("%02d", calPrazo.get(Calendar.DAY_OF_MONTH)));
 
-            //txtHrPrevencao.setTypeface(bebas);
+            txtHrPrevencao.setTypeface(bebas);
             txtHrPrevencao.setText(String.format("%02d", calPrazo.get(Calendar.HOUR_OF_DAY)) + ":" + String.format("%02d", calPrazo.get(Calendar.MINUTE)));
 
 
@@ -152,7 +152,7 @@ public class PrevencaoAdapter extends BaseAdapter {
             public void onClick(View v) {
                 prevAdapter = prevencao;
                 redefineDtPrazo();
-                MaterialDialogYesNo("Efetuar Prevenção", "Deseja marcar essa prevenção como feita?", prevencao);
+                MaterialDialogYesNoEfetuar("Efetuar Prevenção", "Deseja marcar essa prevenção como feita?", prevencao);
             }
         });
 
@@ -160,9 +160,7 @@ public class PrevencaoAdapter extends BaseAdapter {
         btnEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                prevAdapter = prevencao;
-                dtPrazo = prevAdapter.getDataPrazo();
-                setDataPrevencao();
+                MaterialDialogYesNoEditar("Editar Prevenção", "Deseja editar a data ou remover essa prevenção da lista?",prevencao);
             }
         });
 
@@ -301,6 +299,7 @@ public class PrevencaoAdapter extends BaseAdapter {
         Button btnSalvar = (Button) dialog.findViewById(R.id.btnConfirma);
         tpDefineData.setIs24HourView(true);
         tpDefineData.setCurrentHour(Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
+        tpDefineData.setCurrentMinute(Calendar.getInstance().get(Calendar.MINUTE) + 1);
 
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -324,16 +323,48 @@ public class PrevencaoAdapter extends BaseAdapter {
     }
 
 
+    private void MaterialDialogYesNoEditar(String titulo, String pergunta,final Prevencao prevencao){
+        CustomDialog.Builder builder = new CustomDialog.Builder(context, titulo, "Editar");
+        builder.content(pergunta);
+        builder.negativeText("Remover");
+        // builder.typeface(Typeface.createFromAsset(context.getAssets(), "fonts/bebas.otf"));
+        builder.contentTextSize(16);
+        builder.buttonTextSize(18);
+        builder.contentColor("#363835");
+        builder.positiveColor("#2BC230");
+        builder.negativeColor("#D95555");
+
+        CustomDialog customDialog = builder.build();
+
+        customDialog.setClickListener(new CustomDialog.ClickListener() {
+            @Override
+            public void onConfirmClick() {
+                prevAdapter = prevencao;
+                dtPrazo = prevAdapter.getDataPrazo();
+                setDataPrevencao();
+            }
+
+            @Override
+            public void onCancelClick() {
+                pc.removerPrevencao(prevencao);
+                atualizaAdapter();
+            }
+        });
+
+        customDialog.show();
 
 
-    private void MaterialDialogYesNo(String titulo, String pergunta,final Prevencao prevencao){
+    }
+
+
+    private void MaterialDialogYesNoEfetuar(String titulo, String pergunta,final Prevencao prevencao){
         CustomDialog.Builder builder = new CustomDialog.Builder(context, titulo, "Sim");
 
         builder.content(pergunta);
         builder.negativeText("Não");
-        builder.typeface(Typeface.createFromAsset(context.getAssets(), "fonts/bebas.otf"));
-        builder.contentTextSize(18);
-        builder.buttonTextSize(20);
+       // builder.typeface(Typeface.createFromAsset(context.getAssets(), "fonts/bebas.otf"));
+        builder.contentTextSize(16);
+        builder.buttonTextSize(18);
         builder.contentColor("#363835");
         builder.positiveColor("#2BC230");
         builder.negativeColor("#D95555");

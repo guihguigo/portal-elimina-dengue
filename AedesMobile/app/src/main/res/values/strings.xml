@@ -3,10 +3,18 @@
 
     <string name="app_name">Aedes</string>
     <string name="action_settings">Opções</string>
-    
+    <string name="title_add_foco">"Adicionar Novos Focos"</string>
+    <string name="desc_add_foco">"Clicando aqui abrirá a tela para adicionar novos focos que possuem em sua residência."</string>
+
+    <string name="title_ajuda">"Tutorial"</string>
+    <string name="desc_ajuda">"Clique aqui caso deseje exibir esse tutorial futuramente."</string>
+
+    <string name="welcome_add_foco">"Por aqui você será capaz de gerenciar quais focos estarão em sua tela inicial"</string>
+
+
     <!-- Nav Drawer Menu Items -->
     <string-array name="nav_drawer_items">
-        <item >Próximas Prevenções</item>
+        <item>Próximas Prevenções</item>
 
     </string-array>
 
@@ -14,7 +22,7 @@
         <item>@drawable/ic_home</item>
 
     </array>
-    
+
     <!-- Content Description -->
     <string name="desc_list_item_icon">Item Icon</string>
     <string name="title_activity_agenda">AgendaActivity</string>
