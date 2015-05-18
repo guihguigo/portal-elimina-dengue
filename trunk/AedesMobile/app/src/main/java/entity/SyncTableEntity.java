@@ -12,10 +12,11 @@ import utils.DateUtils;
 
 /**
  * Created by Alexandre on 22/02/2015.
+ *
+ * Armazena as informações pendentes para sincronização.
  */
 public class SyncTableEntity extends EliminaDengueDb {
 
-    //  private static final String TABELA_SYNC = "foco";
     private static final String ID_SYNC = "id_sync";
     private static final String ID_FOCO = "id_foco";
     private static final String DATA_CRIACAO = "dt_criacao";
@@ -23,6 +24,7 @@ public class SyncTableEntity extends EliminaDengueDb {
     private static final String DATA_EFETUADA = "dt_efetuada";
     private static final String LATITUDE = "latitude";
     private static final String LONGITUDE = "longitude";
+
 
 
     public SyncTableEntity(Context context) {
@@ -51,6 +53,7 @@ public class SyncTableEntity extends EliminaDengueDb {
         values.put(DATA_CRIACAO, new DateUtils().DateToString(prevencao.getDataCriacao()));
         values.put(DATA_PRAZO, new DateUtils().DateToString(prevencao.getDataPrazo()));
         values.put(DATA_EFETUADA, new DateUtils().DateToString(prevencao.getDataEfetuada()));
+
 
         db.insert(TABELA_SYNC, null, values);
         db.close();

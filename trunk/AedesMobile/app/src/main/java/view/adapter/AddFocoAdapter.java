@@ -245,10 +245,10 @@ public class AddFocoAdapter extends BaseAdapter {
         dialog.setContentView(R.layout.modal_timepicker);
         final TimePicker tpDefineData = (TimePicker) dialog.findViewById(R.id.tpHorarioPrevencao);
 
-
         Button btnSalvar = (Button) dialog.findViewById(R.id.btnConfirma);
         tpDefineData.setIs24HourView(true);
         tpDefineData.setCurrentHour(Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
+        tpDefineData.setCurrentMinute(Calendar.getInstance().get(Calendar.MINUTE) + 1);
 
 
 
@@ -279,9 +279,9 @@ public class AddFocoAdapter extends BaseAdapter {
 
         builder.content(pergunta);
         builder.negativeText("Não");
-        builder.typeface(Typeface.createFromAsset(context.getAssets(), "fonts/bebas.otf"));
-        builder.contentTextSize(18);
-        builder.buttonTextSize(20);
+       // builder.typeface(Typeface.createFromAsset(context.getAssets(), "fonts/bebas.otf"));
+        builder.contentTextSize(16);
+        builder.buttonTextSize(18);
         builder.contentColor("#363835");
         builder.positiveColor("#2BC230");
         builder.negativeColor("#D95555");
@@ -307,5 +307,6 @@ public class AddFocoAdapter extends BaseAdapter {
 
 
     }
+
 
 }

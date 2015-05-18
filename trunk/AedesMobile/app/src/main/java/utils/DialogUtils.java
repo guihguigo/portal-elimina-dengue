@@ -133,9 +133,9 @@ public class DialogUtils {
     public void MaterialDialogOk(String titulo, String corpo) {
         CustomDialog.Builder builder = new CustomDialog.Builder(this.ctx, titulo, "Ok");
         builder.content(corpo);
-        builder.typeface(Typeface.createFromAsset(ctx.getAssets(), "fonts/bebas.otf"));
-        builder.contentTextSize(18);
-        builder.buttonTextSize(20);
+      //  builder.typeface(Typeface.createFromAsset(ctx.getAssets(), "fonts/bebas.otf"));
+        builder.contentTextSize(15);
+        builder.buttonTextSize(16);
         builder.contentColor("#363835");
         builder.positiveColor("#1976D2");
         CustomDialog customDialog = builder.build();

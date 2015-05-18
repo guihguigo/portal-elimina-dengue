@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import br.com.aedes.R;
 import view.model.NavDrawerItem;
 
+@Deprecated
 public class NavDrawerListAdapter extends BaseAdapter {
 	
 	private Context context;

@@ -3,7 +3,6 @@ package service;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -111,7 +110,7 @@ public class LocationEndereco extends Service implements LocationListener {
 
         builder.content("Deseja habilitar a função GPS para que seus dados sejam atualizados?");
         builder.negativeText("Não");
-        builder.typeface(Typeface.createFromAsset(mContext.getAssets(), "fonts/bebas.otf"));
+        //builder.typeface(Typeface.createFromAsset(mContext.getAssets(), "fonts/bebas.otf"));
         builder.contentTextSize(18);
         builder.buttonTextSize(20);
         builder.contentColor("#363835");
