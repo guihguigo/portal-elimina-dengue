@@ -43,6 +43,7 @@ public class PrevencaoController {
 
     public void removerPrevencao(Prevencao prevencao){
         pe.delPrevencao(prevencao.getFoco().getCodigo());
+        alarmService.removerNotificador(prevencao.getFoco().getCodigo());
     }
 
     public void efetuarPrevencao(Prevencao prevencao) {

@@ -96,6 +96,7 @@ public class FocoController {
 
     private void removerAgendamento(int idFoco){
         pe.delPrevencao(idFoco);
+        alarm.removerNotificador(idFoco);
     }
 
     public Date verificaDataPrazo(Date dtPrazo) {
