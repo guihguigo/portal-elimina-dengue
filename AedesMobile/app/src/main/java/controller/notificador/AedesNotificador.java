@@ -33,7 +33,23 @@ public class AedesNotificador {
     }
 
 
+
+
+
     public void criarNotificacao() {
+
+        Intent intent = new Intent("ALARME_DISPARADO");
+
+        intent.putExtra("titulo", titulo);
+        intent.putExtra("mensagem", mensagem);
+        intent.putExtra("icone", icone);
+        PendingIntent p = PendingIntent.getBroadcast(ctx, idFoco, intent, 0);
+        AlarmManager alarme = (AlarmManager) ctx.getSystemService(ctx.ALARM_SERVICE);
+
+        alarme.set(AlarmManager.RTC_WAKEUP, dtPrazo.getTimeInMillis(), p);
+    }
+
+    public void removerNotificacao() {
 
         Intent intent = new Intent("ALARME_DISPARADO");
         intent.putExtra("titulo", titulo);
@@ -46,7 +62,7 @@ public class AedesNotificador {
         PendingIntent p = PendingIntent.getBroadcast(ctx, idFoco, intent, 0);
         AlarmManager alarme = (AlarmManager) ctx.getSystemService(ctx.ALARM_SERVICE);
 
-        alarme.set(AlarmManager.RTC_WAKEUP, dtPrazo.getTimeInMillis(), p);
+        alarme.cancel(p);
     }
 
 

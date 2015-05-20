@@ -34,7 +34,7 @@
         >
         <activity
             android:name="view.activity.AddFocoActivity"
-            android:label="@string/app_name"
+            android:label="@string/title_focos"
             android:screenOrientation="portrait">
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"

@@ -2,6 +2,8 @@ package service;
 
 import android.content.Context;
 
+import java.util.Date;
+
 import bean.Prevencao;
 import controller.notificador.AedesNotificador;
 import entity.PrevencaoEntity;
@@ -62,5 +64,13 @@ public class AedesAlarmService {
                prevencao.getDataPrazo(), prevencao.getFoco().getIcone(), ctx);
        aedesNotif.criarNotificacao();
    }
+
+    public void removerNotificador(int idFoco) {
+        aedesNotif = new AedesNotificador(idFoco,"Prevenção a fazer","",
+                new Date(),0, ctx);
+        aedesNotif.removerNotificacao();
+    }
+
+
 
 }

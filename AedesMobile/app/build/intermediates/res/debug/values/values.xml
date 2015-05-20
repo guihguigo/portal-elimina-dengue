@@ -157,11 +157,13 @@
     <item name="dialog_fixed_height_minor" type="dimen">100%</item>
     <item name="dialog_fixed_width_major" type="dimen">320dp</item>
     <item name="dialog_fixed_width_minor" type="dimen">320dp</item>
+    <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/src/main/res/values/dimens.xml -->
+    <eat-comment/>
+    <dimen name="showcase_radius">34dp</dimen>
+    <dimen name="showcase_radius_inner">36dp</dimen>
+    <dimen name="showcase_radius_outer">68dp</dimen>
     <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/build/intermediates/exploded-aar/com.github.amlcurran.showcaseview/library/5.0.0/res/values/values.xml -->
     <eat-comment/>
-    <dimen name="showcase_radius">94dp</dimen>
-    <dimen name="showcase_radius_inner">96dp</dimen>
-    <dimen name="showcase_radius_outer">128dp</dimen>
     <dimen name="text_padding">24dp</dimen>
     <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
     <eat-comment/>
@@ -208,6 +210,7 @@
     <string name="title_activity_agenda">AgendaActivity</string>
     <string name="title_add_foco">"Adicionar Novos Focos"</string>
     <string name="title_ajuda">"Tutorial"</string>
+    <string name="title_focos">"Adicionar Focos"</string>
     <string name="welcome_add_foco">"Por aqui você será capaz de gerenciar quais focos estarão em sua tela inicial"</string>
     <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/src/main/res/values/styles.xml -->
     <eat-comment/>

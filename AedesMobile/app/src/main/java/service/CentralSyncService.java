@@ -40,7 +40,11 @@ public class CentralSyncService {
     public CentralSyncService(Context context) {
         this.context = context;
         syncEntity = new SyncTableEntity(context);
-        atualizaCentral();
+
+        if (new SyncUtils(context).verificaSync()) {
+            atualizaCentral();
+        }
+
     }
 
     public String objectToJson(Object obj) {
@@ -70,13 +74,15 @@ public class CentralSyncService {
                                             new Thread() {
                                                 @Override
                                                 public void run() {
-                                                     int respostaServer = enviaJsonCentral(objectToJson(prev));
+                                                    int respostaServer = enviaJsonCentral(objectToJson(prev));
                                                     if (respostaServer == 200) {
                                                         syncEntity.removeFirstSync();
                                                     }
                                                 }
                                             }.start();
 
+                                        } else {
+                                            new SyncUtils(context).atualizaSyncStatus(true);
                                         }
                                     }
                                 } catch (Exception ex) {

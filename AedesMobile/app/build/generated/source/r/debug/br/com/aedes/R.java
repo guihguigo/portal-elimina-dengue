@@ -1155,7 +1155,8 @@ containing a value of this type.
         public static final int title_activity_agenda=0x7f0b0014;
         public static final int title_add_foco=0x7f0b0015;
         public static final int title_ajuda=0x7f0b0016;
-        public static final int welcome_add_foco=0x7f0b0017;
+        public static final int title_focos=0x7f0b0017;
+        public static final int welcome_add_foco=0x7f0b0018;
     }
     public static final class style {
         public static final int ActionBar_Solid_Example=0x7f0c0000;

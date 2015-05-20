@@ -1,10 +1,12 @@
 package utils;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Handler;
 import android.provider.Settings;
 
+import java.util.Calendar;
 import java.util.HashMap;
 
 import bean.Endereco;
@@ -22,8 +24,12 @@ public class SyncUtils {
     private Handler handler;
     private Context context;
     private Prevencao prevencao;
+    private SharedPreferences syncPrefs;
+    private final String SYNC_STATUS = "SyncStatus";
+
 
     public SyncUtils(Context context) {
+        syncPrefs = context.getSharedPreferences(SYNC_STATUS, 0);
         enderecoService = new EnderecoService(context);
         this.context = context;
     }
@@ -60,9 +66,9 @@ public class SyncUtils {
 
     }
 
-    private void verificaEndereco(){
-        if(this.enderecoPrevencao != null && new EnderecoController(context).getEndereco() == null){
-            if(this.enderecoPrevencao.getEstado() != null){
+    private void verificaEndereco() {
+        if (this.enderecoPrevencao != null && new EnderecoController(context).getEndereco() == null) {
+            if (this.enderecoPrevencao.getEstado() != null) {
                 dialogConfirmaEndereco();
             }
         }
@@ -70,11 +76,10 @@ public class SyncUtils {
     }
 
 
-
     private void dialogConfirmaEndereco() {
         CustomDialog.Builder builder = new CustomDialog.Builder(this.context, "Confirmar endereço", "Sim");
 
-        builder.content("Você mora em " + enderecoPrevencao.getBairro() +", "
+        builder.content("Você mora em " + enderecoPrevencao.getBairro() + ", "
                 + enderecoPrevencao.getCidade() + "-" + enderecoPrevencao.getEstado() + " ?");
         builder.negativeText("Não");
         builder.typeface(Typeface.createFromAsset(this.context.getAssets(), "fonts/bebas.otf"));
@@ -89,17 +94,30 @@ public class SyncUtils {
         customDialog.setClickListener(new CustomDialog.ClickListener() {
             @Override
             public void onConfirmClick() {
-               new EnderecoController(context).salvarEndereco(enderecoPrevencao);
+                new EnderecoController(context).salvarEndereco(enderecoPrevencao);
             }
 
             @Override
             public void onCancelClick() {
-              //  atualizaEnderecoPrevencao(prevencao);
+                //  atualizaEnderecoPrevencao(prevencao);
             }
         });
 
         customDialog.show();
 
+    }
+
+    public void atualizaSyncStatus(boolean status) {
+        syncPrefs.getBoolean("sincronizado", status);
+    }
+
+
+    public boolean verificaSync() {
+        if (Calendar.getInstance().get(Calendar.DAY_OF_WEEK) == 1) {
+            return syncPrefs.getBoolean("sincronizado", false);
+        }
+        syncPrefs.edit().putBoolean("sincronizado", false).commit();
+        return false;
     }
 
 

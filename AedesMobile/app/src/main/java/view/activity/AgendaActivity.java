@@ -15,8 +15,6 @@ import com.github.amlcurran.showcaseview.ShowcaseView;
 import com.github.amlcurran.showcaseview.targets.ActionItemTarget;
 import com.github.amlcurran.showcaseview.targets.Target;
 
-import java.util.Calendar;
-
 import br.com.aedes.R;
 import service.CentralSyncService;
 import view.adapter.PrevencaoAdapter;
@@ -39,9 +37,8 @@ public class AgendaActivity extends ListActivity implements View.OnClickListener
         menuAjuda = new ActionItemTarget(this, R.id.action_ajuda);
 
         // As sincronizações só irão ocorrer no domingo.
-        if (Calendar.getInstance().get(Calendar.DAY_OF_WEEK) == 1) {
-            sync = new CentralSyncService(this);
-        }
+        sync = new CentralSyncService(this);
+
 
         if (primeiroUso()) {
 
@@ -133,29 +130,30 @@ public class AgendaActivity extends ListActivity implements View.OnClickListener
 
     private void repeteShowCase() {
         showcaseView = new ShowcaseView.Builder(this)
-                .setTarget(Target.NONE)
-                .setStyle(R.style.FirstTutorialLayout)
-                .setOnClickListener(this)
-                .setContentTitle("Olá novamente!")
-                .setContentText("Parece que você tem algumas dúvidas...\n" +
-                        " Vamos lá!")
-                .build();
+        .setTarget(menuAdd)
+        .setContentTitle("Adicionar Novos Focos")
+        .setStyle(R.style.TutorialLayout)
+        .setContentText("Clicando aqui você será capaz de adicionar novos focos que possuem em sua residência")
+        .build();
+        showcaseView.setHideOnTouchOutside(true);
+
 
         showcaseView.setButtonText("Próximo");
 
         repetirTutorial = true;
-        seqTutorial = 0;
+        seqTutorial = 1;
     }
 
     @Override
     public void onClick(View v) {
-        if (primeiroUso() || repetirTutorial) {
+        if (primeiroUso()) {
             switch (seqTutorial) {
                 case 0:
                     showcaseView.setShowcase(menuAdd, true);
                     showcaseView.setContentTitle("Adicionar Novos Focos");
                     showcaseView.setStyle(R.style.TutorialLayout);
                     showcaseView.setButtonText("Próximo");
+                    showcaseView.setHideOnTouchOutside(true);
                     showcaseView.setContentText("Clicando aqui você será capaz de adicionar novos focos que possuem em sua residência");
                     break;
                 case 1:
@@ -163,6 +161,7 @@ public class AgendaActivity extends ListActivity implements View.OnClickListener
                     showcaseView.setContentTitle("Qualquer Dúvida...");
                     showcaseView.setStyle(R.style.TutorialLayout);
                     showcaseView.setButtonText("Ok");
+                    showcaseView.setHideOnTouchOutside(true);
                     showcaseView.setContentText("Clique aqui para exibir esse tutorial futuramente.");
                     break;
                 case 2:

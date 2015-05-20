@@ -517,7 +517,8 @@ int string ok 0x7f0b0013
 int string title_activity_agenda 0x7f0b0014
 int string title_add_foco 0x7f0b0015
 int string title_ajuda 0x7f0b0016
-int string welcome_add_foco 0x7f0b0017
+int string title_focos 0x7f0b0017
+int string welcome_add_foco 0x7f0b0018
 int style ActionBar_Solid_Example 0x7f0c0000
 int style ActionBar_Transparent_Example 0x7f0c0001
 int style ActionBarTabStyle_Example 0x7f0c0002

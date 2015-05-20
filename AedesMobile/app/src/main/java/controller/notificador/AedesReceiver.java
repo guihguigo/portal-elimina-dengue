@@ -13,7 +13,7 @@ import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 
 import br.com.aedes.R;
-import view.activity.MainActivity;
+import view.activity.AgendaActivity;
 
 
 /**
@@ -39,7 +39,7 @@ public class AedesReceiver extends BroadcastReceiver {
         this.mensagem = intent.getStringExtra("mensagem");
         this.icone = intent.getIntExtra("icone", icone);
 
-        gerarNotificacao(context, new Intent(context, MainActivity.class));
+        gerarNotificacao(context, new Intent(context, AgendaActivity.class));
     }
 
 
