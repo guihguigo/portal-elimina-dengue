@@ -17,30 +17,35 @@ import com.github.amlcurran.showcaseview.targets.Target;
 
 import br.com.aedes.R;
 import service.CentralSyncService;
+import utils.SharedPreferencesHelper;
 import view.adapter.PrevencaoAdapter;
 
 public class AgendaActivity extends ListActivity implements View.OnClickListener {
     private CentralSyncService sync;
-    private final String PREFS = "PrimeiraUtilizacao";
+    private PrevencaoAdapter prevAdapter;
+
     private ShowcaseView showcaseView;
     private ActionItemTarget menuAdd, menuAjuda;
     private int seqTutorial = 0;
     private boolean repetirTutorial = false;
+    private SharedPreferences prefs;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.setListAdapter(new PrevencaoAdapter(this));
+        prevAdapter = new PrevencaoAdapter(this);
+        this.setListAdapter(prevAdapter);
         this.getListView().setBackgroundColor(Color.parseColor("#E0E0E0"));
         menuAdd = new ActionItemTarget(this, R.id.action_add_prevencao);
         menuAjuda = new ActionItemTarget(this, R.id.action_ajuda);
+        prefs = getSharedPreferences(SharedPreferencesHelper.PREFS, 0);
 
         // As sincronizações só irão ocorrer no domingo.
         sync = new CentralSyncService(this);
 
 
-        if (primeiroUso()) {
+        if (SharedPreferencesHelper.primeiroUso(prefs, "primeiro_uso")) {
 
             showcaseView = new ShowcaseView.Builder(this)
                     .setTarget(Target.NONE)
@@ -60,6 +65,7 @@ public class AgendaActivity extends ListActivity implements View.OnClickListener
     protected void onResume() {
         super.onResume();
         this.setListAdapter(new PrevencaoAdapter(this));
+        prefs = getSharedPreferences(SharedPreferencesHelper.PREFS, 0);
     }
 
     /*
@@ -82,21 +88,6 @@ public class AgendaActivity extends ListActivity implements View.OnClickListener
     //
 
 
-    private boolean primeiroUso() {
-        SharedPreferences prefs = getSharedPreferences(PREFS, 0);
-        if (prefs.getBoolean("primeiro_uso", true)) {
-            return true;
-        }
-        return false;
-    }
-
-    private void atualizarSharedPreferences() {
-        SharedPreferences prefs = getSharedPreferences(PREFS, 0);
-
-        prefs.edit().putBoolean("primeiro_uso", false).commit();
-    }
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
@@ -111,7 +102,7 @@ public class AgendaActivity extends ListActivity implements View.OnClickListener
                 showAddFoco();
                 return true;
             case R.id.action_ajuda:
-                repeteShowCase();
+                prevAdapter.repeteShowCase(menuAdd);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -128,43 +119,26 @@ public class AgendaActivity extends ListActivity implements View.OnClickListener
 
     }
 
-    private void repeteShowCase() {
-        showcaseView = new ShowcaseView.Builder(this)
-        .setTarget(menuAdd)
-        .setContentTitle("Adicionar Novos Focos")
-        .setStyle(R.style.TutorialLayout)
-        .setContentText("Clicando aqui você será capaz de adicionar novos focos que possuem em sua residência")
-        .build();
-        showcaseView.setHideOnTouchOutside(true);
-
-
-        showcaseView.setButtonText("Próximo");
-
-        repetirTutorial = true;
-        seqTutorial = 1;
-    }
 
     @Override
     public void onClick(View v) {
-        if (primeiroUso()) {
+        if (SharedPreferencesHelper.primeiroUso(prefs, "primeiro_uso")) {
             switch (seqTutorial) {
                 case 0:
                     showcaseView.setShowcase(menuAdd, true);
                     showcaseView.setContentTitle("Adicionar Novos Focos");
                     showcaseView.setStyle(R.style.TutorialLayout);
                     showcaseView.setButtonText("Próximo");
-                    showcaseView.setHideOnTouchOutside(true);
                     showcaseView.setContentText("Clicando aqui você será capaz de adicionar novos focos que possuem em sua residência");
                     break;
-                case 1:
+                case -1:
                     showcaseView.setShowcase(menuAjuda, true);
                     showcaseView.setContentTitle("Qualquer Dúvida...");
                     showcaseView.setStyle(R.style.TutorialLayout);
                     showcaseView.setButtonText("Ok");
-                    showcaseView.setHideOnTouchOutside(true);
                     showcaseView.setContentText("Clique aqui para exibir esse tutorial futuramente.");
                     break;
-                case 2:
+                case 1:
                     if (!repetirTutorial) {
                         showcaseView.setShowcase(Target.NONE, true);
                         showcaseView.setContentTitle("\n\n\nBem-vindo ao Aedes Mobile!");
@@ -177,11 +151,14 @@ public class AgendaActivity extends ListActivity implements View.OnClickListener
                     }
                     break;
                 default:
-                    atualizarSharedPreferences();
+                    SharedPreferencesHelper.atualizarSharedPreferences(prefs, "primeiro_uso", false);
                     showcaseView.hide();
                     break;
             }
+
+
         }
+
         seqTutorial++;
 
     }

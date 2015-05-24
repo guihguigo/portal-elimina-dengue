@@ -286,8 +286,9 @@ public class AddFocoAdapter extends BaseAdapter {
         builder.positiveColor("#2BC230");
         builder.negativeColor("#D95555");
 
-        CustomDialog customDialog = builder.build();
 
+        CustomDialog customDialog = builder.build();
+        customDialog.setCanceledOnTouchOutside(false);
         customDialog.setClickListener(new CustomDialog.ClickListener() {
             @Override
             public void onConfirmClick() {

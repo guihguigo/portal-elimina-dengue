@@ -33,7 +33,7 @@ public final class R {
 		public static final int item_dialog_list = 0x7f03001f;
 	}
 	public static final class style {
-		public static final int LDialogs_Dark = 0x7f0c0009;
-		public static final int LDialogs_Light = 0x7f0c000a;
+		public static final int LDialogs_Dark = 0x7f0c000a;
+		public static final int LDialogs_Light = 0x7f0c000b;
 	}
 }

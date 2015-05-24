@@ -2,6 +2,7 @@ package view.adapter;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Handler;
@@ -20,6 +21,8 @@ import android.widget.TimePicker;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.github.amlcurran.showcaseview.ShowcaseView;
+import com.github.amlcurran.showcaseview.targets.Target;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -33,8 +36,9 @@ import controller.PrevencaoController;
 import uk.me.lewisdeane.ldialogs.CustomDialog;
 import utils.DateUtils;
 import utils.DialogUtils;
+import utils.SharedPreferencesHelper;
 
-public class PrevencaoAdapter extends BaseAdapter {
+public class PrevencaoAdapter extends BaseAdapter implements View.OnClickListener {
     private Context context;
     private List<Prevencao> PrevencaoList;
     Handler handler;
@@ -44,6 +48,10 @@ public class PrevencaoAdapter extends BaseAdapter {
     private Typeface bebas;
     private Prevencao prevAdapter;
     private Date dtPrazo;
+    private SharedPreferences prefs;
+    private ShowcaseView showcaseView;
+    private int seqTutorial = 0;
+    private Target menuAdd = null;
 
 
     public PrevencaoAdapter(Context context) {
@@ -52,8 +60,11 @@ public class PrevencaoAdapter extends BaseAdapter {
         this.PrevencaoList = new ArrayList<Prevencao>();
         popularList();
         redefineDtPrazo();
+        prefs = context.getSharedPreferences(SharedPreferencesHelper.PREFS, 0);
 
         prevAdapter = new Prevencao();
+
+        tutorialPrevencao();
 
     }
 
@@ -112,6 +123,9 @@ public class PrevencaoAdapter extends BaseAdapter {
             view.setEnabled(false);
             view.setOnClickListener(null);
         } else {
+            if (SharedPreferencesHelper.primeiroUso(prefs, "lista_prevencao")) {
+                view.setBackgroundColor(Color.parseColor("#BBDEFB"));
+            }
             Calendar calPrazo = Calendar.getInstance();
             calPrazo.setTime(prevencao.getDataPrazo());
 
@@ -143,6 +157,33 @@ public class PrevencaoAdapter extends BaseAdapter {
                     YoYo.with(Techniques.BounceInLeft).playOn(layoutChildButtons);
                     layoutChildButtons.setVisibility(View.VISIBLE);
                 }
+
+                if (SharedPreferencesHelper.primeiroUso(prefs, "clique_longo")) {
+                    view.setBackgroundColor(Color.parseColor("#E0E0E0"));
+                    showcaseView = new ShowcaseView.Builder((android.app.Activity) context)
+                            .setTarget(Target.NONE)
+                            .setStyle(R.style.TutorialLayoutAdapter)
+                            .setOnClickListener(this)
+                            .setContentTitle("Caso queira remover...")
+                            .setContentText("Selecione o item e segure "
+                                    + " quando quiser \n deletar uma prevenção de sua lista.")
+                            .build();
+
+                    showcaseView.setButtonText("Fim");
+                    seqTutorial = -1;
+
+                    SharedPreferencesHelper.atualizarSharedPreferences(prefs, "clique_longo", false);
+                } else if (seqTutorial == -1) {
+                    showcaseView.hide();
+                }
+            }
+        });
+
+        view.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                MaterialDialogYesNoRemover(prevencao);
+                return false;
             }
         });
 
@@ -160,7 +201,9 @@ public class PrevencaoAdapter extends BaseAdapter {
         btnEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MaterialDialogYesNoEditar("Editar Prevenção", "Deseja editar a data ou remover essa prevenção da lista?",prevencao);
+                prevAdapter = prevencao;
+                dtPrazo = prevAdapter.getDataPrazo();
+                setDataPrevencao();
             }
         });
 
@@ -170,6 +213,7 @@ public class PrevencaoAdapter extends BaseAdapter {
                 new DialogUtils(context).MaterialDialogOk(prevencao.getFoco().getNome(), prevencao.getFoco().getComoLimpar());
             }
         });
+
 
         return view;
     }
@@ -183,7 +227,6 @@ public class PrevencaoAdapter extends BaseAdapter {
         new Thread() {
             @Override
             public void run() {
-
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
@@ -210,7 +253,7 @@ public class PrevencaoAdapter extends BaseAdapter {
         }
     }
 
-    private void redefineDtPrazo(){
+    private void redefineDtPrazo() {
         dtPrazo = new Date();
         dtPrazo.setHours(00);
         dtPrazo.setMinutes(00);
@@ -218,17 +261,7 @@ public class PrevencaoAdapter extends BaseAdapter {
 
     //Mudar a cor da row caso o dia da prevenção seja a data atual, ou esteja atrasada
     private void indicaPrevencaoDia(Date dtPrazo, View view) {
-      /*  if (new Date().getMonth() == dtPrazo.getMonth() && new Date().getDay() == dtPrazo.getDay()) {
-            view.setBackgroundColor(Color.parseColor("#255BFFF5"));
-        } else if ((new Date().getMonth() == dtPrazo.getMonth())) {
-            if (new Date().getDate() < dtPrazo.getDate()) {
-                view.setBackgroundColor(Color.parseColor("#FF9999"));
-            }
-        } else if (new Date().getMonth() > dtPrazo.getMonth()) {
-            view.setBackgroundColor(Color.parseColor("#FF9999"));
-        }*/
-
-        if(!new Date().before(dtPrazo)){
+        if (!new Date().before(dtPrazo)) {
             view.setBackgroundColor(Color.parseColor("#FF9999"));
         }
     }
@@ -245,7 +278,7 @@ public class PrevencaoAdapter extends BaseAdapter {
 
         hideYear(dpDefineData);
 
-         btnSalvar.setOnClickListener(new View.OnClickListener() {
+        btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
@@ -264,7 +297,7 @@ public class PrevencaoAdapter extends BaseAdapter {
         dialog.show();
     }
 
-    private void hideYear(DatePicker dpDefineData){
+    private void hideYear(DatePicker dpDefineData) {
         try {
             Field f[] = dpDefineData.getClass().getDeclaredFields();
             for (Field field : f) {
@@ -275,14 +308,11 @@ public class PrevencaoAdapter extends BaseAdapter {
                     ((View) yearPicker).setEnabled(false);
                 }
             }
-        }
-        catch (SecurityException e) {
+        } catch (SecurityException e) {
             Log.d("ERROR", e.getMessage());
-        }
-        catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             Log.d("ERROR", e.getMessage());
-        }
-        catch (IllegalAccessException e) {
+        } catch (IllegalAccessException e) {
             Log.d("ERROR", e.getMessage());
         }
 
@@ -322,8 +352,8 @@ public class PrevencaoAdapter extends BaseAdapter {
         dialog.show();
     }
 
-
-    private void MaterialDialogYesNoEditar(String titulo, String pergunta,final Prevencao prevencao){
+    @Deprecated
+    private void MaterialDialogYesNoEditar(String titulo, String pergunta, final Prevencao prevencao) {
         CustomDialog.Builder builder = new CustomDialog.Builder(context, titulo, "Editar");
         builder.content(pergunta);
         builder.negativeText("Remover");
@@ -356,13 +386,44 @@ public class PrevencaoAdapter extends BaseAdapter {
 
     }
 
+    private void MaterialDialogYesNoRemover(final Prevencao prevencao) {
+        CustomDialog.Builder builder = new CustomDialog.Builder(context, "Remover prevenção", "Sim");
+        builder.content("Deseja remover essa prevenção de sua lista?");
+        builder.negativeText("Não");
+        // builder.typeface(Typeface.createFromAsset(context.getAssets(), "fonts/bebas.otf"));
+        builder.contentTextSize(16);
+        builder.buttonTextSize(18);
+        builder.contentColor("#363835");
+        builder.positiveColor("#2BC230");
+        builder.negativeColor("#D95555");
 
-    private void MaterialDialogYesNoEfetuar(String titulo, String pergunta,final Prevencao prevencao){
+        CustomDialog customDialog = builder.build();
+
+        customDialog.setClickListener(new CustomDialog.ClickListener() {
+            @Override
+            public void onConfirmClick() {
+                pc.removerPrevencao(prevencao);
+                atualizaAdapter();
+            }
+
+            @Override
+            public void onCancelClick() {
+
+            }
+        });
+
+        customDialog.show();
+
+
+    }
+
+
+    private void MaterialDialogYesNoEfetuar(String titulo, String pergunta, final Prevencao prevencao) {
         CustomDialog.Builder builder = new CustomDialog.Builder(context, titulo, "Sim");
 
         builder.content(pergunta);
         builder.negativeText("Não");
-       // builder.typeface(Typeface.createFromAsset(context.getAssets(), "fonts/bebas.otf"));
+        // builder.typeface(Typeface.createFromAsset(context.getAssets(), "fonts/bebas.otf"));
         builder.contentTextSize(16);
         builder.buttonTextSize(18);
         builder.contentColor("#363835");
@@ -388,5 +449,69 @@ public class PrevencaoAdapter extends BaseAdapter {
         customDialog.show();
 
 
+    }
+
+    public void repeteShowCase(Target menuAdd) {
+        if(getCount() > 0) {
+            SharedPreferencesHelper.atualizarSharedPreferences(prefs, "lista_prevencao", true);
+            SharedPreferencesHelper.atualizarSharedPreferences(prefs, "clique_longo", true);
+        }
+
+        showcaseView = new ShowcaseView.Builder((android.app.Activity) context)
+                .setTarget(menuAdd)
+                .setStyle(R.style.TutorialLayoutAdapter)
+                .setOnClickListener(this)
+                .setContentTitle("Adicionar Novos Focos")
+                .setContentText("Clicando aqui você será capaz de \n" +
+                        "adicionar novos focos que possuem em sua residência")
+                .build();
+        showcaseView.setButtonText("Próximo");
+        showcaseView.setButtonText("Próximo");
+        seqTutorial = -1; // -1 -> Flag para desabilitar showcase ao entrar no evento onClick
+
+
+    }
+
+
+    private void tutorialPrevencao() {
+        if (getCount() > 0) {
+            if (SharedPreferencesHelper.primeiroUso(prefs, "inicia_tutorial")) {
+                showcaseView = new ShowcaseView.Builder((android.app.Activity) context)
+                        .setTarget(Target.NONE)
+                        .setStyle(R.style.FirstTutorialLayout)
+                        .setOnClickListener(this)
+                        .setContentTitle("Parabéns!")
+                        .setContentText("Pelo visto você está motivado!\n" +
+                                " Irei te dar umas dicas nesse início...")
+                        .build();
+                showcaseView.setButtonText("Próximo");
+
+                seqTutorial = -1;
+
+                SharedPreferencesHelper.atualizarSharedPreferences(prefs, "inicia_tutorial", false);
+            }
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (seqTutorial == -1) {
+            showcaseView.hide();
+            seqTutorial = -2;
+        }
+        if (getCount() > 0) {
+            if (SharedPreferencesHelper.primeiroUso(prefs, "lista_prevencao")) {
+                showcaseView = new ShowcaseView.Builder((android.app.Activity) context)
+                        .setTarget(Target.NONE)
+                        .setStyle(R.style.FirstTutorialLayout)
+                        .setOnClickListener(this)
+                        .setContentTitle("Gerenciar prevenção...")
+                        .setContentText("Clicando em sua prevenção você \n poderá ver as opções disponíveis.")
+                        .build();
+                showcaseView.setButtonText("Próximo");
+                SharedPreferencesHelper.atualizarSharedPreferences(prefs, "lista_prevencao", false);
+                seqTutorial = -1;
+            }
+        }
     }
 }

@@ -108,7 +108,7 @@
         android:background="@drawable/btn03"
         android:textSize="20sp"
         android:layout_gravity="right"
-        android:onClick="actionEditar"
+        android:onClick="actionInfo"
         />
     </LinearLayout>
 </LinearLayout><!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/src/main/res/layout/fragment_agenda.xml -->

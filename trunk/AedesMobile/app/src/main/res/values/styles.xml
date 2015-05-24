@@ -82,16 +82,31 @@
      <style name="Titulo" parent="TextAppearance.ShowcaseView.Title">
          <item name="android:textColor">#000</item>
      </style>
+    <style name="TituloLight" parent="TextAppearance.ShowcaseView.Title">
+        <item name="android:textColor">#fff</item>
+    </style>
 
     <style name="TituloApp" parent="TextAppearance.ShowcaseView.Title">
+        <item name="android:textColor">#fff</item>
+    </style>
+
+    <style name="DetailtextApp" parent="TextAppearance.ShowcaseView.Detail">
         <item name="android:textColor">#fff</item>
     </style>
 
     <style name="TutorialLayout" parent="ShowcaseView.Light">
         <item name="sv_backgroundColor">#74095d8f</item>
         <item name="sv_showcaseColor">#03A9F4</item>
-        <item name="sv_titleTextAppearance">@style/Titulo</item>
+        <item name="sv_titleTextAppearance">@style/TituloLight</item>
+        <item name="sv_detailTextAppearance">@style/DetailtextApp</item>
         </style>
+    <style name="TutorialLayoutAdapter" parent="ShowcaseView.Light">
+        <item name="sv_backgroundColor">#b50d4f8f</item>
+        <item name="sv_showcaseColor">#ff03a9f4</item>
+        <item name="sv_titleTextAppearance">@style/TituloLight</item>
+        <item name="sv_detailTextAppearance">@style/DetailtextApp</item>
+    </style>
+
 
 
     <style name="FirstTutorialLayout" parent="ShowcaseView.Light">
