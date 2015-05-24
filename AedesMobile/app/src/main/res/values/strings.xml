@@ -3,7 +3,7 @@
 
     <string name="app_name">Aedes</string>
     <string name="action_settings">Opções</string>
-    <string name="title_focos">"Adicionar Focos"</string>
+    <string name="title_focos">"Focos"</string>
     <string name="title_add_foco">"Adicionar Novos Focos"</string>
     <string name="desc_add_foco">"Clicando aqui abrirá a tela para adicionar novos focos que possuem em sua residência."</string>
 

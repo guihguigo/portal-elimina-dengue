@@ -210,7 +210,7 @@
     <string name="title_activity_agenda">AgendaActivity</string>
     <string name="title_add_foco">"Adicionar Novos Focos"</string>
     <string name="title_ajuda">"Tutorial"</string>
-    <string name="title_focos">"Adicionar Focos"</string>
+    <string name="title_focos">"Focos"</string>
     <string name="welcome_add_foco">"Por aqui você será capaz de gerenciar quais focos estarão em sua tela inicial"</string>
     <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/src/main/res/values/styles.xml -->
     <eat-comment/>
@@ -239,6 +239,9 @@
     </style>
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+    <style name="DetailtextApp" parent="TextAppearance.ShowcaseView.Detail">
+        <item name="android:textColor">#fff</item>
     </style>
     <style name="DropDownListView.Example" parent="@android:style/Widget.Holo.Light.ListView.DropDown">
         <item name="android:listSelector">@drawable/selectable_background_example</item>
@@ -698,11 +701,21 @@
     <style name="TituloApp" parent="TextAppearance.ShowcaseView.Title">
         <item name="android:textColor">#fff</item>
     </style>
+    <style name="TituloLight" parent="TextAppearance.ShowcaseView.Title">
+        <item name="android:textColor">#fff</item>
+    </style>
     <style name="TutorialLayout" parent="ShowcaseView.Light">
         <item name="sv_backgroundColor">#74095d8f</item>
         <item name="sv_showcaseColor">#03A9F4</item>
-        <item name="sv_titleTextAppearance">@style/Titulo</item>
+        <item name="sv_titleTextAppearance">@style/TituloLight</item>
+        <item name="sv_detailTextAppearance">@style/DetailtextApp</item>
         </style>
+    <style name="TutorialLayoutAdapter" parent="ShowcaseView.Light">
+        <item name="sv_backgroundColor">#b50d4f8f</item>
+        <item name="sv_showcaseColor">#ff03a9f4</item>
+        <item name="sv_titleTextAppearance">@style/TituloLight</item>
+        <item name="sv_detailTextAppearance">@style/DetailtextApp</item>
+    </style>
     <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
     <eat-comment/>
     <style name="Widget.AppCompat.ActionBar" parent="Widget.AppCompat.Base.ActionBar"/>

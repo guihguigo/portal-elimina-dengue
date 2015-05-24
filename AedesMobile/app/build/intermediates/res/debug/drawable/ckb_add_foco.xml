@@ -3,7 +3,7 @@
 
     <item android:state_checked="true" android:drawable="@drawable/ic_checked">
     </item>
-    <item android:state_checked="false" android:drawable="@drawable/add">
+    <item android:state_checked="false" android:drawable="@drawable/ic_add_unselected">
 
     </item>
 

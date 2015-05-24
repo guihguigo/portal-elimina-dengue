@@ -51,13 +51,13 @@ public final class R {
 		public static final int ok = 0x7f0b0013;
 	}
 	public static final class style {
-		public static final int ShowcaseButton = 0x7f0c000d;
-		public static final int ShowcaseView = 0x7f0c000e;
-		public static final int ShowcaseView_Light = 0x7f0c000f;
-		public static final int TextAppearance_ShowcaseView_Detail = 0x7f0c0037;
-		public static final int TextAppearance_ShowcaseView_Detail_Light = 0x7f0c0038;
-		public static final int TextAppearance_ShowcaseView_Title = 0x7f0c0039;
-		public static final int TextAppearance_ShowcaseView_Title_Light = 0x7f0c003a;
+		public static final int ShowcaseButton = 0x7f0c000e;
+		public static final int ShowcaseView = 0x7f0c000f;
+		public static final int ShowcaseView_Light = 0x7f0c0010;
+		public static final int TextAppearance_ShowcaseView_Detail = 0x7f0c0038;
+		public static final int TextAppearance_ShowcaseView_Detail_Light = 0x7f0c0039;
+		public static final int TextAppearance_ShowcaseView_Title = 0x7f0c003a;
+		public static final int TextAppearance_ShowcaseView_Title_Light = 0x7f0c003b;
 	}
 	public static final class styleable {
 		public static final int[] CustomTheme = { 0x7f01005a };
