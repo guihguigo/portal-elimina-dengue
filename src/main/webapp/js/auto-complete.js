@@ -96,6 +96,15 @@ $(function () {
 
         return endereco;
     }
+    
+    $('#select_menu_focos').change(function() {
+        var foco = $(this).val();
+        if (foco !== "") {
+            constroiLineChart();
+        } else {
+            constroiBarChart();
+        }
+    });
 
 });
 

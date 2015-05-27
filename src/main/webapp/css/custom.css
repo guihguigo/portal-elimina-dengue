@@ -1,4 +1,86 @@
 .graficos .card-panel {
-    width: 840px;
+    width: 100%;
 }
 
+.brand-logo {
+    margin-left: 20px;
+}
+
+.graficos {
+    margin-top: 50px;
+}
+
+.horizontal_link_menu_item {
+    float:right;
+    margin-right: 10px;
+
+}
+
+.horizontal_link_menu {
+    font-size: 11px;
+    line-height: 14px;
+    margin-top: 0;
+}
+
+/*.menu_focos {
+    width: 30% !important;
+    height: 300px !important;
+}*/
+
+.dropdown-content {
+    height: 310px !important;   
+}
+
+.horizontal_link_menu_first {
+    border-right: 1px solid black;
+    padding-right: 4px;
+}
+
+.horizontal_link_menu_item {
+    padding-left: 4px;
+}
+
+.index {
+    color: #787878;
+    float: left;
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.progress {
+    margin: 0;
+    height: 6px;
+}
+
+#table-top-atrasadas .determinate {
+    background-color: #DB4437 !important;
+}
+
+#table-top-atrasadas .progress {
+    background-color: #FAB6C0;
+}
+#table-top-em-dia .determinate {
+    background-color: #4285F4 !important;
+}
+
+#table-top-em-dia .progress {
+    background-color: #BED1F2;
+}
+
+.outer {
+    position: relative;
+    width: 100%;
+    margin-top: 100px;
+}
+
+.inner {
+    left: 50%;
+    margin-left: -170px; /* A metade de sua largura. */
+    position: absolute;
+    width: 40%; /* O valor que você desejar. */
+    
+}
+
+.logar {
+    margin-top: 20px;
+}
