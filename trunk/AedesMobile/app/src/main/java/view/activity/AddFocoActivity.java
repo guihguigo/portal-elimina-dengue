@@ -1,18 +1,17 @@
 package view.activity;
 
 import android.app.ListActivity;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 
-import com.github.amlcurran.showcaseview.ShowcaseView;
-
+import utils.SharedPreferencesHelper;
 import view.adapter.AddFocoAdapter;
 
 public class AddFocoActivity extends ListActivity {
-    private final String PREFS = "PrimeiraUtilizacao";
-    private ShowcaseView showcaseView;
+    SharedPreferences prefsAgente;
 
 
     @Override
@@ -21,6 +20,10 @@ public class AddFocoActivity extends ListActivity {
         setListAdapter(new AddFocoAdapter(this));
         this.getListView().setBackgroundColor(Color.parseColor("#E0E0E0"));
         getActionBar().setDisplayHomeAsUpEnabled(true);
+
+        // Deslogar Agente ao entrar na tela de Adicionar Focos, usuário comum.
+        prefsAgente = getSharedPreferences(SharedPreferencesHelper.AGENTE, 0);
+        SharedPreferencesHelper.atualizarSharedPreferences(prefsAgente, "idUsuario", null);
     }
 
     @Override

@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context="view.activity.AgenteActivity">
+    <item
+        android:id="@+id/ic_action_deslogar"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom"
+        android:icon="@drawable/ic_action_action_exit_to_app"
+        android:title="Deslogar"
+        />
+</menu>
+<!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/src/main/res/menu/menu_agente.xml -->

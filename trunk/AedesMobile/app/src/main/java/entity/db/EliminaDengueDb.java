@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import entity.EnderecoEntity;
 import entity.FocoEntity;
+import entity.PrevencaoAgenteEntity;
 import entity.PrevencaoEntity;
 import entity.SyncTableEntity;
 
@@ -24,6 +25,8 @@ public class EliminaDengueDb extends SQLiteOpenHelper {
     protected static final String TABELA_PREVENCAO = "prevencao";
     protected static final String TABELA_ENDERECO = "endereco";
     protected static final String TABELA_SYNC = "sync";
+    protected static final String TABELA_PREVENCAO_AGENTE = "prevencao_agente";
+
 
     // Popular FOCOS
     protected String[] DMLFocos;
@@ -42,6 +45,7 @@ public class EliminaDengueDb extends SQLiteOpenHelper {
         db.execSQL(new PrevencaoEntity(this.context).createPrevencaoTable());
         db.execSQL(new SyncTableEntity(this.context).createSyncTable());
         db.execSQL(new EnderecoEntity(this.context).createEnderecoTable());
+        db.execSQL(new PrevencaoAgenteEntity(this.context).createPrevencaoAgenteTable());
 
         //Popular Focos
         this.DMLFocos = new FocoEntity(this.context).DmlFocos();

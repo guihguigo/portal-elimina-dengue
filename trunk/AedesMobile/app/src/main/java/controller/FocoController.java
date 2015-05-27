@@ -67,6 +67,7 @@ public class FocoController {
         return pe.getPrevencao(idFoco).getFoco().getCodigo() != -1;
     }
 
+
     private void salvarAgendamento(Prevencao prevencao) {
         prevencao.setDataCriacao(new Date());
 

@@ -12,7 +12,8 @@ import entity.db.EliminaDengueDb;
  * Created by Alexandre on 04/05/2015.
  */
 public class EnderecoEntity extends EliminaDengueDb {
-
+    private static final String RUA = "rua";
+    private static final String NUMERO = "numero";
     private static final String BAIRRO = "bairro";
     private static final String CIDADE = "cidade";
     private static final String ESTADO = "estado";
@@ -25,17 +26,12 @@ public class EnderecoEntity extends EliminaDengueDb {
 
     public String createEnderecoTable() {
         String CREATE_TABLE_FOCO = "CREATE TABLE " + TABELA_ENDERECO + "("
-                + BAIRRO + " TEXT, " + CIDADE + " TEXT," + ESTADO + " TEXT);";
+                + RUA + " TEXT, " + NUMERO + " TEXT, "
+                + BAIRRO + " TEXT, " + CIDADE + " TEXT,"
+                + ESTADO + " TEXT);";
 
         //db.execSQL(CREATE_TABLE_FOCO);
         return CREATE_TABLE_FOCO;
-    }
-
-    public int getFocoCount() {
-        String selectQuery = "SELECT * FROM " + TABELA_FOCO;
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = db.rawQuery(selectQuery, null);
-        return c.getCount();
     }
 
 
@@ -43,6 +39,8 @@ public class EnderecoEntity extends EliminaDengueDb {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
+        values.put(RUA, endereco.getRua());
+        values.put(NUMERO, endereco.getNumero());
         values.put(BAIRRO, endereco.getBairro());
         values.put(CIDADE, endereco.getCidade());
         values.put(ESTADO, endereco.getEstado());
@@ -63,9 +61,11 @@ public class EnderecoEntity extends EliminaDengueDb {
 
         if (c.getCount() > 0) {
             c.moveToFirst();
+            e.setRua(c.getString(c.getColumnIndex(RUA)));
+            e.setNumero(c.getString(c.getColumnIndex(NUMERO)));
             e.setBairro(c.getString(c.getColumnIndex(BAIRRO)));
-            e.setBairro(c.getString(c.getColumnIndex(CIDADE)));
-            e.setBairro(c.getString(c.getColumnIndex(ESTADO)));
+            e.setCidade(c.getString(c.getColumnIndex(CIDADE)));
+            e.setEstado(c.getString(c.getColumnIndex(ESTADO)));
         }else{
             e = null;
         }
@@ -79,6 +79,8 @@ public class EnderecoEntity extends EliminaDengueDb {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
+        values.put(RUA, endereco.getRua());
+        values.put(NUMERO, endereco.getNumero());
         values.put(BAIRRO, endereco.getBairro());
         values.put(CIDADE, endereco.getCidade());
         values.put(ESTADO, endereco.getEstado());

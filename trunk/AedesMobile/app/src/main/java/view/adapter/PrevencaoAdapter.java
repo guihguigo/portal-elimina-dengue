@@ -36,6 +36,7 @@ import controller.PrevencaoController;
 import uk.me.lewisdeane.ldialogs.CustomDialog;
 import utils.DateUtils;
 import utils.DialogUtils;
+import utils.ScreenSizeHelper;
 import utils.SharedPreferencesHelper;
 
 public class PrevencaoAdapter extends BaseAdapter implements View.OnClickListener {
@@ -43,6 +44,7 @@ public class PrevencaoAdapter extends BaseAdapter implements View.OnClickListene
     private List<Prevencao> PrevencaoList;
     Handler handler;
     private PrevencaoController pc;
+
 
 
     private Typeface bebas;
@@ -53,16 +55,22 @@ public class PrevencaoAdapter extends BaseAdapter implements View.OnClickListene
     private int seqTutorial = 0;
     private Target menuAdd = null;
 
+    private int fonteTitulo, fonteCorpo;
 
     public PrevencaoAdapter(Context context) {
         this.context = context;
         this.pc = new PrevencaoController(context);
-        this.PrevencaoList = new ArrayList<Prevencao>();
+        this.PrevencaoList = new ArrayList<>();
         popularList();
         redefineDtPrazo();
         prefs = context.getSharedPreferences(SharedPreferencesHelper.PREFS, 0);
 
         prevAdapter = new Prevencao();
+
+        fonteTitulo = new ScreenSizeHelper(context).getFonteTitulo();
+        fonteCorpo = new ScreenSizeHelper(context).getFonteCorpo();
+
+
 
         tutorialPrevencao();
 
@@ -123,9 +131,6 @@ public class PrevencaoAdapter extends BaseAdapter implements View.OnClickListene
             view.setEnabled(false);
             view.setOnClickListener(null);
         } else {
-            if (SharedPreferencesHelper.primeiroUso(prefs, "lista_prevencao")) {
-                view.setBackgroundColor(Color.parseColor("#BBDEFB"));
-            }
             Calendar calPrazo = Calendar.getInstance();
             calPrazo.setTime(prevencao.getDataPrazo());
 
@@ -161,12 +166,10 @@ public class PrevencaoAdapter extends BaseAdapter implements View.OnClickListene
                 if (SharedPreferencesHelper.primeiroUso(prefs, "clique_longo")) {
                     view.setBackgroundColor(Color.parseColor("#E0E0E0"));
                     showcaseView = new ShowcaseView.Builder((android.app.Activity) context)
-                            .setTarget(Target.NONE)
-                            .setStyle(R.style.TutorialLayoutAdapter)
+                            .setStyle(R.style.FirstTutorialLayout)
                             .setOnClickListener(this)
                             .setContentTitle("Caso queira remover...")
-                            .setContentText("Selecione o item e segure "
-                                    + " quando quiser \n deletar uma prevenção de sua lista.")
+                            .setContentText("Selecione o item e segure quando quiser\ndeletar uma prevenção de sua lista.")
                             .build();
 
                     showcaseView.setButtonText("Fim");
@@ -217,7 +220,6 @@ public class PrevencaoAdapter extends BaseAdapter implements View.OnClickListene
 
         return view;
     }
-
 
     /**
      * Atualizar view, reprocessando consulta para preenchimento de List
@@ -289,7 +291,7 @@ public class PrevencaoAdapter extends BaseAdapter implements View.OnClickListene
                 if (new DateUtils().validaDtPrazo(dtPrazo)) {
                     setHoraPrevencao();
                 } else {
-                    new DialogUtils(context).MsgToast("O prazo informado é menor que a data atual. \n Favor preencher corretamente.");
+                    new DialogUtils(context).MaterialDialogOk("Agendar Prevenção", "O prazo informado é menor que a data atual. Favor preencher corretamente.");
                 }
 
             }
@@ -343,7 +345,8 @@ public class PrevencaoAdapter extends BaseAdapter implements View.OnClickListene
                     pc.atualizaPrevencao(prevAdapter);
                     atualizaAdapter();
                 } else {
-                    new DialogUtils(context).MsgToast("O prazo informado é menor que a data atual. \n Favor preencher corretamente.");
+                    new DialogUtils(context).MaterialDialogOk("Agendar Prevenção", "O prazo informado é menor que a data atual. Favor preencher corretamente.");
+
                 }
 
 
@@ -358,8 +361,8 @@ public class PrevencaoAdapter extends BaseAdapter implements View.OnClickListene
         builder.content(pergunta);
         builder.negativeText("Remover");
         // builder.typeface(Typeface.createFromAsset(context.getAssets(), "fonts/bebas.otf"));
-        builder.contentTextSize(16);
-        builder.buttonTextSize(18);
+        builder.contentTextSize(new ScreenSizeHelper(context).getFonteCorpo());
+        builder.buttonTextSize(new ScreenSizeHelper(context).getFonteTitulo());
         builder.contentColor("#363835");
         builder.positiveColor("#2BC230");
         builder.negativeColor("#D95555");
@@ -391,8 +394,8 @@ public class PrevencaoAdapter extends BaseAdapter implements View.OnClickListene
         builder.content("Deseja remover essa prevenção de sua lista?");
         builder.negativeText("Não");
         // builder.typeface(Typeface.createFromAsset(context.getAssets(), "fonts/bebas.otf"));
-        builder.contentTextSize(16);
-        builder.buttonTextSize(18);
+        builder.contentTextSize(fonteCorpo);
+        builder.buttonTextSize(fonteTitulo);
         builder.contentColor("#363835");
         builder.positiveColor("#2BC230");
         builder.negativeColor("#D95555");
@@ -424,8 +427,8 @@ public class PrevencaoAdapter extends BaseAdapter implements View.OnClickListene
         builder.content(pergunta);
         builder.negativeText("Não");
         // builder.typeface(Typeface.createFromAsset(context.getAssets(), "fonts/bebas.otf"));
-        builder.contentTextSize(16);
-        builder.buttonTextSize(18);
+        builder.contentTextSize(fonteTitulo);
+        builder.buttonTextSize(fonteCorpo);
         builder.contentColor("#363835");
         builder.positiveColor("#2BC230");
         builder.negativeColor("#D95555");
@@ -452,7 +455,7 @@ public class PrevencaoAdapter extends BaseAdapter implements View.OnClickListene
     }
 
     public void repeteShowCase(Target menuAdd) {
-        if(getCount() > 0) {
+        if (getCount() > 0) {
             SharedPreferencesHelper.atualizarSharedPreferences(prefs, "lista_prevencao", true);
             SharedPreferencesHelper.atualizarSharedPreferences(prefs, "clique_longo", true);
         }
@@ -462,10 +465,9 @@ public class PrevencaoAdapter extends BaseAdapter implements View.OnClickListene
                 .setStyle(R.style.TutorialLayoutAdapter)
                 .setOnClickListener(this)
                 .setContentTitle("Adicionar Novos Focos")
-                .setContentText("Clicando aqui você será capaz de \n" +
+                .setContentText("Clicando aqui você será capaz de " +
                         "adicionar novos focos que possuem em sua residência")
                 .build();
-        showcaseView.setButtonText("Próximo");
         showcaseView.setButtonText("Próximo");
         seqTutorial = -1; // -1 -> Flag para desabilitar showcase ao entrar no evento onClick
 
@@ -482,7 +484,7 @@ public class PrevencaoAdapter extends BaseAdapter implements View.OnClickListene
                         .setOnClickListener(this)
                         .setContentTitle("Parabéns!")
                         .setContentText("Pelo visto você está motivado!\n" +
-                                " Irei te dar umas dicas nesse início...")
+                                "Irei te dar umas dicas nesse início...")
                         .build();
                 showcaseView.setButtonText("Próximo");
 
@@ -506,7 +508,7 @@ public class PrevencaoAdapter extends BaseAdapter implements View.OnClickListene
                         .setStyle(R.style.FirstTutorialLayout)
                         .setOnClickListener(this)
                         .setContentTitle("Gerenciar prevenção...")
-                        .setContentText("Clicando em sua prevenção você \n poderá ver as opções disponíveis.")
+                        .setContentText("Clicando em sua prevenção você\npoderá ver as opções disponíveis.")
                         .build();
                 showcaseView.setButtonText("Próximo");
                 SharedPreferencesHelper.atualizarSharedPreferences(prefs, "lista_prevencao", false);

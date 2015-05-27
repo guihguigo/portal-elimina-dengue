@@ -49,6 +49,16 @@ public class DateUtils {
         return data + " às " + hora;
     }
 
+    public String DateViewFormattedHora(Date date){
+        String hora = "";
+        SimpleDateFormat formatoHora = new SimpleDateFormat(
+                "HH:mm", Locale.getDefault());
+        if(date != null) {
+            hora = formatoHora.format(date);
+        }
+        return hora;
+    }
+
 
     public boolean validaDtPrazo(Date dt){
         Calendar dtAtual = Calendar.getInstance();
