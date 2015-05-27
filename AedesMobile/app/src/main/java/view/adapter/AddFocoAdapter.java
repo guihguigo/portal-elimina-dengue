@@ -32,6 +32,7 @@ import controller.FocoController;
 import uk.me.lewisdeane.ldialogs.CustomDialog;
 import utils.DateUtils;
 import utils.DialogUtils;
+import utils.ScreenSizeHelper;
 
 public class AddFocoAdapter extends BaseAdapter {
     private Context context;
@@ -42,15 +43,13 @@ public class AddFocoAdapter extends BaseAdapter {
     private Typeface bebas;
     private Prevencao prevencao;
     private Date dtPrazo;
+    private int fonteTitulo, fonteCorpo;
 
-
-    private List<Integer> idFocos;
 
     public AddFocoAdapter(Context context) {
         this.context = context;
         this.fc = new FocoController(context);
         this.FocosList = new ArrayList<Foco>();
-        this.idFocos = new ArrayList<Integer>();
         popularList();
 
 
@@ -58,6 +57,10 @@ public class AddFocoAdapter extends BaseAdapter {
         dtPrazo = new Date();
         dtPrazo.setHours(00);
         dtPrazo.setMinutes(00);
+
+
+        fonteTitulo = new ScreenSizeHelper(context).getFonteTitulo();
+        fonteCorpo = new ScreenSizeHelper(context).getFonteCorpo();
     }
 
     @Override
@@ -207,7 +210,7 @@ public class AddFocoAdapter extends BaseAdapter {
                 if (new DateUtils().validaDtPrazo(dtPrazo)) {
                     setHoraPrevencao();
                 } else {
-                    new DialogUtils(context).MsgToast("O prazo informado é menor que a data atual. \n Favor preencher corretamente.");
+                    new DialogUtils(context).MaterialDialogOk("Agendar Prevenção","O prazo informado é menor que a data atual. Favor preencher corretamente.");
                 }
                 //new PrevencaoAdapter(context).atualizaAdapter();
 
@@ -264,7 +267,7 @@ public class AddFocoAdapter extends BaseAdapter {
                     fc.atualizaAgendamento(prevencao);
                     atualizaAdapter();
                 } else {
-                    new DialogUtils(context).MsgToast("O prazo informado é menor que a data atual. \n Favor preencher corretamente.");
+                    new DialogUtils(context).MaterialDialogOk("Agendar Prevenção","O prazo informado é menor que a data atual. Favor preencher corretamente.");
                 }
 
 
@@ -280,8 +283,8 @@ public class AddFocoAdapter extends BaseAdapter {
         builder.content(pergunta);
         builder.negativeText("Não");
        // builder.typeface(Typeface.createFromAsset(context.getAssets(), "fonts/bebas.otf"));
-        builder.contentTextSize(16);
-        builder.buttonTextSize(18);
+        builder.contentTextSize(fonteCorpo);
+        builder.buttonTextSize(fonteTitulo);
         builder.contentColor("#363835");
         builder.positiveColor("#2BC230");
         builder.negativeColor("#D95555");

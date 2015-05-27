@@ -88,13 +88,12 @@ public class CentralSyncService {
                                 } catch (Exception ex) {
                                     Log.d("CentralSyncService", ex.getMessage());
                                 }
-
                             }
                         });
 
 
                     }
-                }, 0, 180L, TimeUnit.SECONDS);
+                }, 0, 3600L, TimeUnit.SECONDS);
 
     }
 

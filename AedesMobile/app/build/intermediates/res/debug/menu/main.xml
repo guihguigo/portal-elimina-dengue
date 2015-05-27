@@ -1,26 +1,25 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/action_add_prevencao"
+        android:icon="@drawable/ic_action_av_my_library_add"
         android:orderInCategory="100"
         android:showAsAction="ifRoom"
-        android:icon="@drawable/ic_action_av_my_library_add"
-        android:title="Adicionar Prevenção"
-        />
+        android:title="Adicionar Prevenção" />
+
+    <item
+        android:id="@+id/action_login"
+        android:icon="@drawable/ic_action_action_account_box"
+        android:orderInCategory="101"
+        android:showAsAction="ifRoom"
+        android:title="Login" />
+
     <item
         android:id="@+id/action_ajuda"
-        android:orderInCategory="102"
-        android:showAsAction="never"
         android:icon="@drawable/ic_action_action_help"
-        android:title="Ajuda"
-        />
-    <item
-    android:id="@+id/action_login"
-    android:orderInCategory="101"
-    android:showAsAction="never"
-    android:icon="@drawable/ic_action_action_account_box"
-    android:title="Login"
-    />
+        android:orderInCategory="102"
+        android:showAsAction="ifRoom"
+        android:title="Ajuda" />
 
 
 </menu>

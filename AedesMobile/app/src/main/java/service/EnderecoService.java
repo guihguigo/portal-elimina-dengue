@@ -77,11 +77,15 @@ public class EnderecoService {
                                 endereco.setBairro(resultEndereco.getJSONObject(2).getString("short_name"));
                                 endereco.setCidade(resultEndereco.getJSONObject(3).getString("short_name"));
                                 endereco.setEstado(resultEndereco.getJSONObject(5).getString("long_name"));
-                            }
+                                endereco.setRua(resultEndereco.getJSONObject(1).getString("long_name"));
+                                endereco.setNumero(resultEndereco.getJSONObject(0).getString("long_name"));                            }
 
                         } catch (Exception ex) {
                             Log.d("Exception", ex.getMessage());
                         } finally {
+
+                            endereco.setLatitude(lat);
+                            endereco.setLongitude(lng);
                             bEnderecoAtualizado = true;
                         }
 
@@ -118,11 +122,15 @@ public class EnderecoService {
                                 endereco.setBairro(resultEndereco.getJSONObject(2).getString("short_name"));
                                 endereco.setCidade(resultEndereco.getJSONObject(3).getString("short_name"));
                                 endereco.setEstado(resultEndereco.getJSONObject(5).getString("long_name"));
+                                endereco.setRua(resultEndereco.getJSONObject(1).getString("long_name"));
+                                endereco.setNumero(resultEndereco.getJSONObject(0).getString("long_name"));
                             }
                         } catch (Exception ex) {
                             Log.d("Exception", ex.getMessage());
                             endereco = new Endereco();
                         } finally {
+                            endereco.setLatitude(latitude);
+                            endereco.setLongitude(longitude);
                             bEnderecoAtualizado = true;
                         }
                     }

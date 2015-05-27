@@ -63,7 +63,6 @@ public class SyncUtils {
             this.enderecoPrevencao = enderecoService
                     .getEndereco(prevencao.getLatitude(), prevencao.getLongitude());
         }
-
     }
 
     private void verificaEndereco() {
@@ -114,7 +113,7 @@ public class SyncUtils {
 
     public boolean verificaSync() {
         if (Calendar.getInstance().get(Calendar.DAY_OF_WEEK) == 1) {
-            return syncPrefs.getBoolean("sincronizado", false);
+            return !syncPrefs.getBoolean("sincronizado", false);
         }
         syncPrefs.edit().putBoolean("sincronizado", false).commit();
         return false;

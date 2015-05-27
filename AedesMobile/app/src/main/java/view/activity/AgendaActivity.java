@@ -28,7 +28,7 @@ public class AgendaActivity extends ListActivity implements View.OnClickListener
     private ActionItemTarget menuAdd, menuAjuda;
     private int seqTutorial = 0;
     private boolean repetirTutorial = false;
-    private SharedPreferences prefs;
+    private SharedPreferences prefs, prefsAgente;
 
 
     @Override
@@ -37,11 +37,16 @@ public class AgendaActivity extends ListActivity implements View.OnClickListener
         prevAdapter = new PrevencaoAdapter(this);
         this.setListAdapter(prevAdapter);
         this.getListView().setBackgroundColor(Color.parseColor("#E0E0E0"));
+        prefsAgente = getSharedPreferences(SharedPreferencesHelper.AGENTE, 0);
+
+        if(SharedPreferencesHelper.getString(prefsAgente,"idUsuario") != null){
+            showAgenteActivity();
+        }
+
         menuAdd = new ActionItemTarget(this, R.id.action_add_prevencao);
         menuAjuda = new ActionItemTarget(this, R.id.action_ajuda);
         prefs = getSharedPreferences(SharedPreferencesHelper.PREFS, 0);
 
-        // As sincronizações só irão ocorrer no domingo.
         sync = new CentralSyncService(this);
 
 
@@ -53,7 +58,7 @@ public class AgendaActivity extends ListActivity implements View.OnClickListener
                     .setOnClickListener(this)
                     .setContentTitle("Olá!")
                     .setContentText("Parece que você é novo por aqui...\n" +
-                            " Mas não se preocupe, \n pois o uso do app é bem simples!")
+                            "Mas não se preocupe,\npois o uso do app é bem simples!")
                     .build();
 
             showcaseView.setButtonText("Próximo");
@@ -66,6 +71,16 @@ public class AgendaActivity extends ListActivity implements View.OnClickListener
         super.onResume();
         this.setListAdapter(new PrevencaoAdapter(this));
         prefs = getSharedPreferences(SharedPreferencesHelper.PREFS, 0);
+        prefsAgente = getSharedPreferences(SharedPreferencesHelper.AGENTE, 0);
+    }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+        if(repetirTutorial) {
+            SharedPreferencesHelper.atualizarSharedPreferences(prefs, "lista_prevencao", false);
+            SharedPreferencesHelper.atualizarSharedPreferences(prefs, "clique_longo", false);
+        }
     }
 
     /*
@@ -103,6 +118,10 @@ public class AgendaActivity extends ListActivity implements View.OnClickListener
                 return true;
             case R.id.action_ajuda:
                 prevAdapter.repeteShowCase(menuAdd);
+                repetirTutorial = true;
+                return true;
+            case R.id.action_login:
+                showAgenteActivity();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -116,8 +135,17 @@ public class AgendaActivity extends ListActivity implements View.OnClickListener
     private void showAddFoco() {
         Intent i = new Intent(AgendaActivity.this, AddFocoActivity.class);
         this.startActivity(i);
-
     }
+
+    /**
+     * Chamar activity com lista para gerenciamento do Agente
+     */
+    private void showAgenteActivity() {
+        SharedPreferencesHelper.atualizarSharedPreferences(prefsAgente,"idUsuario","alexandre");
+        Intent i = new Intent(AgendaActivity.this, AgenteActivity.class);
+        this.startActivity(i);
+    }
+
 
 
     @Override
@@ -143,7 +171,7 @@ public class AgendaActivity extends ListActivity implements View.OnClickListener
                         showcaseView.setShowcase(Target.NONE, true);
                         showcaseView.setContentTitle("\n\n\nBem-vindo ao Aedes Mobile!");
                         showcaseView.setStyle(R.style.TutorialLayout);
-                        showcaseView.setContentText("E obrigado por se juntar a nós \n nessa batalha contra a dengue.");
+                        showcaseView.setContentText("E obrigado por se juntar a nós\nnessa batalha contra a dengue.");
                         showcaseView.setButtonText("Fim");
                     } else {
                         showcaseView.hide();

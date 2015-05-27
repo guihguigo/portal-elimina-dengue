@@ -1,15 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/src/main/res/values/strings.xml -->
-    <eat-comment/>
-    <array name="nav_drawer_icons">
-        <item>@drawable/ic_home</item>
-
-    </array>
-    <string-array name="nav_drawer_items">
-        <item>Próximas Prevenções</item>
-
-    </string-array>
     <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
     <eat-comment/>
     <attr format="reference" name="actionBarDivider"/>
@@ -93,6 +83,12 @@
     <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/src/main/res/values/color.xml -->
     <eat-comment/>
     <color name="action_bar_color">#2196F3</color>
+    <color name="add_normal">#00C853</color>
+    <color name="add_pressed">#64DD17</color>
+    <color name="add_ripple">#4CAF50</color>
+    <color name="atualiza_normal">#0091EA</color>
+    <color name="atualiza_pressed">#00E5FF</color>
+    <color name="atualiza_ripple">#006064</color>
     <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="background_color">#E0E0E0</color>
@@ -104,6 +100,7 @@
     <color name="list_background_pressed">#992416</color>
     <color name="list_divider">#272727</color>
     <color name="list_item_title">#fff</color>
+    <color name="progress_bg">#b50d4f8f</color>
     <declare-styleable name="ActionBar"><attr name="navigationMode"><enum name="normal" value="0"/><enum name="listMode" value="1"/><enum name="tabMode" value="2"/></attr><attr name="displayOptions"><flag name="useLogo" value="0x1"/><flag name="showHome" value="0x2"/><flag name="homeAsUp" value="0x4"/><flag name="showTitle" value="0x8"/><flag name="showCustom" value="0x10"/><flag name="disableHome" value="0x20"/></attr><attr name="title"/><attr format="string" name="subtitle"/><attr format="reference" name="titleTextStyle"/><attr format="reference" name="subtitleTextStyle"/><attr format="reference" name="icon"/><attr format="reference" name="logo"/><attr format="reference" name="divider"/><attr format="reference" name="background"/><attr format="reference|color" name="backgroundStacked"/><attr format="reference|color" name="backgroundSplit"/><attr format="reference" name="customNavigationLayout"/><attr name="height"/><attr format="reference" name="homeLayout"/><attr format="reference" name="progressBarStyle"/><attr format="reference" name="indeterminateProgressStyle"/><attr format="dimension" name="progressBarPadding"/><attr format="dimension" name="itemPadding"/></declare-styleable>
     <declare-styleable name="ActionBarLayout"><attr name="android:layout_gravity"/></declare-styleable>
     <declare-styleable name="ActionBarWindow"><attr format="boolean" name="windowActionBar"/><attr format="boolean" name="windowActionBarOverlay"/><attr format="boolean" name="windowSplitActionBar"/><attr format="dimension|fraction" name="windowFixedWidthMajor"/><attr format="dimension|fraction" name="windowFixedHeightMinor"/><attr format="dimension|fraction" name="windowFixedWidthMinor"/><attr format="dimension|fraction" name="windowFixedHeightMajor"/></declare-styleable>
@@ -113,6 +110,8 @@
     <declare-styleable name="ActivityChooserView"><attr format="string" name="initialActivityCount"/><attr format="reference" name="expandActivityOverflowButtonDrawable"/></declare-styleable>
     <declare-styleable name="CompatTextView"><attr format="reference|boolean" name="textAllCaps"/></declare-styleable>
     <declare-styleable name="CustomTheme"><attr format="reference" name="showcaseViewStyle"/></declare-styleable>
+    <declare-styleable name="FloatingActionButton"><attr format="color" name="fab_colorNormal"/><attr format="color" name="fab_colorPressed"/><attr format="color" name="fab_colorRipple"/><attr format="boolean" name="fab_showShadow"/><attr format="color" name="fab_shadowColor"/><attr format="dimension" name="fab_shadowRadius"/><attr format="dimension" name="fab_shadowXOffset"/><attr format="dimension" name="fab_shadowYOffset"/><attr format="enum" name="fab_size"><enum name="normal" value="0"/><enum name="mini" value="1"/></attr><attr format="reference" name="fab_showAnimation"/><attr format="reference" name="fab_hideAnimation"/><attr format="string" name="fab_label"/><attr format="dimension" name="fab_elevationCompat"/><attr format="color" name="fab_progress_color"/><attr format="color" name="fab_progress_backgroundColor"/><attr format="boolean" name="fab_progress_indeterminate"/><attr format="integer" name="fab_progress_max"/><attr format="integer" name="fab_progress"/><attr format="boolean" name="fab_progress_showBackground"/></declare-styleable>
+    <declare-styleable name="FloatingActionMenu"><attr format="boolean" name="menu_showShadow"/><attr format="dimension" name="menu_buttonSpacing"/><attr format="dimension" name="menu_labels_margin"/><attr format="reference" name="menu_labels_showAnimation"/><attr format="reference" name="menu_labels_hideAnimation"/><attr format="dimension" name="menu_labels_paddingTop"/><attr format="dimension" name="menu_labels_paddingLeft"/><attr format="dimension" name="menu_labels_paddingRight"/><attr format="dimension" name="menu_labels_paddingBottom"/><attr format="dimension" name="menu_labels_padding"/><attr format="color" name="menu_labels_textColor"/><attr format="dimension" name="menu_labels_textSize"/><attr format="dimension" name="menu_labels_cornerRadius"/><attr format="boolean" name="menu_labels_showShadow"/><attr format="color" name="menu_labels_colorNormal"/><attr format="color" name="menu_labels_colorPressed"/><attr format="color" name="menu_labels_colorRipple"/><attr format="enum" name="menu_labels_position"><enum name="left" value="0"/><enum name="right" value="1"/></attr><attr format="reference" name="menu_icon"/><attr format="integer" name="menu_animationDelayPerItem"/><attr format="reference" name="menu_buttonToggleAnimation"/><attr format="boolean" name="menu_labels_singleLine"/><attr format="enum" name="menu_labels_ellipsize"><enum name="none" value="0"/><enum name="start" value="1"/><enum name="middle" value="2"/><enum name="end" value="3"/><enum name="marquee" value="4"/></attr><attr format="integer" name="menu_labels_maxLines"/><attr format="enum" name="menu_fab_size"><enum name="normal" value="0"/><enum name="mini" value="1"/></attr><attr format="reference" name="menu_labels_style"/><attr format="color" name="menu_shadowColor"/><attr format="dimension" name="menu_shadowRadius"/><attr format="dimension" name="menu_shadowXOffset"/><attr format="dimension" name="menu_shadowYOffset"/><attr format="color" name="menu_colorNormal"/><attr format="color" name="menu_colorPressed"/><attr format="color" name="menu_colorRipple"/><attr format="enum" name="menu_openDirection"><enum name="up" value="0"/><enum name="down" value="1"/></attr><attr format="color" name="menu_backgroundColor"/></declare-styleable>
     <declare-styleable name="LinearLayoutICS"><attr name="divider"/><attr name="showDividers"><flag name="none" value="0"/><flag name="beginning" value="1"/><flag name="middle" value="2"/><flag name="end" value="4"/></attr><attr format="dimension" name="dividerPadding"/></declare-styleable>
     <declare-styleable name="MenuGroup"><attr name="android:id"/><attr name="android:menuCategory"/><attr name="android:orderInCategory"/><attr name="android:checkableBehavior"/><attr name="android:visible"/><attr name="android:enabled"/></declare-styleable>
     <declare-styleable name="MenuItem"><attr name="android:id"/><attr name="android:menuCategory"/><attr name="android:orderInCategory"/><attr name="android:title"/><attr name="android:titleCondensed"/><attr name="android:icon"/><attr name="android:alphabeticShortcut"/><attr name="android:numericShortcut"/><attr name="android:checkable"/><attr name="android:checked"/><attr name="android:visible"/><attr name="android:enabled"/><attr name="android:onClick"/><attr name="showAsAction"><flag name="never" value="0"/><flag name="ifRoom" value="1"/><flag name="always" value="2"/><flag name="withText" value="4"/><flag name="collapseActionView" value="8"/></attr><attr format="reference" name="actionLayout"/><attr format="string" name="actionViewClass"/><attr format="string" name="actionProviderClass"/></declare-styleable>
@@ -157,6 +156,11 @@
     <item name="dialog_fixed_height_minor" type="dimen">100%</item>
     <item name="dialog_fixed_width_major" type="dimen">320dp</item>
     <item name="dialog_fixed_width_minor" type="dimen">320dp</item>
+    <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/build/intermediates/exploded-aar/com.github.clans/fab/1.5.0/res/values/values.xml -->
+    <eat-comment/>
+    <dimen name="fab_size_mini">40dp</dimen>
+    <dimen name="fab_size_normal">56dp</dimen>
+    <dimen name="labels_text_size">14sp</dimen>
     <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/src/main/res/values/dimens.xml -->
     <eat-comment/>
     <dimen name="showcase_radius">34dp</dimen>
@@ -170,6 +174,11 @@
     <item name="action_bar_activity_content" type="id"/>
     <item name="action_menu_divider" type="id"/>
     <item name="action_menu_presenter" type="id"/>
+    <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/build/intermediates/exploded-aar/com.github.clans/fab/1.5.0/res/values/values.xml -->
+    <eat-comment/>
+    <item name="fab_label" type="id"/>
+    <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
+    <eat-comment/>
     <item name="home" type="id"/>
     <item name="progress_circular" type="id"/>
     <item name="progress_horizontal" type="id"/>
@@ -200,17 +209,19 @@
     <string name="app_name">Aedes</string>
     <string name="desc_add_foco">"Clicando aqui abrirá a tela para adicionar novos focos que possuem em sua residência."</string>
     <string name="desc_ajuda">"Clique aqui caso deseje exibir esse tutorial futuramente."</string>
-    <string name="desc_list_item_icon">Item Icon</string>
-    <string name="hello_world">Hello world!</string>
     <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/build/intermediates/exploded-aar/com.github.amlcurran.showcaseview/library/5.0.0/res/values/values.xml -->
     <eat-comment/>
     <string name="ok">OK</string>
     <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/src/main/res/values/strings.xml -->
     <eat-comment/>
-    <string name="title_activity_agenda">AgendaActivity</string>
+    <string name="title_activity_agenda">Agenda</string>
+    <string name="title_activity_agente">Não Sincronizados</string>
+    <string name="title_activity_agente_add_foco">Focos</string>
+    <string name="title_activity_agente_endereco">Nova Prevenção</string>
     <string name="title_add_foco">"Adicionar Novos Focos"</string>
     <string name="title_ajuda">"Tutorial"</string>
     <string name="title_focos">"Focos"</string>
+    <string name="tut_excluir_prevencao">Selecione o item e segure quando quiser  deletar uma prevenção de sua lista.</string>
     <string name="welcome_add_foco">"Por aqui você será capaz de gerenciar quais focos estarão em sua tela inicial"</string>
     <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/src/main/res/values/styles.xml -->
     <eat-comment/>
@@ -242,6 +253,8 @@
     </style>
     <style name="DetailtextApp" parent="TextAppearance.ShowcaseView.Detail">
         <item name="android:textColor">#fff</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_gravity">center</item>
     </style>
     <style name="DropDownListView.Example" parent="@android:style/Widget.Holo.Light.ListView.DropDown">
         <item name="android:listSelector">@drawable/selectable_background_example</item>
@@ -252,9 +265,10 @@
         <item name="android:dropDownSelector">@drawable/selectable_background_example</item>
     </style>
     <style name="FirstTutorialLayout" parent="ShowcaseView.Light">
-        <item name="sv_backgroundColor">#ff6bc4c7</item>
-        <item name="sv_showcaseColor">#03A9F4</item>
-        <item name="sv_titleTextAppearance">@style/Titulo</item>
+        <item name="sv_backgroundColor">#ff0173c6</item>
+        <item name="sv_showcaseColor">#ff03a9f4</item>
+        <item name="sv_titleTextAppearance">@style/TituloLight</item>
+        <item name="sv_detailTextAppearance">@style/DetailtextApp</item>
     </style>
     <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/build/intermediates/exploded-aar/com.github.lewisjdeane/L-Dialogs/8c1419e7c6/res/values/values.xml -->
     <eat-comment/>
@@ -698,15 +712,12 @@
     <style name="Titulo" parent="TextAppearance.ShowcaseView.Title">
          <item name="android:textColor">#000</item>
      </style>
-    <style name="TituloApp" parent="TextAppearance.ShowcaseView.Title">
-        <item name="android:textColor">#fff</item>
-    </style>
     <style name="TituloLight" parent="TextAppearance.ShowcaseView.Title">
         <item name="android:textColor">#fff</item>
     </style>
     <style name="TutorialLayout" parent="ShowcaseView.Light">
-        <item name="sv_backgroundColor">#74095d8f</item>
-        <item name="sv_showcaseColor">#03A9F4</item>
+        <item name="sv_backgroundColor">#b50d4f8f</item>
+        <item name="sv_showcaseColor">#ff03a9f4</item>
         <item name="sv_titleTextAppearance">@style/TituloLight</item>
         <item name="sv_detailTextAppearance">@style/DetailtextApp</item>
         </style>

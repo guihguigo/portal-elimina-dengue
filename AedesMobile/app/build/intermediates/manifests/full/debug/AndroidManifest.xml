@@ -8,13 +8,9 @@
         android:minSdkVersion="14"
         android:targetSdkVersion="17" />
 
-    <android:uses-permission
-        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="18" />
+    <android:uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <android:uses-permission
-        android:name="android.permission.READ_EXTERNAL_STORAGE"
-        android:maxSdkVersion="18" />
+    <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -55,6 +51,21 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
+
+        <activity
+            android:name="view.activity.AgenteActivity"
+            android:label="@string/title_activity_agente"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="view.activity.AgenteEnderecoActivity"
+            android:label="@string/title_activity_agente_endereco"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="view.activity.AgenteAddFocoActivity"
+            android:label="@string/title_activity_agente_add_foco" >
+        </activity>
     </application>
 
 </manifest>

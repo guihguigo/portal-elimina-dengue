@@ -12,22 +12,12 @@
 
     <string name="welcome_add_foco">"Por aqui você será capaz de gerenciar quais focos estarão em sua tela inicial"</string>
 
+    <string name="title_activity_agenda">Agenda</string>
 
-    <!-- Nav Drawer Menu Items -->
-    <string-array name="nav_drawer_items">
-        <item>Próximas Prevenções</item>
+    <string name="title_activity_agente">Não Sincronizados</string>
+    <string name="title_activity_agente_endereco">Nova Prevenção</string>
+    <string name="title_activity_agente_add_foco">Focos</string>
 
-    </string-array>
-
-    <array name="nav_drawer_icons">
-        <item>@drawable/ic_home</item>
-
-    </array>
-
-    <!-- Content Description -->
-    <string name="desc_list_item_icon">Item Icon</string>
-    <string name="title_activity_agenda">AgendaActivity</string>
-
-    <string name="hello_world">Hello world!</string>
+    <string name="tut_excluir_prevencao">Selecione o item e segure quando quiser  deletar uma prevenção de sua lista.</string>
 
 </resources>

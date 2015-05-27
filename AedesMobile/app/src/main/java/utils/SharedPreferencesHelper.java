@@ -7,9 +7,14 @@ import android.content.SharedPreferences;
  */
 public final class SharedPreferencesHelper {
     public static final String PREFS = "PrimeiraUtilizacao";
+    public static final String AGENTE = "UsuarioAgente";
 
     public static void atualizarSharedPreferences(SharedPreferences prefs,  String attr, boolean opcao) {
         prefs.edit().putBoolean(attr, opcao).commit();
+    }
+
+    public static void atualizarSharedPreferences(SharedPreferences prefs,  String attr, String valor) {
+        prefs.edit().putString(attr, valor).commit();
     }
 
     public static boolean primeiroUso(SharedPreferences prefs, String attr) {
@@ -17,6 +22,10 @@ public final class SharedPreferencesHelper {
             return true;
         }
         return false;
+    }
+
+    public static String getString(SharedPreferences prefs, String attr){
+        return prefs.getString(attr, null);
     }
 
 }

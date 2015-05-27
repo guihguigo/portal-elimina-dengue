@@ -1,4 +1,6 @@
 
+
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
@@ -47,6 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:textSize="22sp"
+                android:layout_gravity="center"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Medium Text"
                 android:textStyle="bold"
@@ -80,15 +83,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="5sp">
-    <Button
-        android:layout_width="115sp"
-        android:layout_height="45sp"
-        android:id="@+id/btnFeito"
-        android:background="@drawable/btn01"
-        android:textSize="20sp"
-        android:layout_gravity="left"
-        android:onClick="actionFeito"
-        />
+        <Button
+            android:layout_width="115sp"
+            android:layout_height="45sp"
+            android:id="@+id/btnFeito"
+            android:background="@drawable/btn01"
+            android:textSize="20sp"
+            android:layout_gravity="left"
+            android:onClick="actionFeito"
+            />
         <Button
             android:layout_width="115sp"
             android:layout_height="45sp"
@@ -101,14 +104,14 @@
             android:onClick="actionEditar"
             />
 
-    <Button
-        android:layout_width="115sp"
-        android:layout_height="45sp"
-        android:id="@+id/btnInfo"
-        android:background="@drawable/btn03"
-        android:textSize="20sp"
-        android:layout_gravity="right"
-        android:onClick="actionInfo"
-        />
+        <Button
+            android:layout_width="115sp"
+            android:layout_height="45sp"
+            android:id="@+id/btnInfo"
+            android:background="@drawable/btn03"
+            android:textSize="20sp"
+            android:layout_gravity="right"
+            android:onClick="actionInfo"
+            />
     </LinearLayout>
 </LinearLayout>
