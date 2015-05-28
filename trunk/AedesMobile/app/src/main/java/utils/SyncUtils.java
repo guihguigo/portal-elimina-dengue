@@ -60,6 +60,7 @@ public class SyncUtils {
         this.enderecoPrevencao = new EnderecoController(context).getEndereco();
 
         if (this.enderecoPrevencao == null) {
+            new EnderecoHelper().verificarGPSHabilitado(context);
             this.enderecoPrevencao = enderecoService
                     .getEndereco(prevencao.getLatitude(), prevencao.getLongitude());
         }
@@ -79,7 +80,7 @@ public class SyncUtils {
         CustomDialog.Builder builder = new CustomDialog.Builder(this.context, "Confirmar endereço", "Sim");
 
         builder.content("Você mora em " + enderecoPrevencao.getBairro() + ", "
-                + enderecoPrevencao.getCidade() + "-" + enderecoPrevencao.getEstado() + " ?");
+                + enderecoPrevencao.getCidade() + "-" + new EstadoHelper().getEstadoAbreviatura(enderecoPrevencao.getEstado()) + " ?");
         builder.negativeText("Não");
         builder.typeface(Typeface.createFromAsset(this.context.getAssets(), "fonts/bebas.otf"));
         builder.contentTextSize(18);

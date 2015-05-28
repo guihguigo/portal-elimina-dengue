@@ -101,6 +101,7 @@ public class AgenteEnderecoActivity extends ActionBarActivity {
             i.putExtra(PrevencaoAgenteEntity.LATITUDE,String.valueOf(enderecoPrevencao.getLatitude()));
             i.putExtra(PrevencaoAgenteEntity.LONGITUDE,String.valueOf(enderecoPrevencao.getLongitude()));
             startActivity(i);
+            finish();
         }else{
             new DialogUtils(this).MaterialDialogOk("Aedes",
                     "Preencha todos os campos antes de prosseguir.");

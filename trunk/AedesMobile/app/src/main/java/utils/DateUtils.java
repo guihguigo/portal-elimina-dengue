@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Alexandre on 04/03/2015.
@@ -87,9 +88,12 @@ public class DateUtils {
         return true;
     }
 
+    public long getDiferencaEntreDates(Date dtInicio, Date dtFim){
+        return TimeUnit.DAYS.convert(dtFim.getTime() - dtInicio.getTime(), TimeUnit.MILLISECONDS);
+    }
+
     public String convertMesView(Date dt){
         switch (dt.getMonth() + 1){
-
             case 1:
                 return "Janeiro";
             case 2:
@@ -116,12 +120,12 @@ public class DateUtils {
                 return "Dezembro";
             default:
                 return "Erro";
-
-
         }
 
-
     }
+
+
+
 
 
 

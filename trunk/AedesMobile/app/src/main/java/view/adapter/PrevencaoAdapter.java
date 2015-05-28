@@ -32,6 +32,7 @@ import java.util.List;
 
 import bean.Prevencao;
 import br.com.aedes.R;
+import controller.FocoController;
 import controller.PrevencaoController;
 import uk.me.lewisdeane.ldialogs.CustomDialog;
 import utils.DateUtils;
@@ -340,10 +341,15 @@ public class PrevencaoAdapter extends BaseAdapter implements View.OnClickListene
                 //Seta data para prevenção
                 dtPrazo.setHours(tpDefineData.getCurrentHour());
                 dtPrazo.setMinutes(tpDefineData.getCurrentMinute());
+                prevAdapter.setDataPrazo(dtPrazo);
                 if (new DateUtils().validaHrPrazo(dtPrazo)) {
-                    prevAdapter.setDataPrazo(dtPrazo);
-                    pc.atualizaPrevencao(prevAdapter);
-                    atualizaAdapter();
+                    if(!new FocoController(context).verificaDataPrevencao(prevAdapter.getFoco(), dtPrazo)){
+                        MaterialDialogYesNo("Reagendar Prevenção", "Essa prevenção ultrapassa o prazo recomendado.\nDeseja continuar mesmo assim?", prevAdapter);
+                    }else{
+                        pc.atualizaPrevencao(prevAdapter);
+                        atualizaAdapter();
+                    }
+
                 } else {
                     new DialogUtils(context).MaterialDialogOk("Agendar Prevenção", "O prazo informado é menor que a data atual. Favor preencher corretamente.");
 
@@ -356,10 +362,10 @@ public class PrevencaoAdapter extends BaseAdapter implements View.OnClickListene
     }
 
     @Deprecated
-    private void MaterialDialogYesNoEditar(String titulo, String pergunta, final Prevencao prevencao) {
-        CustomDialog.Builder builder = new CustomDialog.Builder(context, titulo, "Editar");
+    private void MaterialDialogYesNo(String titulo, String pergunta, final Prevencao prevencao) {
+        CustomDialog.Builder builder = new CustomDialog.Builder(context, titulo, "Sim");
         builder.content(pergunta);
-        builder.negativeText("Remover");
+        builder.negativeText("Não");
         // builder.typeface(Typeface.createFromAsset(context.getAssets(), "fonts/bebas.otf"));
         builder.contentTextSize(new ScreenSizeHelper(context).getFonteCorpo());
         builder.buttonTextSize(new ScreenSizeHelper(context).getFonteTitulo());
@@ -372,15 +378,12 @@ public class PrevencaoAdapter extends BaseAdapter implements View.OnClickListene
         customDialog.setClickListener(new CustomDialog.ClickListener() {
             @Override
             public void onConfirmClick() {
-                prevAdapter = prevencao;
-                dtPrazo = prevAdapter.getDataPrazo();
-                setDataPrevencao();
+                pc.atualizaPrevencao(prevAdapter);
+                atualizaAdapter();
             }
 
             @Override
             public void onCancelClick() {
-                pc.removerPrevencao(prevencao);
-                atualizaAdapter();
             }
         });
 
