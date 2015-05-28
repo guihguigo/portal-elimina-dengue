@@ -26,7 +26,7 @@
                     <a href="index.jsp" class="brand-logo">Aedes</a>
                     <ul class="right hide-on-med-and-down">                        
                         <li><a href="infografico.jsp">Consultar infograficos?</a></li>
-                        <li><a href="login.jsp">Entrar</a></li>
+                        <li><a href="login.jsp">Sair</a></li>
                     </ul>
 
                 </div>
@@ -40,29 +40,46 @@
 
                 <div class="col offset-m4 s12 m5">
                     <h4>Aedes</h4>
-                    <p>Entre para ir para área administrativa</p>
-                    
+                    <p>Cadastro de empresa</p>
+
                     <div class="card-panel center">
-                        <div class="circle center-align">
-                            <i class="large mdi-action-account-circle blue-text"></i>
+                        <form id="empresa-controller" method="POST" action="empresacontroller.do">
+                            <div class="row">
+
+                            <div class="input-field col s12 m12">
+                                <input name="nome-empresa" id="nome-empresa" type="text"  class="validate" required length="60">
+                                <label for="nome-empresa">Nome</label>
+                            </div>
                         </div>
+
                         <div class="row">
                             <div class="input-field col s12 m12">
-                                <input id="login" type="text" class="validate" length="10">
+                                <input name="login" id="login" type="text" class="validate" length="10">
                                 <label for="login">Login</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12 m12">
-                                <input id="password" type="password" class="validate" length="12">
+                                <input name="password" id="password" type="password" class="validate" length="12">
                                 <label for="password">Senha</label>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="input-field col s12 m12 center-align">
-                                <a class="waves-effect waves-teal btn-flat">Entrar</a>
+                            <div class="input-field col s12 m12">
+                                <input name="repite-password" id="repite-password" type="password" class="validate" length="12">
+                                <label for="repite-password">Repita a senha</label>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="input-field col s6 m6 center-align">
+                                <a class="waves-effect waves-red btn-flat">Cancelar</a>
+                            </div>
+                            <div class="input-field col s6 m6 center-align">
+                                <a onclick="$('#empresa-controller').submit()" class="waves-effect waves-teal btn-flat">Cadastrar</a>
+                            </div>
+                        </div>
+                        </form>
+                        
                     </div>
                 </div>
             </div>

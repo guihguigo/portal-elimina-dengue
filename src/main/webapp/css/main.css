@@ -24,7 +24,12 @@ body {
     -webkit-font-smoothing: antialiased;
     -webkit-overflow-scrolling: touch;
 }
-/* Titles */
+
+h5 {
+    color: #95a5a6;
+    /*font-weight: 400;*/
+}
+/* Titles 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Lato', sans-serif;
     font-weight: 300;
@@ -35,16 +40,13 @@ h1 {
     font-size: 40px;
 }
 
-h3 {
-    color: #95a5a6;
-    font-weight: 400;
-}
+
 
 h4 {
     color: #95a5a6;
     font-weight: 400;
     font-size: 20px;
-}
+}*/
 
 /* Paragraph & Typographic */
 p {
@@ -69,21 +71,21 @@ a {
     transition: color 0.1s ease-in, background 0.1s ease-in;
 }
 
-a:hover,
+/*a:hover,
 a:focus {
     color: #7b7b7b;
     text-decoration: none;
     outline: 0;
-}
+}*/
 
-a:before,
+/*a:before,
 a:after {
     -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
     -moz-transition: color 0.1s ease-in, background 0.1s ease-in;
     -ms-transition: color 0.1s ease-in, background 0.1s ease-in;
     -o-transition: color 0.1s ease-in, background 0.1s ease-in;
     transition: color 0.1s ease-in, background 0.1s ease-in;
-}
+}*/
 
 hr {
     display: block;
@@ -116,8 +118,8 @@ hr {
 /* Helpers */
 
 .mt {
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin-top: 40px !important;
+    margin-bottom: 40px !important;
 }
 
 /*.btn-default,
@@ -200,13 +202,10 @@ i {
     background-size: cover;
 }
 
-#headerwrap h1 {
+#headerwrap h3 {
     margin-top: 60px;
     margin-bottom: 15px;
     color: white;
-    font-size: 45px;
-    font-weight: 300;
-    letter-spacing: 1px;
 }
 
 #buscar-região {
@@ -225,3 +224,9 @@ i {
     background: #FFF;
 
 }
+
+.slides {
+    background-color: #fff !important;
+    
+}
+
