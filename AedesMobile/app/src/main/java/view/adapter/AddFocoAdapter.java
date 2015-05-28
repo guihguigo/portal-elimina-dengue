@@ -264,8 +264,12 @@ public class AddFocoAdapter extends BaseAdapter {
                 dtPrazo.setMinutes(tpDefineData.getCurrentMinute());
                 if (new DateUtils().validaHrPrazo(dtPrazo)) {
                     prevencao.setDataPrazo(dtPrazo);
-                    fc.atualizaAgendamento(prevencao);
-                    atualizaAdapter();
+                    if(!fc.verificaDataPrevencao(prevencao.getFoco(),dtPrazo)){
+                        MaterialDialogYesNo("Agendar Prevenção", "Essa prevenção ultrapassa o prazo recomendado.\nDeseja continuar mesmo assim?", prevencao);
+                    }else{
+                        fc.atualizaAgendamento(prevencao);
+                        atualizaAdapter();
+                    }
                 } else {
                     new DialogUtils(context).MaterialDialogOk("Agendar Prevenção","O prazo informado é menor que a data atual. Favor preencher corretamente.");
                 }
@@ -297,7 +301,6 @@ public class AddFocoAdapter extends BaseAdapter {
             public void onConfirmClick() {
                 fc.atualizaAgendamento(prevencao);
                 atualizaAdapter();
-
             }
 
 

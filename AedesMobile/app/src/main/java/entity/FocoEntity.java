@@ -155,7 +155,7 @@ public class FocoEntity extends EliminaDengueDb {
                         + ", "
                         + ICONE
                         + ")"
-                        + "VALUES('Ralos', 'Limpe-os jogando água sanitária. Mantenha-os vedados caso não os utilize.', 0, "
+                        + "VALUES('Ralos', 'Limpe-os jogando água sanitária. Mantenha-os vedados caso não os utilize.', 7, "
                         + R.drawable.ralos + ");",
                 "INSERT INTO "
                         + TABELA_FOCO

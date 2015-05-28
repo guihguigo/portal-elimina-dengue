@@ -63,6 +63,7 @@ public class AgenteAddFocoActivity extends Activity {
     public void salvarLista(View view){
         Intent i = new Intent(AgenteAddFocoActivity.this, AgenteActivity.class);
         startActivity(i);
+        finish();
     }
 
 }

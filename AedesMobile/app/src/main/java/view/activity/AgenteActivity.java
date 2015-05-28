@@ -74,6 +74,7 @@ public class AgenteActivity extends Activity {
         if (id == R.id.ic_action_deslogar) {
             SharedPreferencesHelper.atualizarSharedPreferences(prefsAgente,"idUsuario", null);
             showMainActivity();
+            finish();
             return true;
         }
 

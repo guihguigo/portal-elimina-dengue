@@ -39,7 +39,7 @@ public class FocoController {
 
     /**
      * @return Todos os focos cadastrados no banco
-     * */
+     */
     public ArrayList<Foco> getAllFocos() {
         return fe.getAllFocos();
     }
@@ -79,25 +79,33 @@ public class FocoController {
     /**
      * Método verifica se já existe uma prevenção cadastrada para o foco
      * Caso possua, este removerá, caso contrário irá incluir.
-     * */
-    public void atualizaAgendamento(Prevencao prevencao){
-        if(verificaAgendamento(prevencao.getFoco().getCodigo())) {
+     */
+    public void atualizaAgendamento(Prevencao prevencao) {
+        if (verificaAgendamento(prevencao.getFoco().getCodigo())) {
             removerAgendamento(prevencao.getFoco().getCodigo());
             prevencao.setDataCriacao(null);
-        }
-        else {
+        } else {
             salvarAgendamento(prevencao);
         }
-
 
 
         new SyncTableEntity(this.ctx).addSync(prevencao);
 
     }
 
-    private void removerAgendamento(int idFoco){
+    private void removerAgendamento(int idFoco) {
         pe.delPrevencao(idFoco);
         alarm.removerNotificador(idFoco);
+    }
+
+    public boolean verificaDataPrevencao(Foco foco, Date dtPrazo) {
+        if (foco.getPrazo() > 0) {
+            if (new DateUtils().getDiferencaEntreDates(new Date(), dtPrazo) > foco.getPrazo()) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public Date verificaDataPrazo(Date dtPrazo) {
