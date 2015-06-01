@@ -164,7 +164,7 @@ public class PrevencaoAdapter extends BaseAdapter implements View.OnClickListene
                     layoutChildButtons.setVisibility(View.VISIBLE);
                 }
 
-                if (SharedPreferencesHelper.primeiroUso(prefs, "clique_longo")) {
+                if (SharedPreferencesHelper.getBoolean(prefs, "clique_longo")) {
                     view.setBackgroundColor(Color.parseColor("#E0E0E0"));
                     showcaseView = new ShowcaseView.Builder((android.app.Activity) context)
                             .setStyle(R.style.FirstTutorialLayout)
@@ -480,7 +480,7 @@ public class PrevencaoAdapter extends BaseAdapter implements View.OnClickListene
 
     private void tutorialPrevencao() {
         if (getCount() > 0) {
-            if (SharedPreferencesHelper.primeiroUso(prefs, "inicia_tutorial")) {
+            if (SharedPreferencesHelper.getBoolean(prefs, "inicia_tutorial")) {
                 showcaseView = new ShowcaseView.Builder((android.app.Activity) context)
                         .setTarget(Target.NONE)
                         .setStyle(R.style.FirstTutorialLayout)
@@ -505,7 +505,7 @@ public class PrevencaoAdapter extends BaseAdapter implements View.OnClickListene
             seqTutorial = -2;
         }
         if (getCount() > 0) {
-            if (SharedPreferencesHelper.primeiroUso(prefs, "lista_prevencao")) {
+            if (SharedPreferencesHelper.getBoolean(prefs, "lista_prevencao")) {
                 showcaseView = new ShowcaseView.Builder((android.app.Activity) context)
                         .setTarget(Target.NONE)
                         .setStyle(R.style.FirstTutorialLayout)

@@ -50,7 +50,7 @@ public class AgendaActivity extends ListActivity implements View.OnClickListener
         sync = new CentralSyncService(this);
 
 
-        if (SharedPreferencesHelper.primeiroUso(prefs, "primeiro_uso")) {
+        if (SharedPreferencesHelper.getBoolean(prefs, "primeiro_uso")) {
 
             showcaseView = new ShowcaseView.Builder(this)
                     .setTarget(Target.NONE)
@@ -141,8 +141,8 @@ public class AgendaActivity extends ListActivity implements View.OnClickListener
      * Chamar activity com lista para gerenciamento do Agente
      */
     private void showAgenteActivity() {
-        SharedPreferencesHelper.atualizarSharedPreferences(prefsAgente,"idUsuario","alexandre");
-        Intent i = new Intent(AgendaActivity.this, AgenteActivity.class);
+       // SharedPreferencesHelper.atualizarSharedPreferences(prefsAgente,"idUsuario","alexandre");
+        Intent i = new Intent(AgendaActivity.this, LoginAgenteActivity.class);
         this.startActivity(i);
     }
 
@@ -150,7 +150,7 @@ public class AgendaActivity extends ListActivity implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        if (SharedPreferencesHelper.primeiroUso(prefs, "primeiro_uso")) {
+        if (SharedPreferencesHelper.getBoolean(prefs, "primeiro_uso")) {
             switch (seqTutorial) {
                 case 0:
                     showcaseView.setShowcase(menuAdd, true);
