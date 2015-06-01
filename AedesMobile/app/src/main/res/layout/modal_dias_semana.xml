@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="300sp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15sp"
+    android:layout_marginLeft="15sp"
+    android:layout_marginRight="15sp"
+    android:layout_marginBottom="15sp"
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="21sp"
+        android:text="Dias da Semana:"/>
+
+    <CheckBox
+        android:id="@+id/ckbSegunda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32sp"
+        android:checked="false"
+        android:text="Segunda"
+        android:textSize="18sp" />
+
+    <CheckBox
+        android:id="@+id/ckbTerca"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32sp"
+        android:checked="false"
+        android:text="Terça"
+        android:textSize="18sp" />
+
+    <CheckBox
+        android:id="@+id/ckbQuarta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32sp"
+        android:checked="false"
+        android:text="Quarta"
+        android:textSize="18sp" />
+    <CheckBox
+        android:id="@+id/ckbQuinta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32sp"
+        android:checked="false"
+        android:text="Quinta"
+        android:textSize="18sp" />
+    <CheckBox
+        android:id="@+id/ckbSexta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32sp"
+        android:checked="false"
+        android:text="Sexta"
+        android:textSize="18sp" />
+    <CheckBox
+        android:id="@+id/ckbSabado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32sp"
+        android:checked="false"
+        android:text="Sábado"
+        android:textSize="18sp" />
+
+
+
+    <CheckBox
+        android:id="@+id/ckbDomingo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32sp"
+        android:checked="false"
+        android:text="Domingo"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btnSalvarSync"
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:background="@drawable/ic_checked"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="-20sp"
+        android:layout_gravity="right"
+        android:layout_marginRight="30sp"
+        />
+
+</LinearLayout>

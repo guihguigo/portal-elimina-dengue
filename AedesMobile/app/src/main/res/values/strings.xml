@@ -19,5 +19,9 @@
     <string name="title_activity_agente_add_foco">Focos</string>
 
     <string name="tut_excluir_prevencao">Selecione o item e segure quando quiser  deletar uma prevenção de sua lista.</string>
+    <string name="title_activity_login_agente">Login</string>
+    <string name="title_activity_configuracao_agente_entity">ConfiguracaoAgenteEntity</string>
+
+    <string name="hello_world">Hello world!</string>
 
 </resources>

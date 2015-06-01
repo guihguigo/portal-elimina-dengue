@@ -70,6 +70,10 @@ public class PrevencaoAgenteEntity extends EliminaDengueDb {
 
     }
 
+    public void delPrevencaoAgente(int idSync) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABELA_PREVENCAO_AGENTE, ID_SYNC + "=" + idSync, null);
+    }
 
     public void delPrevencaoAgente(int idFoco, String idUsuario, String rua, String numero) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -92,6 +96,7 @@ public class PrevencaoAgenteEntity extends EliminaDengueDb {
         String selectQuery = "SELECT * FROM " + TABELA_PREVENCAO_AGENTE
                 + " WHERE " + ID_FOCO + "=" + idFoco
                 + " AND " + RUA + " = '" + rua + "'"
+                + " AND " + ID_USUARIO + " = '" + idUsuario + "'"
                 + " AND " + NUMERO + " = '" + numero + "'";
 
         Cursor c = db.rawQuery(selectQuery, null);
@@ -150,6 +155,33 @@ public class PrevencaoAgenteEntity extends EliminaDengueDb {
         }
 
         return arrPrev;
+    }
+
+    public HashMap<String, String> getFirstPrevencaoAgente(String idUsuario) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String selectQuery = "SELECT * FROM " + TABELA_PREVENCAO_AGENTE
+                + " WHERE " + ID_USUARIO + " = '" + idUsuario + "'"
+                + " ORDER BY " + ID_SYNC + " ASC";
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        HashMap<String, String> prev = new HashMap<String, String>();
+        prev.put(ID_FOCO, "-1");
+
+        if (c.getCount() > 0) {
+            c.moveToFirst();
+            prev.put(ID_SYNC , (c.getString(c.getColumnIndex(ID_SYNC))));
+            prev.put(DATA_CRIACAO, (c.getString(c.getColumnIndex(DATA_CRIACAO))));
+            prev.put(RUA, (c.getString(c.getColumnIndex(RUA))));
+            prev.put(NUMERO, (c.getString(c.getColumnIndex(NUMERO))));
+            prev.put(BAIRRO, (c.getString(c.getColumnIndex(BAIRRO))));
+            prev.put(CIDADE, (c.getString(c.getColumnIndex(CIDADE))));
+            prev.put(ESTADO, (c.getString(c.getColumnIndex(ESTADO))));
+            prev.put(ID_FOCO, (c.getString(c.getColumnIndex(ID_FOCO))));
+            prev.put(ID_USUARIO, (c.getString(c.getColumnIndex(ID_USUARIO))));
+        }
+
+        return prev;
     }
 
 

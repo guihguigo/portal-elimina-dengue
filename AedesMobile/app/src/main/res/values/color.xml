@@ -21,4 +21,6 @@
 
     <color name="progress_bg">#b50d4f8f</color>
 
+    <color name="login_button">#006064</color>
+
 </resources>

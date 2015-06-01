@@ -24,12 +24,13 @@ public class SyncUtils {
     private Handler handler;
     private Context context;
     private Prevencao prevencao;
-    private SharedPreferences syncPrefs;
+    private SharedPreferences syncPrefs, syncPrefsAgente;
     private final String SYNC_STATUS = "SyncStatus";
 
 
     public SyncUtils(Context context) {
         syncPrefs = context.getSharedPreferences(SYNC_STATUS, 0);
+        syncPrefsAgente = context.getSharedPreferences(SharedPreferencesHelper.AGENTE, 0);
         enderecoService = new EnderecoService(context);
         this.context = context;
     }
@@ -117,6 +118,26 @@ public class SyncUtils {
             return !syncPrefs.getBoolean("sincronizado", false);
         }
         syncPrefs.edit().putBoolean("sincronizado", false).commit();
+        return false;
+    }
+
+    public boolean verificaSyncAgente() {
+        Calendar cal = Calendar.getInstance();
+        String idUsuario = SharedPreferencesHelper.getString(syncPrefsAgente, "idUsuario");
+
+
+        if (SharedPreferencesHelper.
+                getBoolean(syncPrefsAgente, SharedPreferencesHelper.PREFIX_AGENTE_DIA + idUsuario + cal.get(Calendar.DAY_OF_WEEK))) {
+
+            String horarioSync = SharedPreferencesHelper.
+                    getString(syncPrefsAgente, SharedPreferencesHelper.AGENTE_HORARIO + idUsuario);
+
+            if ((new DateUtils().StringToDate(horarioSync).getMonth() == cal.getTime().getMonth())) {
+                return true;
+            }
+        }
+
+
         return false;
     }
 

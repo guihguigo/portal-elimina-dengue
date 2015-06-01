@@ -5,5 +5,5 @@ package service.connection;
  */
 public class ConexaoConfig {
      public static final String URL_CENTRAL = "";
-    public static final String URL_MAPS = "http://maps.googleapis.com/maps/api/geocode/json?latlng=";
+     public static final String URL_MAPS = "http://maps.googleapis.com/maps/api/geocode/json?latlng=";
 }
