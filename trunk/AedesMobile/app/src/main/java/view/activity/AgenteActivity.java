@@ -14,6 +14,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.github.clans.fab.FloatingActionButton;
@@ -232,7 +233,11 @@ public class AgenteActivity extends Activity {
         dialog.setContentView(R.layout.modal_timepicker);
         final TimePicker tpDefineData = (TimePicker) dialog.findViewById(R.id.tpHorarioPrevencao);
 
+
+        TextView txtTitle = (TextView) dialog.findViewById(R.id.txtTitleHrPrevencao);
         Button btnSalvar = (Button) dialog.findViewById(R.id.btnConfirma);
+
+        txtTitle.setText("Horário da Sincronização");
 
         tpDefineData.setIs24HourView(true);
         tpDefineData.setCurrentHour(Calendar.getInstance().get(Calendar.HOUR_OF_DAY));
