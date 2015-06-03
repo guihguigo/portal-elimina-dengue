@@ -38,10 +38,10 @@ public class LoginAgenteActivity extends Activity {
 
     public void logar(View view) {
         YoYo.with(Techniques.Pulse).playOn(view);
-        SharedPreferencesHelper.
-                atualizarSharedPreferences(prefsAgente, "idUsuario", txtUsuario.getText().toString());
 
         if (validarCampos()) {
+            SharedPreferencesHelper.
+                    atualizarSharedPreferences(prefsAgente, "idUsuario", txtUsuario.getText().toString());
             showAgenteActivity();
         }else{
             new DialogUtils(this).MaterialDialogOk("Login", "Favor preencher usuário e senha.");
