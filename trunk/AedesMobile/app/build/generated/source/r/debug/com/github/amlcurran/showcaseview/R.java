@@ -44,11 +44,11 @@ public final class R {
 		public static final int showcase_title_text = 0x7f080009;
 	}
 	public static final class layout {
-		public static final int handy = 0x7f030022;
-		public static final int showcase_button = 0x7f030027;
+		public static final int handy = 0x7f030023;
+		public static final int showcase_button = 0x7f030029;
 	}
 	public static final class string {
-		public static final int ok = 0x7f0a0011;
+		public static final int ok = 0x7f0a0012;
 	}
 	public static final class style {
 		public static final int ShowcaseButton = 0x7f0b000e;

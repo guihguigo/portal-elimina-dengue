@@ -98,4 +98,4 @@
         android:text="Horario:"
         android:id="@+id/txtHorario" />
     </LinearLayout>
-</LinearLayout><!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/src/main/res/layout/fragment_agente_item.xml -->
+</LinearLayout><!-- From: file:/home/alexandre/Projeto/AedesMobile/app/src/main/res/layout/fragment_agente_item.xml -->

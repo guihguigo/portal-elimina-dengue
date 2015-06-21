@@ -10,4 +10,4 @@
     android:minHeight="56dp"
     tools:text="Item"
     android:textSize="18sp"
-    android:gravity="left|center"/><!-- From: file:/build/app/src/main/res/layout/item_dialog_list.xml --><!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/build/intermediates/exploded-aar/com.github.lewisjdeane/L-Dialogs/8c1419e7c6/res/layout/item_dialog_list.xml -->
+    android:gravity="left|center"/><!-- From: file:/build/app/src/main/res/layout/item_dialog_list.xml --><!-- From: file:/home/alexandre/Projeto/AedesMobile/app/build/intermediates/exploded-aar/com.github.lewisjdeane/L-Dialogs/8c1419e7c6/res/layout/item_dialog_list.xml -->

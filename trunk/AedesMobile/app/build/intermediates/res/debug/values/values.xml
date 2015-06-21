@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
+    <!-- From: file:/home/alexandre/Projeto/AedesMobile/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
     <eat-comment/>
     <attr format="reference" name="actionBarDivider"/>
     <attr format="reference" name="actionBarItemBackground"/>
@@ -71,16 +71,16 @@
     <bool name="abc_config_allowActionMenuItemTextWithIcon">false</bool>
     <bool name="abc_config_showMenuShortcutsWhenKeyboardPresent">false</bool>
     <bool name="abc_split_action_bar_is_narrow">true</bool>
-    <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/build/intermediates/exploded-aar/com.github.lewisjdeane/L-Dialogs/8c1419e7c6/res/values/values.xml -->
+    <!-- From: file:/home/alexandre/Projeto/AedesMobile/app/build/intermediates/exploded-aar/com.github.lewisjdeane/L-Dialogs/8c1419e7c6/res/values/values.xml -->
     <eat-comment/>
     <color name="LDialogs_dim_lighter_gray">#80E0E0E0</color>
     <color name="LDialogs_transparent">#00000000</color>
-    <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
+    <!-- From: file:/home/alexandre/Projeto/AedesMobile/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
     <eat-comment/>
     <color name="abc_search_url_text_normal">#7fa87f</color>
     <color name="abc_search_url_text_pressed">@android:color/black</color>
     <color name="abc_search_url_text_selected">@android:color/black</color>
-    <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/src/main/res/values/color.xml -->
+    <!-- From: file:/home/alexandre/Projeto/AedesMobile/app/src/main/res/values/color.xml -->
     <eat-comment/>
     <color name="action_bar_color">#2196F3</color>
     <color name="add_normal">#00C853</color>
@@ -89,10 +89,10 @@
     <color name="atualiza_normal">#0091EA</color>
     <color name="atualiza_pressed">#00E5FF</color>
     <color name="atualiza_ripple">#006064</color>
-    <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/src/main/res/values/colors.xml -->
+    <!-- From: file:/home/alexandre/Projeto/AedesMobile/app/src/main/res/values/colors.xml -->
     <eat-comment/>
     <color name="background_color">#E0E0E0</color>
-    <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/src/main/res/values/color.xml -->
+    <!-- From: file:/home/alexandre/Projeto/AedesMobile/app/src/main/res/values/color.xml -->
     <eat-comment/>
     <color name="counter_text_bg">#626262</color>
     <color name="counter_text_color">#c5c4c4</color>
@@ -100,6 +100,7 @@
     <color name="list_background_pressed">#992416</color>
     <color name="list_divider">#272727</color>
     <color name="list_item_title">#fff</color>
+    <color name="login_button">#006064</color>
     <color name="progress_bg">#b50d4f8f</color>
     <declare-styleable name="ActionBar"><attr name="navigationMode"><enum name="normal" value="0"/><enum name="listMode" value="1"/><enum name="tabMode" value="2"/></attr><attr name="displayOptions"><flag name="useLogo" value="0x1"/><flag name="showHome" value="0x2"/><flag name="homeAsUp" value="0x4"/><flag name="showTitle" value="0x8"/><flag name="showCustom" value="0x10"/><flag name="disableHome" value="0x20"/></attr><attr name="title"/><attr format="string" name="subtitle"/><attr format="reference" name="titleTextStyle"/><attr format="reference" name="subtitleTextStyle"/><attr format="reference" name="icon"/><attr format="reference" name="logo"/><attr format="reference" name="divider"/><attr format="reference" name="background"/><attr format="reference|color" name="backgroundStacked"/><attr format="reference|color" name="backgroundSplit"/><attr format="reference" name="customNavigationLayout"/><attr name="height"/><attr format="reference" name="homeLayout"/><attr format="reference" name="progressBarStyle"/><attr format="reference" name="indeterminateProgressStyle"/><attr format="dimension" name="progressBarPadding"/><attr format="dimension" name="itemPadding"/></declare-styleable>
     <declare-styleable name="ActionBarLayout"><attr name="android:layout_gravity"/></declare-styleable>
@@ -121,7 +122,7 @@
     <declare-styleable name="Spinner"><attr format="reference" name="prompt"/><attr format="enum" name="spinnerMode"><enum name="dialog" value="0"/><enum name="dropdown" value="1"/></attr><attr name="android:dropDownSelector"/><attr name="android:popupBackground"/><attr name="android:dropDownVerticalOffset"/><attr name="android:dropDownHorizontalOffset"/><attr name="android:dropDownWidth"/><attr format="reference" name="popupPromptView"/><attr name="android:gravity"/><attr format="boolean" name="disableChildrenWhenDisabled"/></declare-styleable>
     <declare-styleable name="Theme"><attr format="reference" name="actionDropDownStyle"/><attr format="dimension" name="dropdownListPreferredItemHeight"/><attr format="reference" name="popupMenuStyle"/><attr format="dimension" name="panelMenuListWidth"/><attr format="reference" name="panelMenuListTheme"/><attr format="reference" name="listChoiceBackgroundIndicator"/></declare-styleable>
     <declare-styleable name="View"><attr format="dimension" name="paddingStart"/><attr format="dimension" name="paddingEnd"/><attr name="android:focusable"/></declare-styleable>
-    <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
+    <!-- From: file:/home/alexandre/Projeto/AedesMobile/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
     <eat-comment/>
     <dimen name="abc_action_bar_default_height">48dip</dimen>
     <dimen name="abc_action_bar_icon_vertical_padding">8dip</dimen>
@@ -140,54 +141,54 @@
     <dimen name="abc_panel_menu_list_width">296dp</dimen>
     <dimen name="abc_search_view_preferred_width">320dip</dimen>
     <dimen name="abc_search_view_text_min_width">160dip</dimen>
-    <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/build/intermediates/exploded-aar/com.github.amlcurran.showcaseview/library/5.0.0/res/values/values.xml -->
+    <!-- From: file:/home/alexandre/Projeto/AedesMobile/app/build/intermediates/exploded-aar/com.github.amlcurran.showcaseview/library/5.0.0/res/values/values.xml -->
     <eat-comment/>
     <dimen name="action_bar_offset">66dp</dimen>
-    <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/src/main/res/values/dimens.xml -->
+    <!-- From: file:/home/alexandre/Projeto/AedesMobile/app/src/main/res/values/dimens.xml -->
     <eat-comment/>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/build/intermediates/exploded-aar/com.github.amlcurran.showcaseview/library/5.0.0/res/values/values.xml -->
+    <!-- From: file:/home/alexandre/Projeto/AedesMobile/app/build/intermediates/exploded-aar/com.github.amlcurran.showcaseview/library/5.0.0/res/values/values.xml -->
     <eat-comment/>
     <dimen name="button_margin">12dp</dimen>
-    <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
+    <!-- From: file:/home/alexandre/Projeto/AedesMobile/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
     <eat-comment/>
     <item name="dialog_fixed_height_major" type="dimen">80%</item>
     <item name="dialog_fixed_height_minor" type="dimen">100%</item>
     <item name="dialog_fixed_width_major" type="dimen">320dp</item>
     <item name="dialog_fixed_width_minor" type="dimen">320dp</item>
-    <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/build/intermediates/exploded-aar/com.github.clans/fab/1.5.0/res/values/values.xml -->
+    <!-- From: file:/home/alexandre/Projeto/AedesMobile/app/build/intermediates/exploded-aar/com.github.clans/fab/1.5.0/res/values/values.xml -->
     <eat-comment/>
     <dimen name="fab_size_mini">40dp</dimen>
     <dimen name="fab_size_normal">56dp</dimen>
     <dimen name="labels_text_size">14sp</dimen>
-    <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/src/main/res/values/dimens.xml -->
+    <!-- From: file:/home/alexandre/Projeto/AedesMobile/app/src/main/res/values/dimens.xml -->
     <eat-comment/>
     <dimen name="showcase_radius">34dp</dimen>
     <dimen name="showcase_radius_inner">36dp</dimen>
     <dimen name="showcase_radius_outer">68dp</dimen>
-    <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/build/intermediates/exploded-aar/com.github.amlcurran.showcaseview/library/5.0.0/res/values/values.xml -->
+    <!-- From: file:/home/alexandre/Projeto/AedesMobile/app/build/intermediates/exploded-aar/com.github.amlcurran.showcaseview/library/5.0.0/res/values/values.xml -->
     <eat-comment/>
     <dimen name="text_padding">24dp</dimen>
-    <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
+    <!-- From: file:/home/alexandre/Projeto/AedesMobile/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
     <eat-comment/>
     <item name="action_bar_activity_content" type="id"/>
     <item name="action_menu_divider" type="id"/>
     <item name="action_menu_presenter" type="id"/>
-    <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/build/intermediates/exploded-aar/com.github.clans/fab/1.5.0/res/values/values.xml -->
+    <!-- From: file:/home/alexandre/Projeto/AedesMobile/app/build/intermediates/exploded-aar/com.github.clans/fab/1.5.0/res/values/values.xml -->
     <eat-comment/>
     <item name="fab_label" type="id"/>
-    <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
+    <!-- From: file:/home/alexandre/Projeto/AedesMobile/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
     <eat-comment/>
     <item name="home" type="id"/>
     <item name="progress_circular" type="id"/>
     <item name="progress_horizontal" type="id"/>
-    <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/build/intermediates/exploded-aar/com.github.amlcurran.showcaseview/library/5.0.0/res/values/values.xml -->
+    <!-- From: file:/home/alexandre/Projeto/AedesMobile/app/build/intermediates/exploded-aar/com.github.amlcurran.showcaseview/library/5.0.0/res/values/values.xml -->
     <eat-comment/>
     <item name="showcase_button" type="id"/>
     <item name="showcase_sub_text" type="id"/>
     <item name="showcase_title_text" type="id"/>
-    <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
+    <!-- From: file:/home/alexandre/Projeto/AedesMobile/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
     <eat-comment/>
     <integer name="abc_max_action_buttons">2</integer>
     <string name="abc_action_bar_home_description">Navigate home</string>
@@ -203,27 +204,30 @@
     <string name="abc_searchview_description_voice">Voice search</string>
     <string name="abc_shareactionprovider_share_with">Share with</string>
     <string name="abc_shareactionprovider_share_with_application">Share with %s</string>
-    <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/home/alexandre/Projeto/AedesMobile/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="action_settings">Opções</string>
     <string name="app_name">Aedes</string>
     <string name="desc_add_foco">"Clicando aqui abrirá a tela para adicionar novos focos que possuem em sua residência."</string>
     <string name="desc_ajuda">"Clique aqui caso deseje exibir esse tutorial futuramente."</string>
-    <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/build/intermediates/exploded-aar/com.github.amlcurran.showcaseview/library/5.0.0/res/values/values.xml -->
+    <string name="hello_world">Hello world!</string>
+    <!-- From: file:/home/alexandre/Projeto/AedesMobile/app/build/intermediates/exploded-aar/com.github.amlcurran.showcaseview/library/5.0.0/res/values/values.xml -->
     <eat-comment/>
     <string name="ok">OK</string>
-    <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/home/alexandre/Projeto/AedesMobile/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="title_activity_agenda">Agenda</string>
     <string name="title_activity_agente">Não Sincronizados</string>
     <string name="title_activity_agente_add_foco">Focos</string>
     <string name="title_activity_agente_endereco">Nova Prevenção</string>
+    <string name="title_activity_configuracao_agente_entity">ConfiguracaoAgenteEntity</string>
+    <string name="title_activity_login_agente">Login</string>
     <string name="title_add_foco">"Adicionar Novos Focos"</string>
     <string name="title_ajuda">"Tutorial"</string>
     <string name="title_focos">"Focos"</string>
     <string name="tut_excluir_prevencao">Selecione o item e segure quando quiser  deletar uma prevenção de sua lista.</string>
     <string name="welcome_add_foco">"Por aqui você será capaz de gerenciar quais focos estarão em sua tela inicial"</string>
-    <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/home/alexandre/Projeto/AedesMobile/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="ActionBar.Solid.Example" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
         <item name="android:background">@drawable/ab_solid_example</item>
@@ -270,13 +274,13 @@
         <item name="sv_titleTextAppearance">@style/TituloLight</item>
         <item name="sv_detailTextAppearance">@style/DetailtextApp</item>
     </style>
-    <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/build/intermediates/exploded-aar/com.github.lewisjdeane/L-Dialogs/8c1419e7c6/res/values/values.xml -->
+    <!-- From: file:/home/alexandre/Projeto/AedesMobile/app/build/intermediates/exploded-aar/com.github.lewisjdeane/L-Dialogs/8c1419e7c6/res/values/values.xml -->
     <eat-comment/>
     <style name="LDialogs_Dark" parent="android:Theme.Black"/>
     <style name="LDialogs_Light" parent="android:Theme.Light">
         <!-- Customize your theme here. -->
     </style>
-    <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/home/alexandre/Projeto/AedesMobile/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="PopupMenu.Example" parent="@android:style/Widget.Holo.Light.ListPopupWindow">
         <item name="android:popupBackground">@drawable/menu_dropdown_panel_example</item>
@@ -284,7 +288,7 @@
     <style name="ProgressBar.Example" parent="@android:style/Widget.Holo.Light.ProgressBar.Horizontal">
         <item name="android:progressDrawable">@drawable/progress_horizontal_example</item>
     </style>
-    <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/build/intermediates/exploded-aar/com.github.amlcurran.showcaseview/library/5.0.0/res/values/values.xml -->
+    <!-- From: file:/home/alexandre/Projeto/AedesMobile/app/build/intermediates/exploded-aar/com.github.amlcurran.showcaseview/library/5.0.0/res/values/values.xml -->
     <eat-comment/>
     <style name="ShowcaseButton">
         <item name="android:layout_width">wrap_content</item>
@@ -307,7 +311,7 @@
         <item name="sv_backgroundColor">#3333B5E5</item>
         <item name="sv_buttonText">@string/ok</item>
     </style>
-    <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
+    <!-- From: file:/home/alexandre/Projeto/AedesMobile/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
     <eat-comment/>
     <style name="TextAppearance.AppCompat.Base.CompactMenu.Dialog" parent="android:TextAppearance.Medium">
         <item name="android:textColor">@android:color/primary_text_light</item>
@@ -391,7 +395,7 @@
     <style name="TextAppearance.AppCompat.Widget.DropDownItem" parent="TextAppearance.AppCompat.Widget.Base.DropDownItem"/>
     <style name="TextAppearance.AppCompat.Widget.PopupMenu.Large" parent="TextAppearance.AppCompat.Base.Widget.PopupMenu.Large"/>
     <style name="TextAppearance.AppCompat.Widget.PopupMenu.Small" parent="TextAppearance.AppCompat.Base.Widget.PopupMenu.Small"/>
-    <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/build/intermediates/exploded-aar/com.github.amlcurran.showcaseview/library/5.0.0/res/values/values.xml -->
+    <!-- From: file:/home/alexandre/Projeto/AedesMobile/app/build/intermediates/exploded-aar/com.github.amlcurran.showcaseview/library/5.0.0/res/values/values.xml -->
     <eat-comment/>
     <style name="TextAppearance.ShowcaseView.Detail" parent="android:style/TextAppearance">
         <item name="android:textColor">#FFFFFF</item>
@@ -407,7 +411,7 @@
     <style name="TextAppearance.ShowcaseView.Title.Light">
         <item name="android:shadowRadius">0</item>
     </style>
-    <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
+    <!-- From: file:/home/alexandre/Projeto/AedesMobile/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
     <eat-comment/>
     <style name="TextAppearance.Widget.AppCompat.Base.ExpandedMenu.Item" parent="android:TextAppearance.Medium">
         <item name="android:textColor">?android:attr/textColorPrimaryDisableOnly</item>
@@ -688,7 +692,7 @@
     </style>
     <style name="Theme.Base.AppCompat.Light.DialogWhenLarge" parent="Theme.Base.AppCompat.Light"/>
     <style name="Theme.Base.Light" parent="android:Theme.Light"/>
-    <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/home/alexandre/Projeto/AedesMobile/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="Theme.Example" parent="@style/Theme.AppCompat.Light.DarkActionBar">
         <item name="android:actionBarItemBackground">@drawable/selectable_background_example</item>
@@ -727,7 +731,7 @@
         <item name="sv_titleTextAppearance">@style/TituloLight</item>
         <item name="sv_detailTextAppearance">@style/DetailtextApp</item>
     </style>
-    <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
+    <!-- From: file:/home/alexandre/Projeto/AedesMobile/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/res/values/values.xml -->
     <eat-comment/>
     <style name="Widget.AppCompat.ActionBar" parent="Widget.AppCompat.Base.ActionBar"/>
     <style name="Widget.AppCompat.ActionBar.Solid" parent="Widget.AppCompat.Base.ActionBar.Solid"/>
