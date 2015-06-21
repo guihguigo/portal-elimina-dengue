@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/src/main/res/values-en/strings.xml -->
+    <!-- From: file:/home/alexandre/Projeto/AedesMobile/app/src/main/res/values-en/strings.xml -->
     <eat-comment/>
     <string name="app_name">Aedes</string>
     <string name="desc_add_foco"/>

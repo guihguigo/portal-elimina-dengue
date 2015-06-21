@@ -31,7 +31,6 @@ import br.com.aedes.R;
 import controller.FocoController;
 import uk.me.lewisdeane.ldialogs.CustomDialog;
 import utils.DateUtils;
-import utils.DialogUtils;
 import utils.ScreenSizeHelper;
 
 public class AddFocoAdapter extends BaseAdapter {
@@ -210,7 +209,7 @@ public class AddFocoAdapter extends BaseAdapter {
                 if (new DateUtils().validaDtPrazo(dtPrazo)) {
                     setHoraPrevencao();
                 } else {
-                    new DialogUtils(context).MaterialDialogOk("Agendar Prevenção","O prazo informado é menor que a data atual. Favor preencher corretamente.");
+                    MaterialDialogOk("Agendar Prevenção","O prazo informado é menor que a data atual. Favor preencher corretamente.", prevencao);
                 }
                 //new PrevencaoAdapter(context).atualizaAdapter();
 
@@ -238,6 +237,27 @@ public class AddFocoAdapter extends BaseAdapter {
             Log.d("ERROR", e.getMessage());
         }
 
+    }
+    public void MaterialDialogOk(String titulo, String corpo, final Prevencao prev) {
+        CustomDialog.Builder builder = new CustomDialog.Builder(this.context, titulo, "Ok");
+        builder.content(corpo);
+        //  builder.typeface(Typeface.createFromAsset(ctx.getAssets(), "fonts/bebas.otf"));
+        builder.contentTextSize(new ScreenSizeHelper(context).getFonteCorpo());
+        builder.buttonTextSize(new ScreenSizeHelper(context).getFonteTitulo());
+        builder.contentColor("#363835");
+        builder.positiveColor("#1976D2");
+        CustomDialog customDialog = builder.build();
+        customDialog.setClickListener(new CustomDialog.ClickListener() {
+            @Override
+            public void onConfirmClick() {
+                setDataPrevencao();
+            }
+
+            @Override
+            public void onCancelClick() {
+            }
+        });
+        customDialog.show();
     }
 
 
@@ -271,7 +291,7 @@ public class AddFocoAdapter extends BaseAdapter {
                         atualizaAdapter();
                     }
                 } else {
-                    new DialogUtils(context).MaterialDialogOk("Agendar Prevenção","O prazo informado é menor que a data atual. Favor preencher corretamente.");
+                    MaterialDialogOk("Agendar Prevenção","O prazo informado é menor que a data atual. Favor preencher corretamente.", prevencao);
                 }
 
 

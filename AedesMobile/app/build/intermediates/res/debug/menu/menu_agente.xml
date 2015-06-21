@@ -3,10 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools" tools:context="view.activity.AgenteActivity">
     <item
         android:id="@+id/ic_action_deslogar"
-        android:orderInCategory="100"
+        android:orderInCategory="101"
         android:showAsAction="ifRoom"
         android:icon="@drawable/ic_action_action_exit_to_app"
         android:title="Deslogar"
         />
+
+    <item
+        android:id="@+id/ic_action_config"
+        android:orderInCategory="100"
+        android:showAsAction="ifRoom"
+        android:icon="@drawable/ic_action_action_settings"
+        android:title="Configurações"
+        />
 </menu>
-<!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/src/main/res/menu/menu_agente.xml -->
+<!-- From: file:/home/alexandre/Projeto/AedesMobile/app/src/main/res/menu/menu_agente.xml -->

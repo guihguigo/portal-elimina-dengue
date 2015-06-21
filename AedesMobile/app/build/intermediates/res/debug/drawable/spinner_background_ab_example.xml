@@ -26,4 +26,4 @@
         android:drawable="@drawable/spinner_ab_focused_example" />
     <item android:drawable="@drawable/spinner_ab_default_example" />
 </selector>
-<!-- From: file:/C:/Users/Alexandre/Desktop/portal-elimina-dengue/AedesMobile/app/src/main/res/drawable/spinner_background_ab_example.xml -->
+<!-- From: file:/home/alexandre/Projeto/AedesMobile/app/src/main/res/drawable/spinner_background_ab_example.xml -->

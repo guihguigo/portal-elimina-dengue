@@ -292,7 +292,7 @@ public class PrevencaoAdapter extends BaseAdapter implements View.OnClickListene
                 if (new DateUtils().validaDtPrazo(dtPrazo)) {
                     setHoraPrevencao();
                 } else {
-                    new DialogUtils(context).MaterialDialogOk("Agendar Prevenção", "O prazo informado é menor que a data atual. Favor preencher corretamente.");
+                    MaterialDialogOk("Agendar Prevenção", "O prazo informado é menor que a data atual. Favor preencher corretamente.", prevAdapter);
                 }
 
             }
@@ -351,7 +351,7 @@ public class PrevencaoAdapter extends BaseAdapter implements View.OnClickListene
                     }
 
                 } else {
-                    new DialogUtils(context).MaterialDialogOk("Agendar Prevenção", "O prazo informado é menor que a data atual. Favor preencher corretamente.");
+                  MaterialDialogOk("Agendar Prevenção", "O prazo informado é menor que a data atual. Favor preencher corretamente.", prevAdapter);
 
                 }
 
@@ -497,6 +497,31 @@ public class PrevencaoAdapter extends BaseAdapter implements View.OnClickListene
             }
         }
     }
+
+    public void MaterialDialogOk(String titulo, String corpo, final Prevencao prevencao) {
+        CustomDialog.Builder builder = new CustomDialog.Builder(this.context, titulo, "Ok");
+        builder.content(corpo);
+        //  builder.typeface(Typeface.createFromAsset(ctx.getAssets(), "fonts/bebas.otf"));
+        builder.contentTextSize(new ScreenSizeHelper(context).getFonteCorpo());
+        builder.buttonTextSize(new ScreenSizeHelper(context).getFonteTitulo());
+        builder.contentColor("#363835");
+        builder.positiveColor("#1976D2");
+        CustomDialog customDialog = builder.build();
+        customDialog.setClickListener(new CustomDialog.ClickListener() {
+            @Override
+            public void onConfirmClick() {
+                prevAdapter = prevencao;
+                dtPrazo = prevAdapter.getDataPrazo();
+                setDataPrevencao();
+            }
+
+            @Override
+            public void onCancelClick() {
+            }
+        });
+        customDialog.show();
+    }
+
 
     @Override
     public void onClick(View v) {
