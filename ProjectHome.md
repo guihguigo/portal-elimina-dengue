@@ -1,0 +1,1 @@
+Projeto mobile para gerenciamento de prevenções e controle dos focos possíveis de dengue na residência do usuário.
